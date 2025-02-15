@@ -25,9 +25,11 @@ jobs:
         run: node update-data.js
       
       - name: Commit Changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add data.json
           git commit -m "Auto-update data"
-          git push
+          git push "https://$GH_TOKEN@github.com/mpoles/kinopoisk-cache.git"
