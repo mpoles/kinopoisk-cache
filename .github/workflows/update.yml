@@ -32,4 +32,4 @@ jobs:
           git config --global user.email "mihopol@mail.ru"
           git add data.json
           git commit -m "Auto-update data"
-          git push "https://$GH_TOKEN@github.com/mpoles/kinopoisk-cachee.git"
+          git push "https://$GH_TOKEN@github.com/mpoles/kinopoisk-cache.git"
