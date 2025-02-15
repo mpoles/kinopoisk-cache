@@ -17,6 +17,11 @@ jobs:
           echo "package-lock.json" >> .gitignore
           echo "package.json" >> .gitignore
           
+      - name: Add .gitignore to repository
+        run: |
+          git add .gitignore
+          git commit -m "Add .gitignore file" || echo "No changes to .gitignore"
+      
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
