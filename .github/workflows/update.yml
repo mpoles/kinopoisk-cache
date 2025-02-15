@@ -11,6 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Create .gitignore
+        run: |
+          echo "node_modules/" >> .gitignore
+          echo "package-lock.json" >> .gitignore
+          echo "package.json" >> .gitignore
+          
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
