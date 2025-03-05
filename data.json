@@ -3,10 +3,10 @@
   "movies": [
     {
       "title": "Побег из Шоушенка",
-      "year": 1994,
-      "rating": 9.109,
-      "vote_average": 9.1,
       "poster_path": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
+      "release_date": "2019-05-22",
+      "year": 1994,
+      "vote_average": 9.19,
       "id": 278
     },
     {
