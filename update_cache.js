@@ -53,9 +53,9 @@ async function fetchMultiplePages(baseUrl, pages) {
 
     const moviesDocs = await fetchMultiplePages(moviesBase, 2);
     const moviesProcessed = moviesDocs.map(item => ({
+      poster_path: item.poster?.url ?? null,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      poster_path: item.poster?.url ?? null,
       release_date: item.premiere?.world ?? null,
       vote_average: item.rating?.kp ?? null
     }));
@@ -73,9 +73,9 @@ async function fetchMultiplePages(baseUrl, pages) {
 
     const seriesDocs = await fetchMultiplePages(seriesBase, 2);
     let seriesProcessed = seriesDocs.map(item => ({
+      poster_path: item.poster?.url ?? null,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      poster_path: item.poster?.url ?? null,
       release_date: item.premiere?.world ?? null,
       vote_average: item.rating?.kp ?? null,
       media_type: "tv",
