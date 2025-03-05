@@ -20,7 +20,7 @@ if (!TMDB_API_KEY) {
 
 async function fetchPage(url) {
   try {
-    const resp = await axios.get(url, { headers: { 'X-API-KEY': API_KEY } });
+    const resp = await axios.get(url, { headers: { 'X-API-KEY': KINOPOISK_API_KEY } });
     return resp.data;
   } catch (err) {
     console.error('Error fetching page:', url, err.message);
@@ -119,8 +119,8 @@ async function enrichWithTmdbPosters(items, isMovie) {
     // Sort series by top250 ascending
     seriesProcessed.sort((a, b) => (a.top250 - b.top250) || 0);
 
-    //await enrichWithTmdbPosters(moviesProcessed, true);
-    //await enrichWithTmdbPosters(seriesProcessed, false);
+    await enrichWithTmdbPosters(moviesProcessed, true);
+    await enrichWithTmdbPosters(seriesProcessed, false);
 
     // Build final JSON
     const today = new Date().toISOString().split('T')[0];
