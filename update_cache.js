@@ -119,8 +119,8 @@ async function enrichWithTmdbPosters(items, isMovie) {
     // Sort series by top250 ascending
     seriesProcessed.sort((a, b) => (a.top250 - b.top250) || 0);
 
-    await enrichWithTmdbPosters(moviesProcessed, true);
-    await enrichWithTmdbPosters(seriesProcessed, false);
+    //await enrichWithTmdbPosters(moviesProcessed, true);
+    //await enrichWithTmdbPosters(seriesProcessed, false);
 
     // Build final JSON
     const today = new Date().toISOString().split('T')[0];
