@@ -5,7 +5,7 @@
     window.kinopoisk_ready = true;
 
     // Change this to your actual GitHub Pages URL
-    const GITHUB_DATA_URL = 'https://<YOUR_GITHUB_USERNAME>.github.io/kinopoisk-cache/data.json';
+    const GITHUB_DATA_URL = 'https://mpoles.github.io/kinopoisk-cache/data.json';
 
     const network = new Lampa.Reguest();
 
