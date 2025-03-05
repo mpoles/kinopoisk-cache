@@ -8,15 +8,16 @@
 const fs = require('fs');
 const axios = require('axios');
 
-const API_KEY = process.env.KINOPOISK_API_KEY; // from GH Actions secret
-if (!API_KEY) {
-  console.error('Error: KINOPOISK_API_KEY is not defined in environment');
+const KINOPOISK_API_KEY = process.env.KINOPOISK_API_KEY;
+const TMDB_API_KEY = process.env.TMDB_API_KEY;
+
+if (!KINOPOISK_API_KEY) {
+  process.exit(1);
+}
+if (!TMDB_API_KEY) {
   process.exit(1);
 }
 
-/**
- * Helper to fetch a single page.
- */
 async function fetchPage(url) {
   try {
     const resp = await axios.get(url, { headers: { 'X-API-KEY': API_KEY } });
@@ -42,18 +43,54 @@ async function fetchMultiplePages(baseUrl, pages) {
   return allDocs;
 }
 
+async function fetchTmdbPosterPath(tmdbId, isMovie) {
+  if (!tmdbId) return null;
+
+  const type = isMovie ? 'movie' : 'tv';
+  const url = `https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=ru`;
+  try {
+    const response = await axios.get(url, {
+      headers: { Authorization: `Bearer ${TMDB_API_KEY}` }
+    });
+    const data = response.data;
+    if (!data || !data.posters || !data.posters.length) return null;
+
+    // Prefer RU-language poster, else fallback to first poster
+    let ruPoster = data.posters.find(p => p.iso_639_1 === 'ru');
+    if (!ruPoster) ruPoster = data.posters[0];
+
+    // Return the raw file_path, or prepend an image URL if desired
+    // e.g. "https://image.tmdb.org/t/p/original" + ruPoster.file_path
+    return ruPoster.file_path;
+  } catch (err) {
+    console.error(`Error fetching TMDB poster for ID ${tmdbId}`, err.message);
+    return null;
+  }
+}
+async function enrichWithTmdbPosters(items, isMovie) {
+  // We do this sequentially to avoid flooding the API with concurrent calls.
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const tmdbPosterPath = await fetchTmdbPosterPath(item.id, isMovie);
+    if (tmdbPosterPath) {
+      // Optionally prefix with an image path from TMDB, e.g. "https://image.tmdb.org/t/p/w500"
+      // or "https://image.tmdb.org/t/p/original"
+      item.poster_path = tmdbPosterPath;
+    }
+  }
+}
+
 (async function main(){
   try {
     const moviesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
       &selectFields=externalId&selectFields=name&selectFields=premiere
-      &selectFields=rating&selectFields=poster&selectFields=lists
+      &selectFields=rating&selectFields=lists
       &notNullFields=externalId.tmdb
       &sortField=rating.kp&sortType=-1
       &lists=top500`.replace(/\s+/g,'');
 
     const moviesDocs = await fetchMultiplePages(moviesBase, 2);
     const moviesProcessed = moviesDocs.map(item => ({
-      poster_path: item.poster?.url ?? null,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
       release_date: item.premiere?.world ?? null,
@@ -62,7 +99,7 @@ async function fetchMultiplePages(baseUrl, pages) {
 
     const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
       &selectFields=externalId&selectFields=name&selectFields=premiere
-      &selectFields=rating&selectFields=poster&selectFields=top250
+      &selectFields=rating&selectFields=top250
       &selectFields=votes&selectFields=isSeries
       &notNullFields=externalId.tmdb&notNullFields=name
       &genres.name=!детский&genres.name=!документальный&genres.name=!реальное ТВ
@@ -73,7 +110,6 @@ async function fetchMultiplePages(baseUrl, pages) {
 
     const seriesDocs = await fetchMultiplePages(seriesBase, 2);
     let seriesProcessed = seriesDocs.map(item => ({
-      poster_path: item.poster?.url ?? null,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
       first_air_date: item.premiere?.world ?? null,
@@ -82,6 +118,9 @@ async function fetchMultiplePages(baseUrl, pages) {
     }));
     // Sort series by top250 ascending
     seriesProcessed.sort((a, b) => (a.top250 - b.top250) || 0);
+
+    await enrichWithTmdbPosters(moviesProcessed, true);
+    await enrichWithTmdbPosters(seriesProcessed, false);
 
     // Build final JSON
     const today = new Date().toISOString().split('T')[0];
