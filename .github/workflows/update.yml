@@ -1,39 +1,31 @@
-name: Update Data
+name: Update Kinopoisk Cache
 
 on:
   schedule:
-    - cron: '0 12 * * *' # Ежедневно в 12:00 UTC
-  workflow_dispatch:
+    - cron: '0 3 * * *'  # Runs every day at 03:00 UTC
+  workflow_dispatch:     # Allows manual "Run workflow" trigger in GitHub Actions
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Create .gitignore
-        run: |
-          echo "node_modules/" >> .gitignore
-          echo "package-lock.json" >> .gitignore
-          echo "package.json" >> .gitignore
-          
-      - name: Add .gitignore to repository
-        run: |
-          git add .gitignore
-          git commit -m "Add .gitignore file" || echo "No changes to .gitignore"
-      
-      - name: Setup Node
-        uses: actions/setup-node@v2
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
-          
-      - name: Install Dependencies
-        run: npm install node-fetch@2
-      
-      - name: Run Updater
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install axios
+
+      - name: Fetch data and build data.json
         env:
           KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
-        run: node update-data.js
+        run: |
+          node ./update_cache.js
       
       - name: Commit Changes
         env:
