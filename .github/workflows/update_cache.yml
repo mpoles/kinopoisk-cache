@@ -24,6 +24,7 @@ jobs:
       - name: Fetch data and build data.json
         env:
           KINOPOISK_API_KEY: ${{ secrets.KINOPOISK_API_KEY }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
         run: |
           node ./update_cache.js
       
