@@ -44,9 +44,8 @@ async function fetchMultiplePages(baseUrl, pages) {
 
 (async function main(){
   try {
-    // ----- Fetch movies (2 pages) -----
     const moviesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
-      &selectFields=externalId&selectFields=name&selectFields=year
+      &selectFields=externalId&selectFields=name&selectFields=premiere
       &selectFields=rating&selectFields=poster&selectFields=lists
       &notNullFields=externalId.tmdb
       &sortField=rating.kp&sortType=-1
@@ -54,16 +53,15 @@ async function fetchMultiplePages(baseUrl, pages) {
 
     const moviesDocs = await fetchMultiplePages(moviesBase, 2);
     const moviesProcessed = moviesDocs.map(item => ({
+      id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      year: item.year ?? null,
-      rating: item.rating?.kp ?? null,
       poster_path: item.poster?.url ?? null,
-      id: item.externalId?.tmdb ?? null
+      release_date: item.premiere?.world ?? null,
+      vote_average: item.rating?.kp ?? null
     }));
 
-    // ----- Fetch series (2 pages) -----
     const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
-      &selectFields=externalId&selectFields=name&selectFields=year
+      &selectFields=externalId&selectFields=name&selectFields=premiere
       &selectFields=rating&selectFields=poster&selectFields=top250
       &selectFields=votes&selectFields=isSeries
       &notNullFields=externalId.tmdb&notNullFields=name
@@ -77,9 +75,9 @@ async function fetchMultiplePages(baseUrl, pages) {
     let seriesProcessed = seriesDocs.map(item => ({
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      year: item.year ?? null,
-      rating: item.rating?.kp ?? null,
       poster_path: item.poster?.url ?? null,
+      release_date: item.premiere?.world ?? null,
+      vote_average: item.rating?.kp ?? null,
       top250: item.top250 ?? 251
     }));
     // Sort series by top250 ascending
