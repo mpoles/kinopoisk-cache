@@ -27,9 +27,12 @@ jobs:
         run: |
           node ./update_cache.js
       
-      - name: Commit to gh-pages branch
-        uses: EndBug/add-and-commit@v9
-        with:
-          add: 'data.json'
-          message: 'Update data.json [skip ci]'
-          branch: 'mail'
+      - name: Commit Changes
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "mpoles"
+          git config --global user.email "mihopol@mail.ru"
+          git add data.json
+          git commit -m "Auto-update data"
+          git push "https://$GH_TOKEN@github.com/mpoles/kinopoisk-cache.git"
