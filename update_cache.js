@@ -76,9 +76,8 @@ async function fetchMultiplePages(baseUrl, pages) {
       poster_path: item.poster?.url ?? null,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      release_date: item.premiere?.world ?? null,
+      first_air_date: item.premiere?.world ?? null,
       vote_average: item.rating?.kp ?? null,
-      media_type: "tv",
       top250: item.top250 ?? 251
     }));
     // Sort series by top250 ascending
