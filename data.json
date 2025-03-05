@@ -2,18 +2,11 @@
   "date": "2025-03-05",
   "movies": [
     {
+      "poster_path": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
       "id": 278,
       "title": "Побег из Шоушенка",
-      "poster_path": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg",
       "release_date": "1994-09-10T00:00:00.000Z",
       "vote_average": 9.109
-    },
-    {
-      "id": 497,
-      "title": "Зеленая миля",
-      "poster_path": "https://image.openmoviedb.com/kinopoisk-images/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/orig",
-      "release_date": "1999-12-06T00:00:00.000Z",
-      "vote_average": 9.076
     },
     {
       "id": 13,
