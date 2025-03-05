@@ -15,7 +15,7 @@ if (!KINOPOISK_API_KEY) {
   process.exit(1);
 }
 if (!TMDB_API_KEY) {
-  process.exit(1);
+  process.exit(2);
 }
 
 async function fetchPage(url) {
