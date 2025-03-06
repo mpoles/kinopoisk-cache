@@ -88,7 +88,7 @@ async function enrichWithTmdbPosters(items, isMovie) {
       vote_average: item.rating?.kp ?? null
     }));
 
-    const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE&selectFields=externalId&selectFields=name&selectFields=premiere&selectFields=rating&selectFields=top250&selectFields=votes&selectFields=isSeries&notNullFields=externalId.tmdb&notNullFields=name&seriesLength=15-999genres.name=!детский&genres.name=!документальный&genres.name=!реальное ТВ&genres.name=!ток-шоу&genres.name=!игра&votes.kp=9999-9999999&sortField=top250&sortField=rating.kp&sortType=-1&sortType=-1&isSeries=true`;
+    const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE&selectFields=externalId&selectFields=name&selectFields=premiere&selectFields=rating&selectFields=top250&selectFields=votes&selectFields=isSeries&notNullFields=externalId.tmdb&notNullFields=name&seriesLength=15-999&genres.name=!детский&genres.name=!документальный&genres.name=!реальное ТВ&genres.name=!ток-шоу&genres.name=!игра&votes.kp=9999-9999999&sortField=top250&sortField=rating.kp&sortType=-1&sortType=-1&isSeries=true`;
 
     const seriesDocs = await fetchMultiplePages(seriesBase, 2);
 
