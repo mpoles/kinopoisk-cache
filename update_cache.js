@@ -84,7 +84,7 @@ async function enrichWithTmdbPosters(items, isMovie) {
       rank: index + 1,
       id: item.externalId?.tmdb,
       title: item.name ?? null,
-      release_date: item.premiere?.world?.slice(0,10) ?? '',
+      release_date: item.premiere?.world?.slice(0,10) ?? item.premiere?.russia?.slice(0,10) ?? '',
       vote_average: item.rating?.kp ?? null
     }));
 
@@ -98,7 +98,7 @@ async function enrichWithTmdbPosters(items, isMovie) {
       rank: index + 1,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      first_air_date: item.premiere?.world?.slice(0,10) ?? null,
+      first_air_date: item.premiere?.world?.slice(0,10) ?? item.premiere?.russia?.slice(0,10) ?? '',
       vote_average: item.rating?.kp ?? null,
     }));
 
