@@ -16,8 +16,8 @@
             let series = json.series || [];
 
             // Use first item poster as collection image if available, else fallback
-            let movies_img = movies.length ? movies[0].poster_path : 'https://example.com/movies.jpg';
-            let series_img = series.length ? series[0].poster_path : 'https://example.com/series.jpg';
+            let movies_img = json.movies_cover;
+            let series_img = json.series_cover;
 
             const data = {
                 results: [
