@@ -119,42 +119,49 @@ function kinopoiskCollectionComponent(object) {
             const items = json.results || [];
             const sectionSize = 50;
 
-            // Iterate over all items in groups of 50
-            for (let i = 0; i < items.length; i += sectionSize) {
-                const start = i + 1;
-                const end = Math.min(i + sectionSize, items.length);
-                const sectionItems = items.slice(i, end);
+            if (!items.length) {
+                this.empty();
+                return;
+            }
 
-                // Section header
+            for (let i = 0; i < items.length; i += sectionSize) {
+                const sectionItems = items.slice(i, i + sectionSize);
+                const start = i + 1;
+                const end = i + sectionItems.length;
+
+                // Append section header
                 comp.append($(`<div style="
-                    width:100%; padding:15px 10px;
-                    font-size:22px; font-weight:bold;
-                    color:#fff; margin-bottom:10px;
+                    width:100%; 
+                    padding:15px 0;
+                    font-size:28px;
+                    font-weight:bold;
+                    color:white;
                 ">${start}-${end}</div>`));
 
-                sectionItems.forEach((item, index) => {
-                    const cardHtml = Lampa.Template.get('card', {
+                sectionItems.forEach((item, idx) => {
+                    const globalIndex = i + idx + 1; // actual rank
+                    const card = Lampa.Template.get('card', {
                         title: item.title,
                         release_year: (item.release_date || item.first_air_date || '').split('-')[0],
-                        poster: item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : '',
-                        vote_average: item.vote_average
+                        poster: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : ''
                     });
 
-                    const card = $(cardHtml);
-
-                    // Add stylish rank badge for top-10 items
-                    const globalIndex = i + idx + 1;
                     if (globalIndex <= 10) {
-                        card.append($(`<div style="
-                            position:absolute; top:8px; left:8px; z-index:10;
-                            background-color:rgba(0,0,0,0.8); color:gold;
-                            font-size:20px; font-weight:bold;
-                            border-radius:4px; padding:3px 7px;
-                        ">${globalIndex}</div>`));
+                        card.append(`<div style="
+                            position:absolute;
+                            top:8px; left:8px;
+                            background-color:rgba(0,0,0,0.8);
+                            color:gold;
+                            font-weight:bold;
+                            font-size:24px;
+                            padding:2px 6px;
+                            border-radius:4px;
+                            z-index:2;">${globalIndex}</div>`);
                     }
 
-                    card.on('hover:enter', function () {
+                    card.on('hover:enter', () => {
                         const isSeries = (object.url === 'series' || object.url === 'top500series');
+
                         Lampa.Activity.push({
                             component: 'full',
                             id: item.id,
@@ -163,16 +170,14 @@ function kinopoiskCollectionComponent(object) {
                         });
                     });
 
-                    comp.append(card);
+                    this.append(card);
                 });
             }
-
-            this.build({results: []}); // initial call to setup view
-        }, this.empty.bind(this));
-    };
-
-    comp.nextPageReuest = function (object, resolve, reject) {
-        Api.full(object, resolve.bind(comp), reject.bind(comp));
+        }, (e) => {
+            this.empty();
+            Lampa.Noty.show('Ошибка загрузки данных');
+            console.error(e);
+        });
     };
 
     comp.cardRender = function (object, element, card) {
@@ -190,6 +195,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
 
