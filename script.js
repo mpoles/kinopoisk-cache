@@ -1,34 +1,32 @@
-(function () { 
+(function () {
     'use strict';
 
     if (window.kinopoisk_ready) return;
     window.kinopoisk_ready = true;
 
-    // URL to your data.json on GitHub Pages
+    // Change this to your actual GitHub Pages URL
     const GITHUB_DATA_URL = 'https://mpoles.github.io/kinopoisk-cache/data.json';
 
     const network = new Lampa.Reguest();
 
-    // 1) MAIN MENU
+    /**
+     * 1) MAIN MENU
+     */
     function main(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
-            let movies = json.movies || [];
-            let series = json.series || [];
-
-            // Use covers from data.json if available
-            let movies_img = json.movies_cover;
-            let series_img = json.series_cover;
+            const moviesImg = json.movies_cover;
+            const seriesImg = json.series_cover;
 
             const data = {
                 results: [
                     {
                         title: "Топ 500 фильмов",
-                        img: movies_img,
+                        img: moviesImg,
                         hpu: "movies"
                     },
                     {
                         title: "Топ 500 сериалов",
-                        img: series_img,
+                        img: seriesImg,
                         hpu: "series"
                     }
                 ],
@@ -37,34 +35,27 @@
             };
 
             oncomplite(data);
-        }, (e) => {
-            onerror(e);
-        });
+        }, onerror);
     }
 
-    // 2) COLLECTION
+    /**
+     * 2) COLLECTION
+     */
     function full(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
-            let movies = json.movies || [];
-            let series = json.series || [];
             let collection = [];
 
-            if (params.url === "movies" || params.url === "top500movies"){
-                collection = movies;
-            }
-            else if (params.url === "series" || params.url === "top500series"){
-                collection = series;
+            if (params.url === "movies" || params.url === "top500movies") {
+                collection = json.movies || [];
+            } else if (params.url === "series" || params.url === "top500series") {
+                collection = json.series || [];
             }
 
-            const data = {
+            oncomplite({
                 results: collection,
                 total_pages: 1
-            };
-
-            oncomplite(data);
-        }, (e) => {
-            onerror(e);
-        });
+            });
+        }, onerror);
     }
 
     function clear() {
@@ -73,7 +64,9 @@
 
     const Api = { main, full, clear };
 
-    // 3) MAIN MENU COMPONENT
+    /**
+     * 3) MAIN MENU COMPONENT
+     */
     function kinopoiskMainComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -87,7 +80,7 @@
 
         comp.cardRender = function (object, element, card) {
             card.onMenu = false;
-            card.onEnter = function () {
+            card.onEnter = () => {
                 Lampa.Activity.push({
                     url: element.hpu,
                     title: element.title,
@@ -100,7 +93,10 @@
         return comp;
     }
 
-    // 4) COLLECTION COMPONENT
+    /**
+     * 4) COLLECTION COMPONENT
+     *    - No `this.renderItem`, so we create Card objects ourselves.
+     */
     function kinopoiskCollectionComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -115,65 +111,65 @@
         };
 
         /**
-         * Build the custom layout:
-         * - chunk items into sections of 50,
-         * - give top-10 a gold rank label
+         * Build the layout in sections of 50, with top-10 golden rank.
          */
         comp.build = function (data) {
-            comp.empty(); // clear any existing DOM content
+            // Clear anything currently rendered in this component
+            comp.empty();
 
-            // create a wrapper div for everything
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('kinopoisk-wrapper');
+            // We'll gather everything in a single container
+            const container = document.createElement('div');
+            container.classList.add('kinopoisk-wrapper');
 
-            let items = data.results || [];
-            let total = items.length;
-            let chunkSize = 50;
-
+            const items = data.results || [];
             // Tag each item with zero-based rank
             items.forEach((it, idx) => {
-                it._rank = idx; // store the rank so we can highlight top 10
+                it._rank = idx; // so we know if it's in the top 10
             });
 
-            // Now chunk the array into groups of 50
+            const total = items.length;
+            const chunkSize = 50;
+
             let startIndex = 0;
             while (startIndex < total) {
-                let endIndex = startIndex + chunkSize;
-                let chunk = items.slice(startIndex, endIndex);
+                const endIndex = startIndex + chunkSize;
+                const chunk = items.slice(startIndex, endIndex);
 
-                // Add an <h2> for this chunk
-                let heading = document.createElement('h2');
+                // Add a heading for this chunk
+                const heading = document.createElement('h2');
                 heading.textContent = `${startIndex + 1} - ${Math.min(endIndex, total)}`;
                 heading.style.margin = '1.5em 1em 0.5em';
                 heading.style.fontSize = '1.4em';
-                heading.style.color = '#ffd700'; // gold color for headings
-                wrapper.appendChild(heading);
+                heading.style.color = '#ffd700';
+                container.appendChild(heading);
 
-                // Render each item within this chunk
+                // For each item, build a Card and append it
                 chunk.forEach((element) => {
-                    // let Lampa build the card DOM
-                    let card = this.renderItem(element);
-                    wrapper.appendChild(card);
+                    const cardNode = buildCard(element, object.url);
+                    container.appendChild(cardNode);
                 });
 
                 startIndex = endIndex;
             }
 
-            // Finally, append everything to the component
-            comp.append(wrapper);
+            // Finally, attach container to the component
+            comp.append(container);
         };
 
         /**
-         * Called automatically for each item to create the card.
-         * We inject a top-10 gold label if `_rank < 10`.
+         * Lampa normally calls `cardRender`. We'll replicate that logic
+         * by building a Card object ourselves and returning its DOM.
          */
-        comp.cardRender = function (object, element, card) {
-            card.onMenu = false;
+        function buildCard(element, currentUrl) {
+            // 1) Create a Lampa Card
+            // The constructor signature is: new Lampa.Card(data, options)
+            const card = new Lampa.Card(element, { iscollection: true });
+            card.create(); // builds the internal DOM
 
-            // If item is top 10 => show golden rank
+            // 2) If in top 10 => add a golden label
             if (element._rank < 10) {
-                let rankLabel = document.createElement('div');
-                rankLabel.textContent = (element._rank + 1).toString(); // 1-based rank
+                const rankLabel = document.createElement('div');
+                rankLabel.textContent = (element._rank + 1).toString();
                 rankLabel.style.position = 'absolute';
                 rankLabel.style.top = '0';
                 rankLabel.style.left = '0';
@@ -189,10 +185,9 @@
                 card.render().appendChild(rankLabel);
             }
 
-            // onEnter to open movie or tv detail
-            card.onEnter = function () {
-                const isSeries = (object.url === 'series' || object.url === 'top500series');
-
+            // 3) On Enter => open detail
+            card.onEnter = () => {
+                const isSeries = (currentUrl === 'series' || currentUrl === 'top500series');
                 Lampa.Activity.push({
                     component: 'full',
                     id: element.id,
@@ -200,12 +195,17 @@
                     card: element
                 });
             };
-        };
+
+            // 4) Return the actual DOM node
+            return card.render();
+        }
 
         return comp;
     }
 
-    // 5) INIT PLUGIN & MENU BUTTON
+    /**
+     * 5) INIT PLUGIN: Register components & add menu button
+     */
     function initPlugin() {
         const manifest = {
             type: 'video',
@@ -252,4 +252,5 @@
 
     // Start the plugin
     initPlugin();
+
 })();
