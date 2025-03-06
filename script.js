@@ -105,33 +105,30 @@ function kinopoiskCollectionComponent(object) {
 
     comp.create = function () {
         Api.full(object, (data) => {
-            const sectionSize = 50;
-            const results_with_sections = [];
+            const enhancedResults = [];
 
+            // Insert section headers and stylish top-10 ranks
             data.results.forEach((item, idx) => {
-                const rank = idx + 1;
-
-                // Insert section headers every 50 items
-                if ((rank - 1) % sectionSize === 0) {
-                    const start = rank;
-                    const end = Math.min(rank + sectionSize - 1, data.results.length);
-                    results_with_sections.push({
-                        title: `<div style="width:100%;padding:15px 0;font-size:1.8em;color:#fff;text-align:center;">${start}–${end}</div>`,
-                        nonclickable: true
+                // Insert section header
+                if (idx % 50 === 0) {
+                    enhancedResults.push({
+                        type: 'header',
+                        title: `${idx + 1}-${idx + 50}`
                     });
                 }
 
-                // Add stylish golden 位 rank numbers to top-10 entries
-                results_with_sections.push({
-                    ...item,
-                    title: rank <= 10
-                        ? `✨<span style="color:#FFD700;font-weight:bold;">${rank}位</span> ${item.title}`
-                        : `${rank}. ${item.title}`
-                });
+                // Add rank numbers for top 10
+                if (idx < 10) {
+                    item.rank = idx + 1;
+                }
+
+                enhancedResults.push(item);
             });
 
-            // Call Lampa build method explicitly
-            this.build({ results: results_with_sections, total_pages: 1 });
+            // Override the results with our enhanced results
+            data.results = enhancedResults;
+
+            this.build(data);
         }, this.empty.bind(this));
     };
 
@@ -140,27 +137,48 @@ function kinopoiskCollectionComponent(object) {
     };
 
     comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
+    card.onMenu = false;
 
-        // If it's a non-clickable section header, disable action
-        if (element.nonclickable) {
-            card.onEnter = function () {};
-        } else {
-            card.onEnter = function () {
-                const isSeries = (object.url === 'series' || object.url === 'top500series');
+    if (element.type === 'header') {
+        // Correct way to render headers without cards
+        card.render().find('.card__img, .card__view').remove(); // Remove unnecessary image/view elements
+        card.render().find('.card__title').html(`<span style="font-size:1.6em; color:#eee;">${element.title}</span>`);
+        card.onEnter = () => {}; // No action
+    } else {
+        card.onEnter = function () {
+            const isSeries = (object.url === 'series' || object.url === 'top500series');
 
-                Lampa.Activity.push({
-                    component: 'full',
-                    id: element.id,
-                    method: isSeries ? 'tv' : 'movie',
-                    card: element
-                });
-            };
+            Lampa.Activity.push({
+                component: 'full',
+                id: element.id,
+                method: isSeries ? 'tv' : 'movie',
+                card: element
+            });
+        };
+
+        // Add golden rank digit for top 10
+        if (element.rank && element.rank <= 10) {
+            const rankBadge = $(`
+                <div style="
+                    position:absolute;
+                    top:8px; left:8px;
+                    background:gold; color:black;
+                    font-weight:bold; border-radius:8px;
+                    padding:2px 6px; font-size:1.4em;
+                    box-shadow:0 0 8px rgba(0,0,0,0.3);
+                    z-index:2;">
+                    ${element.rank}
+                </div>
+            `);
+            card.render().append(rankBadge);
         }
-    };
+    }
+};
+
 
     return comp;
 }
+
 
 
 
