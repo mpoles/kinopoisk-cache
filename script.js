@@ -130,36 +130,46 @@ function kinopoiskCollectionComponent(object) {
                 const end = i + sectionItems.length;
 
                 // Append section header
-                comp.append($(`<div style="
-                    width:100%; 
+                this.append($(`<div style="
+                    width:100%;
                     padding:15px 0;
                     font-size:28px;
                     font-weight:bold;
-                    color:white;
-                ">${start}-${end}</div>`));
+                    color:white;">
+                        ${start}-${end}
+                </div>`));
 
                 sectionItems.forEach((item, idx) => {
                     const globalIndex = i + idx + 1; // actual rank
-                    const card = Lampa.Template.get('card', {
+                    const cardData = {
                         title: item.title,
                         release_year: (item.release_date || item.first_air_date || '').split('-')[0],
-                        poster: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : ''
-                    });
+                        poster: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '',
+                        rating: item.vote_average || ''
+                    };
 
+                    const card = Lampa.Template.get('card', cardData);
+                    const $card = $(card); // convert to jQuery element
+
+                    // Add beautiful golden rank for top-10
                     if (globalIndex <= 10) {
-                        card.append(`<div style="
-                            position:absolute;
-                            top:8px; left:8px;
-                            background-color:rgba(0,0,0,0.8);
-                            color:gold;
-                            font-weight:bold;
-                            font-size:24px;
-                            padding:2px 6px;
-                            border-radius:4px;
-                            z-index:2;">${globalIndex}</div>`);
+                        $card.append(`
+                            <div style="
+                                position:absolute;
+                                top:8px;left:8px;
+                                background-color:rgba(0,0,0,0.8);
+                                color:gold;
+                                font-weight:bold;
+                                font-size:24px;
+                                padding:2px 6px;
+                                border-radius:4px;
+                                z-index:2;">
+                                ${globalIndex}
+                            </div>
+                        `);
                     }
 
-                    card.on('hover:enter', () => {
+                    $card.on('hover:enter', () => {
                         const isSeries = (object.url === 'series' || object.url === 'top500series');
 
                         Lampa.Activity.push({
@@ -170,7 +180,8 @@ function kinopoiskCollectionComponent(object) {
                         });
                     });
 
-                    this.append(card);
+                    // Correctly append card as jQuery object
+                    this.append($card);
                 });
             }
         }, (e) => {
@@ -180,10 +191,16 @@ function kinopoiskCollectionComponent(object) {
         });
     };
 
+    comp.nextPageReuest = function (object, resolve, reject) {
+        Api.full(object, resolve.bind(comp), reject.bind(comp));
+    };
+
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
+
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
+
             Lampa.Activity.push({
                 component: 'full',
                 id: element.id,
@@ -195,8 +212,6 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
-
-
 
 
     // Plugin initialization and menu button registration
