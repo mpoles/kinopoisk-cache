@@ -105,7 +105,7 @@ function kinopoiskCollectionComponent(object) {
 
     comp.create = function () {
         Api.full(object, (data) => {
-            const collection = data.results;
+            const collection = data.results || [];
             const sections = [];
 
             for (let i = 0; i < collection.length; i += 50) {
@@ -115,14 +115,7 @@ function kinopoiskCollectionComponent(object) {
                 });
             }
 
-            // Build each section explicitly
-            sections.forEach(section => {
-                this.append({
-                    title: section.title,
-                    results: section.results
-                });
-            });
-
+            this.build({ results: sections }); // <-- Corrected here!
         }, this.empty.bind(this));
     };
 
@@ -130,11 +123,19 @@ function kinopoiskCollectionComponent(object) {
         card.onMenu = false;
 
         card.onRender = function () {
-            // Get global index across all sections
-            const globalIndex = object.results.findIndex(item => item.id === element.id)
-                + (parseInt(object.title.split('-')[0], 10) - 1);
+            // Calculate correct global index
+            let globalIndex = -1;
+            let counter = 0;
+            for (const section of object.results) {
+                const idx = section.results.indexOf(element);
+                if (idx !== -1) {
+                    globalIndex = object.results.indexOf(section) * 50 + idx;
+                    break;
+                }
+            }
 
-            if (globalIndex >= 0 && globalIndex < 10) {
+            // Add top 10 badge
+            if (globalIndex < 10) {
                 const badge = $(`
                     <div style="
                         position:absolute;
@@ -145,8 +146,8 @@ function kinopoiskCollectionComponent(object) {
                         font-weight:bold;
                         padding:4px 7px;
                         border-radius:4px;
-                        font-size:14px;
-                        z-index:10;">
+                        z-index:10;
+                        font-size:16px;">
                         №${globalIndex + 1}
                     </div>`);
 
@@ -172,6 +173,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
     // Plugin initialization and menu button registration
     function initPlugin() {
