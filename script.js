@@ -115,7 +115,14 @@ function kinopoiskCollectionComponent(object) {
                 });
             }
 
-            this.build({ results: sections });
+            // Build each section explicitly
+            sections.forEach(section => {
+                this.append({
+                    title: section.title,
+                    results: section.results
+                });
+            });
+
         }, this.empty.bind(this));
     };
 
@@ -123,16 +130,23 @@ function kinopoiskCollectionComponent(object) {
         card.onMenu = false;
 
         card.onRender = function () {
-            const globalIndex = object.results.findIndex(item => item.id === element.id);
+            // Get global index across all sections
+            const globalIndex = object.results.findIndex(item => item.id === element.id)
+                + (parseInt(object.title.split('-')[0], 10) - 1);
 
-            if (globalIndex < 10 && globalIndex !== -1) {
+            if (globalIndex >= 0 && globalIndex < 10) {
                 const badge = $(`
                     <div style="
-                        position:absolute; top:8px; left:8px;
-                        background:linear-gradient(135deg,#FFD700,#FFA500);
-                        color:#000;font-weight:bold;
-                        font-size:16px;padding:4px 8px;
-                        border-radius:4px;z-index:10;">
+                        position:absolute;
+                        top:6px;
+                        left:6px;
+                        background:linear-gradient(135deg, gold, #ffb700);
+                        color:#000;
+                        font-weight:bold;
+                        padding:4px 7px;
+                        border-radius:4px;
+                        font-size:14px;
+                        z-index:10;">
                         №${globalIndex + 1}
                     </div>`);
 
@@ -147,15 +161,17 @@ function kinopoiskCollectionComponent(object) {
                 component: isSeries ? 'full_tv' : 'full',
                 id: element.id,
                 method: isSeries ? 'tv' : 'movie',
-                card: element
+                card: {
+                    id: element.id,
+                    title: element.title,
+                    media_type: isSeries ? 'tv' : 'movie'
+                }
             });
         };
     };
 
     return comp;
 }
-
-
 
     // Plugin initialization and menu button registration
     function initPlugin() {
