@@ -121,6 +121,7 @@ comp.cardRender = function (object, element, card) {
             component: isSeries ? 'full_tv' : 'full',  // fixed condition
             id: element.id,
             method: isSeries ? 'tv' : 'movie',
+            media: isSeries ? 'tv' : 'movie',
             card: element
         });
     };
