@@ -118,10 +118,8 @@ comp.cardRender = function (object, element, card) {
         const isTVShow = element.media_type === "tv"; // ✅ Check if it's a series
 
         Lampa.Activity.push({
-            url: element.id, // Use TMDB ID
-            title: element.title,
-            component: isTVShow ? "full_tv" : "full", // ✅ Use "full_tv" for series
-            method: isTVShow ? "tv" : "movie" // ✅ Ensure correct TMDB lookup
+            card: element.id,
+            media: isTVShow ? "tv" : "movie" // ✅ Ensure correct TMDB lookup
         });
     };
 };
