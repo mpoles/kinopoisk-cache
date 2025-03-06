@@ -109,7 +109,6 @@ function kinopoiskCollectionComponent(object) {
 
 comp.cardRender = function (object, element, card) {
     card.onMenu = false;
-
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
 
@@ -121,7 +120,6 @@ comp.cardRender = function (object, element, card) {
             });
         };
 
-        // Add golden rank digit for top 10
         if (element.rank) {
             const rankBadge = $(`
                 <div style="
@@ -136,8 +134,9 @@ comp.cardRender = function (object, element, card) {
                 </div>
             `);
             card.render().append(rankBadge);
-    }
+        }
 };
+
 
 
     return comp;
