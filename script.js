@@ -120,7 +120,7 @@ comp.cardRender = function (object, element, card) {
         Lampa.Activity.push({
             url: '',
             title: element.title,
-            component: isSeries ? 'tv' : 'full',  // fixed condition
+            component: isSeries ? 'full_tv' : 'full',  // fixed condition
             id: element.id,
             method: isSeries ? 'tv' : 'movie',                       // explicitly set TMDB source
             source: 'tmdb',
