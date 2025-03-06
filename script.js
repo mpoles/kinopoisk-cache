@@ -119,7 +119,8 @@ comp.cardRender = function (object, element, card) {
 
         Lampa.Activity.push({
             card: element.id,
-            media: isTVShow ? "tv" : "movie" // ✅ Ensure correct TMDB lookup
+            media: isTVShow ? "tv" : "movie",
+            source: "tmdb"
         });
     };
 };
