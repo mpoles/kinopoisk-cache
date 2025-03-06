@@ -104,8 +104,8 @@ function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
-        Api.full(object, (json) => {
-            const collection = (object.url === 'series' || object.url === 'top500series') ? json.series : json.movies;
+        Api.full(object, (data) => {
+            const collection = data.results;
             const sections = [];
 
             for (let i = 0; i < collection.length; i += 50) {
@@ -115,34 +115,26 @@ function kinopoiskCollectionComponent(object) {
                 });
             }
 
-            this.buildSections(sections);
+            this.build({ results: sections });
         }, this.empty.bind(this));
-    };
-
-    comp.buildSections = function(sections) {
-        sections.forEach(section => {
-            this.append({ title: section.title, results: section.results });
-        });
-    };
-
-    comp.nextPageReuest = function (object, resolve, reject) {
-        // No next page in static data
     };
 
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
 
         card.onRender = function () {
-            const globalIndex = object.results.indexOf(element) + ((parseInt(object.title.split('-')[0]) || 1) - 1);
+            const globalIndex = object.results.findIndex(item => item.id === element.id);
 
-            if (globalIndex < 10) {
-                const badge = $(`<div style="
-                    position:absolute; top:5px; left:5px;
-                    width:30px;height:30px;border-radius:50%;
-                    background:#ff9900;color:#000;font-weight:bold;
-                    display:flex;align-items:center;justify-content:center;">
-                    ${globalIndex + 1}
-                </div>`);
+            if (globalIndex < 10 && globalIndex !== -1) {
+                const badge = $(`
+                    <div style="
+                        position:absolute; top:8px; left:8px;
+                        background:linear-gradient(135deg,#FFD700,#FFA500);
+                        color:#000;font-weight:bold;
+                        font-size:16px;padding:4px 8px;
+                        border-radius:4px;z-index:10;">
+                        №${globalIndex + 1}
+                    </div>`);
 
                 card.img.append(badge);
             }
@@ -152,7 +144,7 @@ function kinopoiskCollectionComponent(object) {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
 
             Lampa.Activity.push({
-                component: 'full',
+                component: isSeries ? 'full_tv' : 'full',
                 id: element.id,
                 method: isSeries ? 'tv' : 'movie',
                 card: element
@@ -162,6 +154,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
     // Plugin initialization and menu button registration
