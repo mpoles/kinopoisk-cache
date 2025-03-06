@@ -100,31 +100,83 @@
         return comp;
     }
 
-    // Collection component for movies or series list
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
-        Api.full(object, this.build.bind(this), this.empty.bind(this));
+        Api.full(object, (json) => {
+            const collection = json.results;
+            
+            // Group items into sections
+            const sections = [];
+            for (let i = 0; i < collection.length; i += 50) {
+                const sectionItems = collection.slice(i, i + 50);
+                sections.push({
+                    title: `${i + 1} - ${i + sectionItems.length}`,
+                    items: sectionItems
+                });
+            }
+
+            this.buildSections(sections);
+        }, this.empty.bind(this));
     };
 
-    comp.nextPageReuest = function (object, resolve, reject) {
-        Api.full(object, resolve.bind(comp), reject.bind(comp));
+    comp.buildSections = function(sections) {
+        sections.forEach(section => {
+            const category = {
+                title: section.title,
+                results: section.items
+            };
+            this.append(category => {
+                category.title = section.title;
+                category_build(category);
+            });
+        };
     };
 
-comp.cardRender = function (object, element, card) {
-    card.onMenu = false;
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
 
-    card.onEnter = function () {
-        const isSeries = (object.url === 'series' || object.url === 'top500series');
+        card.onRender = function () {
+            // Add ranking badge for top-10 items
+            const index = object.results.indexOf(element);
+            if (index < 10) {
+                const badge = $(`
+                    <div style="position:absolute;top:10px;left:10px;background:gold;color:black;padding:4px 8px;border-radius:4px;font-weight:bold;z-index:2;">
+                        №${index + 1}
+                    </div>
+                `);
+                card.img.append(badge);
+            }
+        };
 
-        Lampa.Activity.push({
-            component: 'full',
-            id: element.id,
-            method: isSeries ? 'tv' : 'movie',
-            card: element
-        });
+        card.onEnter = function () {
+            const isSeries = (object.url === 'series' || object.url === 'top500series');
+
+            Lampa.Activity.push({
+                component: 'full',
+                id: element.id,
+                method: isSeries ? 'tv' : 'movie',
+                card: element
+            });
+        };
     };
+
+    comp.create = function () {
+        Api.full(object, (data) => {
+            const collection = data.results;
+            let sections = [];
+
+            for (let i = 0; i < collection.length; i += 50) {
+                sections.push({
+                    title: `${i + 1} - ${Math.min(i + 50, collection.length)}`,
+                    results: collection.slice(i, i + 50)
+                });
+            }
+
+            this.buildSections(sections);
+        };
+
     };
 
     return comp;
