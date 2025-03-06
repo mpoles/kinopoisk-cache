@@ -105,15 +105,13 @@ function kinopoiskCollectionComponent(object) {
 
     comp.create = function () {
         Api.full(object, (json) => {
-            const collection = json.results;
-            
-            // Group items into sections
+            const collection = (object.url === 'series' || object.url === 'top500series') ? json.series : json.movies;
             const sections = [];
+
             for (let i = 0; i < collection.length; i += 50) {
-                const sectionItems = collection.slice(i, i + 50);
                 sections.push({
-                    title: `${i + 1} - ${i + sectionItems.length}`,
-                    items: sectionItems
+                    title: `${i + 1} - ${Math.min(i + 50, collection.length)}`,
+                    results: collection.slice(i, i + 50)
                 });
             }
 
@@ -123,29 +121,29 @@ function kinopoiskCollectionComponent(object) {
 
     comp.buildSections = function(sections) {
         sections.forEach(section => {
-            const category = {
-                title: section.title,
-                results: section.items
-            };
-            this.append(category => {
-                category.title = section.title;
-                category_build(category);
-            });
-        };
+            this.append({ title: section.title, results: section.results });
+        });
+    };
+
+    comp.nextPageReuest = function (object, resolve, reject) {
+        // No next page in static data
     };
 
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
 
         card.onRender = function () {
-            // Add ranking badge for top-10 items
-            const index = object.results.indexOf(element);
-            if (index < 10) {
-                const badge = $(`
-                    <div style="position:absolute;top:10px;left:10px;background:gold;color:black;padding:4px 8px;border-radius:4px;font-weight:bold;z-index:2;">
-                        №${index + 1}
-                    </div>
-                `);
+            const globalIndex = object.results.indexOf(element) + ((parseInt(object.title.split('-')[0]) || 1) - 1);
+
+            if (globalIndex < 10) {
+                const badge = $(`<div style="
+                    position:absolute; top:5px; left:5px;
+                    width:30px;height:30px;border-radius:50%;
+                    background:#ff9900;color:#000;font-weight:bold;
+                    display:flex;align-items:center;justify-content:center;">
+                    ${globalIndex + 1}
+                </div>`);
+
                 card.img.append(badge);
             }
         };
@@ -162,25 +160,9 @@ function kinopoiskCollectionComponent(object) {
         };
     };
 
-    comp.create = function () {
-        Api.full(object, (data) => {
-            const collection = data.results;
-            let sections = [];
-
-            for (let i = 0; i < collection.length; i += 50) {
-                sections.push({
-                    title: `${i + 1} - ${Math.min(i + 50, collection.length)}`,
-                    results: collection.slice(i, i + 50)
-                });
-            }
-
-            this.buildSections(sections);
-        };
-
-    };
-
     return comp;
 }
+
 
     // Plugin initialization and menu button registration
     function initPlugin() {
