@@ -111,72 +111,89 @@
         return comp;
     }
 
-    // Collection component for movies or series list
-    function kinopoiskCollectionComponent(object) {
-        const comp = new Lampa.InteractionCategory(object);
+function kinopoiskCollectionComponent(object) {
+    const comp = new Lampa.InteractionCategory(object);
 
-        comp.create = function () {
-            Api.full(object, this.build.bind(this), this.empty.bind(this));
-        };
+    comp.create = function () {
+        Api.full(object, (json) => {
+            const items = json.results || [];
+            const sectionSize = 50;
 
-        comp.nextPageReuest = function (object, resolve, reject) {
-            Api.full(object, resolve.bind(comp), reject.bind(comp));
-        };
+            for(let i = 0; i < items.length; i += sectionSize){
+                const start = i + 1;
+                const end = Math.min(i + sectionSize, items.length);
+                const sectionHeader = $(`<div style="margin:20px 0;color:#fff;padding:10px;"><h2>${start}-${end}</h2></div>`);
+                comp.append(sectionHeader);
 
-comp.cardRender = function (object, element, card) {
-    if(element.header) {
-        card.onMenu = false;
-        // If card.dom is undefined, create a temporary container.
-        if(!card.dom || typeof card.dom.html !== 'function'){
-            card.dom = $('<div>');
-        }
-        card.dom.html(
-            '<div style="text-align:center;font-size:24px;font-weight:bold;color:#FFD700;padding:10px 0;">' +
-            element.title +
-            '</div>'
-        );
-        card.onEnter = function () {}; // Disable clicking on header.
-        return;
-    }
-    
-    // Normal card rendering for movie/series items.
-    card.onMenu = false;
-    card.onEnter = function () {
-        const isSeries = (object.url === 'series' || object.url === 'top500series');
-        Lampa.Activity.push({
-            url: '',
-            title: element.title,
-            component: 'full',
-            id: element.id,
-            method: isSeries ? 'tv' : 'movie',
-            card: element
-        });
+                const sectionItems = items.slice(i, i + sectionSize);
+
+                sectionItems.forEach((item, idx) => {
+                    const card = Lampa.Template.get('card', {
+                        title: item.title,
+                        release_year: (item.release_date || item.first_air_date || '').split('-')[0],
+                        poster: item.poster_path ? ('https://image.tmdb.org/t/p/w500' + item.poster_path) : '',
+                        rating: item.vote_average,
+                    });
+
+                    // Add a beautiful rank number for the first 10 elements
+                    const globalIndex = i + idx + 1;
+                    if (globalIndex <= 10) {
+                        card.append(`<div style="
+                            position:absolute; top:10px;left:10px;
+                            background-color:rgba(0,0,0,0.8); 
+                            color:gold;font-weight:bold; 
+                            font-size:22px;padding:4px 7px;
+                            border-radius:4px;z-index:10;">
+                                ${globalIndex}
+                            </div>`);
+                    }
+
+                    card.on('hover:enter', () => {
+                        const isSeries = (object.url === 'series' || object.url === 'top500series');
+                        Lampa.Activity.push({
+                            component: 'full',
+                            id: item.id,
+                            method: isSeries ? 'tv' : 'movie',
+                            card: item
+                        });
+                    });
+
+                    comp.append(card);
+                });
+
+                // Append Section header
+                comp.render().prepend($(`<div style="
+                    width:100%;padding:15px 0;
+                    font-size:28px;font-weight:bold;color:#fff;">
+                        ${start}-${end}
+                    </div>`));
+            }
+
+            if(items.length === 0) comp.empty();
+        }, this.empty.bind(this));
     };
 
-    // Add a golden rank badge for top 10 items.
-    if(element.rank && element.rank <= 10) {
-        if(card.dom && !card.dom.find('.rank-badge').length) { // Avoid duplicate badges.
-            let badge = $('<div class="rank-badge">' + element.rank + '</div>');
-            badge.css({
-                position: 'absolute',
-                top: '5px',
-                left: '5px',
-                background: 'linear-gradient(45deg, #FFD700, #FFB700)',
-                color: '#fff',
-                padding: '5px 8px',
-                fontSize: '20px',
-                fontWeight: 'bold',
-                borderRadius: '4px',
-                zIndex: 10
+    comp.nextPageReuest = function (object, resolve, reject) {
+        Api.full(object, resolve.bind(comp), reject.bind(comp));
+    };
+
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
+
+        card.onEnter = function () {
+            const isSeries = (object.url === 'series' || object.url === 'top500series');
+            Lampa.Activity.push({
+                component: 'full',
+                id: element.id,
+                method: isSeries ? 'tv' : 'movie',
+                card: element
             });
-            card.dom.append(badge);
-        }
-    }
-};
+        };
+    };
 
+    return comp;
+}
 
-        return comp;
-    }
 
     // Plugin initialization and menu button registration
     function initPlugin() {
