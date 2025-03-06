@@ -107,36 +107,32 @@ function kinopoiskCollectionComponent(object) {
 
     comp.create = function () {
         Api.full(object, (data) => {
-            let modified_results = [];
+            const sectionSize = 50;  // <-- defined here
+            const results_with_sections = [];
 
-            // Add rank number to the titles (top-10 highlighted)
             data.results.forEach((item, idx) => {
                 const rank = idx + 1;
                 const rankLabel = rank <= 10
                     ? `✨<span style="color:#FFD700;font-weight:bold;">${rank}位</span>`
                     : `${rank}.`;
+
                 item.title = `${rankLabel} ${item.title}`;
+
+                // Insert section header every 50 items
+                if ((rank - 1) % sectionSize === 0) {
+                    const start = rank;
+                    const end = Math.min(rank + sectionSize - 1, data.results.length);
+                    results_with_sections.push({
+                        title: `<div style="padding:15px 0;font-size:1.8em;color:white;">${start}–${end}</div>`,
+                        nonclickable: true
+                    });
+                }
+
+                results_with_sections.push(item);
             });
 
-            // Divide into sections (1-50, 51-100, etc.)
-            const itemsPerSection = 50;
-            const resultsWithSections = [];
-            
-            for (let i = 0; i < data.results.length; i += sectionSize) {
-                const start = i + 1;
-                const end = Math.min(i + sectionSize, data.results.length);
-
-                // Add section header (non-clickable)
-                results_with_sections.push({
-                    title: `<div style="padding:15px 10px;font-size:1.5em;color:#fff;text-align:left;width:100%;">${start}–${end}</div>`,
-                    nonclickable: true
-                });
-
-                // Add the next 50 movies/series
-                results_with_sections.push(...data.results.slice(i, end));
-            }
-
-            comp.build({
+            // Pass the processed data to Lampa build
+            this.build({
                 results: results_with_sections,
                 total_pages: 1
             });
@@ -152,8 +148,7 @@ function kinopoiskCollectionComponent(object) {
 
         if (element.nonclickable) {
             card.addClass('card--section-header');
-            card.visible = function () {}; // Disable interactivity
-            card.onEnter = function () {};
+            card.onEnter = function () {}; // non-clickable headers
         } else {
             card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
@@ -170,6 +165,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
     // Plugin initialization and menu button registration
