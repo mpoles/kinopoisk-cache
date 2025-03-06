@@ -1,22 +1,11 @@
-/**
- * update_cache.js
- *
- * Run via GitHub Actions to fetch top movies and series from Kinopoisk,
- * produce a single data.json file, and commit to gh-pages.
- */
-
 const fs = require('fs');
 const axios = require('axios');
 
 const KINOPOISK_API_KEY = process.env.KINOPOISK_API_KEY;
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 
-if (!KINOPOISK_API_KEY) {
-  process.exit(1);
-}
-if (!TMDB_API_KEY) {
-  process.exit(2);
-}
+if (!KINOPOISK_API_KEY) process.exit(1);
+if (!TMDB_API_KEY) process.exit(2);
 
 async function fetchPage(url) {
   try {
@@ -28,9 +17,6 @@ async function fetchPage(url) {
   }
 }
 
-/**
- * Fetch multiple pages. Returns combined `docs`.
- */
 async function fetchMultiplePages(baseUrl, pages) {
   let allDocs = [];
   for (let page = 1; page <= pages; page++) {
@@ -56,67 +42,53 @@ async function fetchTmdbPosterPath(tmdbId, isMovie) {
   if (!tmdbId) return null;
 
   const type = isMovie ? 'movie' : 'tv';
-  const url = `https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=ru`;
+  let url = `https://api.themoviedb.org/3/${type}/${tmdbId}/images?include_image_language=ru`;
+
   try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${TMDB_API_KEY}` }
-    });
-    const data = response.data;
-    if (!data || !data.posters || !data.posters.length) return null;
+    let response = await axios.get(url, { headers: { Authorization: `Bearer ${TMDB_API_KEY}` } });
+    let posters = response.data.posters;
 
-    // Prefer RU-language poster, else fallback to first poster
-    let ruPoster = data.posters.find(p => p.iso_639_1 === 'ru');
-    if (!ruPoster) ruPoster = data.posters[0];
+    if (!posters.length) {
+      // Fallback without language constraint
+      url = `https://api.themoviedb.org/3/${type}/${tmdbId}/images`;
+      const fallbackResponse = await axios.get(url, {
+        headers: { Authorization: `Bearer ${TMDB_API_KEY}` }
+      });
+      posters = fallbackResponse.data.posters;
+    }
 
-    // Return the raw file_path, or prepend an image URL if desired
-    // e.g. "https://image.tmdb.org/t/p/original" + ruPoster.file_path
-    return ruPoster.file_path;
+    if (!posters.length) return null;
+
+    return posters[0].file_path;
   } catch (err) {
     console.error(`Error fetching TMDB poster for ID ${tmdbId}`, err.message);
     return null;
   }
 }
+
 async function enrichWithTmdbPosters(items, isMovie) {
-  // We do this sequentially to avoid flooding the API with concurrent calls.
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     const tmdbPosterPath = await fetchTmdbPosterPath(item.id, isMovie);
-    if (tmdbPosterPath) {
-      item.poster_path = tmdbPosterPath;
-    }
+    if (tmdbPosterPath) item.poster_path = tmdbPosterPath;
   }
 }
 
 (async function main() {
   try {
-    const moviesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
-      &selectFields=externalId&selectFields=name&selectFields=premiere
-      &selectFields=rating&selectFields=lists
-      &notNullFields=externalId.tmdb
-      &sortField=rating.kp&sortType=-1
-      &lists=top500`.replace(/\s+/g, '');
+    const moviesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE&selectFields=externalId&selectFields=name&selectFields=premiere&selectFields=rating&selectFields=lists&notNullFields=externalId.tmdb&sortField=rating.kp&sortType=-1&lists=top500`;
 
     const moviesDocs = await fetchMultiplePages(moviesBase, 2);
 
-    // Movies: assign rank based on the sorted list
     const moviesProcessed = moviesDocs.map((item, index) => ({
       rank: index + 1,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      release_date: item.premiere?.world ?? null,
+      release_date: item.premiere?.world?.slice(0,10) ?? null,
       vote_average: item.rating?.kp ?? null
     }));
 
-    const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
-      &selectFields=externalId&selectFields=name&selectFields=premiere
-      &selectFields=rating&selectFields=top250
-      &selectFields=votes&selectFields=isSeries
-      &notNullFields=externalId.tmdb&notNullFields=name
-      &genres.name=!детский&genres.name=!документальный&genres.name=!реальное ТВ
-      &votes.kp=9999-9999999
-      &sortField=top250&sortField=rating.kp
-      &sortType=-1&sortType=-1
-      &isSeries=true`.replace(/\s+/g, '');
+    const seriesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE&selectFields=externalId&selectFields=name&selectFields=premiere&selectFields=rating&selectFields=top250&selectFields=votes&selectFields=isSeries&notNullFields=externalId.tmdb&notNullFields=name&genres.name=!детский&genres.name=!документальный&genres.name=!реальное ТВ&votes.kp=9999-9999999&sortField=top250&sortField=rating.kp&sortType=-1&sortType=-1&isSeries=true`;
 
     const seriesDocs = await fetchMultiplePages(seriesBase, 2);
 
@@ -126,7 +98,7 @@ async function enrichWithTmdbPosters(items, isMovie) {
       rank: index + 1,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
-      first_air_date: item.premiere?.world ?? null,
+      first_air_date: item.premiere?.world?.slice(0,10) ?? null,
       vote_average: item.rating?.kp ?? null,
       top250: item.top250 ?? 251
     }));
