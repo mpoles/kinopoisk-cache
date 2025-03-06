@@ -119,36 +119,41 @@ function kinopoiskCollectionComponent(object) {
             const items = json.results || [];
             const sectionSize = 50;
 
-            for(let i = 0; i < items.length; i += sectionSize){
+            // Iterate over all items in groups of 50
+            for (let i = 0; i < items.length; i += sectionSize) {
                 const start = i + 1;
                 const end = Math.min(i + sectionSize, items.length);
-                const sectionHeader = $(`<div style="margin:20px 0;color:#fff;padding:10px;"><h2>${start}-${end}</h2></div>`);
-                comp.append(sectionHeader);
+                const sectionItems = items.slice(i, end);
 
-                const sectionItems = items.slice(i, i + sectionSize);
+                // Section header
+                comp.append($(`<div style="
+                    width:100%; padding:15px 10px;
+                    font-size:22px; font-weight:bold;
+                    color:#fff; margin-bottom:10px;
+                ">${start}-${end}</div>`));
 
-                sectionItems.forEach((item, idx) => {
-                    const card = Lampa.Template.get('card', {
+                sectionItems.forEach((item, index) => {
+                    const cardHtml = Lampa.Template.get('card', {
                         title: item.title,
                         release_year: (item.release_date || item.first_air_date || '').split('-')[0],
-                        poster: item.poster_path ? ('https://image.tmdb.org/t/p/w500' + item.poster_path) : '',
-                        rating: item.vote_average,
+                        poster: item.poster_path ? 'https://image.tmdb.org/t/p/w500' + item.poster_path : '',
+                        vote_average: item.vote_average
                     });
 
-                    // Add a beautiful rank number for the first 10 elements
+                    const card = $(cardHtml);
+
+                    // Add stylish rank badge for top-10 items
                     const globalIndex = i + idx + 1;
                     if (globalIndex <= 10) {
-                        card.append(`<div style="
-                            position:absolute; top:10px;left:10px;
-                            background-color:rgba(0,0,0,0.8); 
-                            color:gold;font-weight:bold; 
-                            font-size:22px;padding:4px 7px;
-                            border-radius:4px;z-index:10;">
-                                ${globalIndex}
-                            </div>`);
+                        card.append($(`<div style="
+                            position:absolute; top:8px; left:8px; z-index:10;
+                            background-color:rgba(0,0,0,0.8); color:gold;
+                            font-size:20px; font-weight:bold;
+                            border-radius:4px; padding:3px 7px;
+                        ">${globalIndex}</div>`));
                     }
 
-                    card.on('hover:enter', () => {
+                    card.on('hover:enter', function () {
                         const isSeries = (object.url === 'series' || object.url === 'top500series');
                         Lampa.Activity.push({
                             component: 'full',
@@ -160,16 +165,9 @@ function kinopoiskCollectionComponent(object) {
 
                     comp.append(card);
                 });
-
-                // Append Section header
-                comp.render().prepend($(`<div style="
-                    width:100%;padding:15px 0;
-                    font-size:28px;font-weight:bold;color:#fff;">
-                        ${start}-${end}
-                    </div>`));
             }
 
-            if(items.length === 0) comp.empty();
+            this.build({results: []}); // initial call to setup view
         }, this.empty.bind(this));
     };
 
@@ -179,7 +177,6 @@ function kinopoiskCollectionComponent(object) {
 
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
-
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
             Lampa.Activity.push({
@@ -193,6 +190,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
     // Plugin initialization and menu button registration
