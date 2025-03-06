@@ -118,12 +118,9 @@ comp.cardRender = function (object, element, card) {
         const isSeries = (object.url === 'series' || object.url === 'top500series');
 
         Lampa.Activity.push({
-            url: '',
-            title: element.title,
             component: isSeries ? 'full_tv' : 'full',  // fixed condition
             id: element.id,
-            method: isSeries ? 'tv' : 'movie',                       // explicitly set TMDB source
-            source: 'tmdb',
+            method: isSeries ? 'tv' : 'movie',
             card: element
         });
     };
