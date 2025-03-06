@@ -103,19 +103,6 @@
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
-    comp.create = function () {
-        Api.full(object, (data) => {
-            const enhancedResults = [];
-
-            data.results.forEach((item, idx) => {
-                    item.rank = idx + 1;
-                enhancedResults.push(item);
-            });
-            data.results = enhancedResults;
-            this.build(data);
-        }, this.empty.bind(this));
-    };
-
     comp.nextPageReuest = function (object, resolve, reject) {
         Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
