@@ -145,7 +145,7 @@ comp.cardRender = function (object, element, card) {
 
         // Add the plugin button to the menu
         function addMenuButton() {
-            const button = $(
+            const button = $(`
                 <li class="menu__item selector">
                     <div class="menu__ico">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" width="64" height="64">
@@ -154,7 +154,7 @@ comp.cardRender = function (object, element, card) {
                     </div>
                     <div class="menu__text">${manifest.name}</div>
                 </li>
-            );
+            `);
 
             button.on('hover:enter', () => {
                 Lampa.Activity.push({
