@@ -118,33 +118,53 @@ function kinopoiskCollectionComponent(object) {
         Api.full(object, (data) => {
             const results = data.results || [];
 
-            // Build results with positions
             const finalResults = results.map((item, idx) => ({
                 ...item,
-                position: idx + 1 // global rank
+                position: idx + 1
             }));
 
             this.build({ results: finalResults });
+
+            // Insert section headers after build completes
+            setTimeout(() => {
+                $('.category__cards').each(function () {
+                    const cards = $(this).find('.card');
+                    cards.each(function (idx) {
+                        if (idx % 50 === 0) {
+                            const sectionStart = idx + 1;
+                            const sectionEnd = Math.min(idx + 50, cards.length);
+                            $(`<div style="
+                                width: 100%; 
+                                padding: 0.5rem 1rem; 
+                                color: #fff; 
+                                font-size: 1.4em; 
+                                opacity: 0.7;
+                                box-sizing: border-box;">
+                                ${sectionStart} – ${sectionEnd}
+                            </div>`).insertBefore($(this));
+                        }
+                    });
+                });
+            }, 0);
         }, this.empty.bind(this));
     };
 
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
 
-        // Insert Section Headers every 50 items
-        if ((element.position - 1) % 50 === 0) {
-            const sectionNumber = element.position;
-            card.before(`<div style="width:100%;padding:0.5rem 1rem;color:#fff;font-size:1.4em;opacity:0.7;">${sectionNumber}-${sectionNumber + 49}</div>`);
-        }
-
-        // Add a Golden Rank for top 10
+        // Golden stylish number for top 10
         if (element.position <= 10) {
             card.append(`<div style="
-                position:absolute;top:8px;left:8px;
-                width:36px;height:36px;background:#DAA520;
-                color:#fff;border-radius:50%;text-align:center;
-                line-height:36px;font-weight:bold;font-size:20px;
-                box-shadow:0 2px 5px rgba(0,0,0,0.4);z-index:5;">
+                position:absolute;
+                top:8px;left:8px;
+                width:36px;height:36px;
+                background:#DAA520;
+                color:#fff;font-size:20px;
+                border-radius:50%;
+                text-align:center;
+                line-height:36px;
+                box-shadow:0 2px 5px rgba(0,0,0,0.4);
+                z-index:5;">
                 ${element.position}
             </div>`);
         }
@@ -167,6 +187,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
 
