@@ -49,10 +49,10 @@
             let series = json.series || [];
             let collection = [];
 
-            if (params.url === "movies" || params.url === "top500movies"){
+            if (params.url === "movies" || params.url === "top500movies") {
                 collection = movies;
             }
-            else if (params.url === "series" || params.url === "top500series"){
+            else if (params.url === "series" || params.url === "top500series") {
                 collection = series;
             }
 
@@ -104,7 +104,6 @@
     function kinopoiskCollectionComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
-        // Overriding create
         comp.create = function () {
             Api.full(object, (data) => {
                 this.build(data);
@@ -116,28 +115,28 @@
         };
 
         /**
-         * Overriding build to chunk items into sections of 50
+         * We override build to chunk items into sections of 50
          * and render top-10 golden rank.
          */
         comp.build = function (data) {
-            // Save data so Lampa can handle some internal details if needed
-            this.saveData(data);
-            this.clear();
             this.loading(false);
+            this.scrollrender = new Lampa.Scroll({ mask: false, over: true });
+            this.scrollrender.onEnd = () => {};
+
+            let body = this.scrollrender.render();
+            this.html(body);
 
             let items = data.results || [];
-            let chunkSize = 50;
             let total = items.length;
+            let chunkSize = 50;
 
-            // For sorting or for top-10, we assume items are already in the order you want.
-            // We'll attach a "_rank" property so we know their absolute position.
+            // Tag each item with its zero-based rank
             for (let i = 0; i < total; i++) {
-                items[i]._rank = i; // zero-based index
+                items[i]._rank = i;
             }
 
-            // Now chunk them into sets of 50
+            // Chunk them in groups of 50
             let startIndex = 0;
-            let sectionNumber = 1;
             while (startIndex < total) {
                 let endIndex = startIndex + chunkSize;
                 let chunk = items.slice(startIndex, endIndex);
@@ -145,39 +144,36 @@
                 // Add an <h2> for this chunk
                 let heading = document.createElement('h2');
                 heading.textContent = `${startIndex + 1} - ${Math.min(endIndex, total)}`;
-                heading.style.margin = '1.5em 0 0.5em 1.5em';
+                heading.style.margin = '1.5em 1em 0.5em';
                 heading.style.fontSize = '1.4em';
-                heading.style.color = '#ffd700'; // gold color if you like
-                this.body.append(heading);
+                heading.style.color = '#ffd700'; // gold color for heading
+                body.appendChild(heading);
 
-                // Render each item in the chunk
+                // Render each item
                 chunk.forEach((element) => {
-                    // use Lampa's built-in "renderItem()" => calls `cardRender`
                     let card = this.renderItem(element);
-                    this.body.append(card);
+                    body.appendChild(card);
                 });
 
                 startIndex = endIndex;
-                sectionNumber++;
             }
 
-            // Force a DOM update for Lampa to arrange items
-            this.append(this.body);
-
-            // Let Lampa know we are done
+            // Notify Lampa that we have finished building
             this.loading(false);
+            this.start();
         };
 
         /**
-         * Enhanced cardRender: if item is in top 10 => add golden rank digit
+         * If item is top 10 => add golden rank label
+         * Also handle movie vs tv click
          */
         comp.cardRender = function (object, element, card) {
             card.onMenu = false;
 
-            // If it's top 10, show golden rank
+            // if top 10 => show golden rank
             if (element._rank < 10) {
-                const rankLabel = document.createElement('div');
-                rankLabel.textContent = element._rank + 1; // 1-based index
+                let rankLabel = document.createElement('div');
+                rankLabel.textContent = (element._rank + 1);
                 rankLabel.style.position = 'absolute';
                 rankLabel.style.top = '0';
                 rankLabel.style.left = '0';
@@ -189,13 +185,11 @@
                 rankLabel.style.borderRadius = '0 0.5em 0.5em 0';
                 rankLabel.style.zIndex = '10';
 
-                // "card.render()" usually returns the DOM element of the card
                 card.render().style.position = 'relative';
                 card.render().appendChild(rankLabel);
             }
 
-            // onEnter for opening the selected item
-            card.onEnter = function () {
+            card.onEnter = () => {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
 
                 Lampa.Activity.push({
@@ -229,8 +223,8 @@
                 <li class="menu__item selector">
                     <div class="menu__ico">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" width="64" height="64">
-  <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
-</svg>
+                        <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
+                        </svg>
                     </div>
                     <div class="menu__text">${manifest.name}</div>
                 </li>
