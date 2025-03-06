@@ -102,20 +102,42 @@
 
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
+    const ITEMS_PER_PAGE = 50; // карточек на страницу
+
     comp.create = function () {
         Api.full(object, (data) => {
-            this.build(data);
-        }, this.empty.bind(this));
-    };
-    comp.nextPageReuest = function (object, resolve, reject) {
-        Api.full(object, resolve.bind(comp), reject.bind(comp));
+            // Сохраняем все данные, а отображаем только первые 50
+            comp.allResults = data.results;
+            comp.total_pages = Math.ceil(comp.allResults.length / ITEMS_PER_PAGE);
+
+            comp.loadPage(1);
+        }, comp.empty.bind(comp));
     };
 
-comp.cardRender = function (object, element, card) {
-    card.onMenu = false;
+    comp.nextPageReuest = function (object, resolve, reject) {
+        comp.loadPage(object.page, resolve, reject);
+    };
+
+    // Метод для загрузки конкретной страницы
+    comp.loadPage = function (page, resolve, reject) {
+        const start = (page - 1) * ITEMS_PER_PAGE;
+        const end = start + ITEMS_PER_PAGE;
+        const pageResults = comp.allResults.slice(start, end);
+
+        const data = {
+            results: pageResults,
+            total_pages: comp.total_pages,
+            page: page
+        };
+
+        if (resolve) resolve(data);
+        else comp.build(data);
+    };
+
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
-
             Lampa.Activity.push({
                 component: 'full',
                 id: element.id,
@@ -139,15 +161,10 @@ comp.cardRender = function (object, element, card) {
             `);
             card.render().append(rankBadge);
         }
-};
-
-
+    };
 
     return comp;
 }
-
-
-
 
 
     // Plugin initialization and menu button registration
