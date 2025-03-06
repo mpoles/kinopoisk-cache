@@ -122,7 +122,7 @@ comp.cardRender = function (object, element, card) {
             title: element.title,
             component: isSeries ? 'tv' : 'full',  // fixed condition
             id: element.id,
-            method: 'tmdb',                       // explicitly set TMDB source
+            method: isSeries ? 'tv' : 'movie',                       // explicitly set TMDB source
             card: element
         });
     };
