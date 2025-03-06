@@ -105,30 +105,56 @@ function kinopoiskCollectionComponent(object) {
 
     comp.create = function () {
         Api.full(object, (data) => {
-            const enhancedResults = [];
+            const sections = [];
 
-            // Insert section headers and stylish top-10 ranks
             data.results.forEach((item, idx) => {
-                // Insert section header
                 if (idx % 50 === 0) {
-                    enhancedResults.push({
+                    sections.push({
                         type: 'header',
                         title: `${idx + 1}-${idx + 50}`
                     });
                 }
-
-                // Add rank numbers for top 10
                 if (idx < 10) {
                     item.rank = idx + 1;
                 }
-
-                enhancedResults.push(item);
+                sections.push(item);
             });
 
-            // Override the results with our enhanced results
-            data.results = enhancedResults;
+            // Remove headers from cards Lampa manages directly
+            const cardsOnly = sections.filter(e => e.type !== 'header');
+            this.build({ results: cardsOnly });
 
-            this.build(data);
+            // Inject headers manually into DOM after render
+            setTimeout(() => {
+                $('.interaction__category .card').each(function(index) {
+                    const globalIndex = sections.findIndex(e => e === cardsOnly[index]);
+
+                    // Check if there's a header before this card
+                    if (globalIndex > 0 && sections[globalIndex - 1].type === 'header') {
+                        $(this).before(`
+                            <div class="collection-header" style="
+                                width: 100%; color: #eee; font-size: 2em;
+                                padding: 15px 0 10px 10px; font-weight: bold;">
+                                ${sections[globalIndex - 1].title}
+                            </div>
+                        `);
+                    }
+
+                    // Add golden rank badge for top 10
+                    const item = cardsOnly[index];
+                    if (item.rank && item.rank <= 10) {
+                        $(this).append(`
+                            <div style="
+                                position: absolute; top: 8px; left: 8px;
+                                background: gold; color: black; font-weight: bold;
+                                border-radius: 8px; padding: 2px 6px; font-size: 1.4em;
+                                box-shadow: 0 0 8px rgba(0,0,0,0.3); z-index: 2;">
+                                ${item.rank}
+                            </div>
+                        `);
+                    }
+                });
+            }, 100);
         }, this.empty.bind(this));
     };
 
@@ -137,14 +163,7 @@ function kinopoiskCollectionComponent(object) {
     };
 
     comp.cardRender = function (object, element, card) {
-    card.onMenu = false;
-
-    if (element.type === 'header') {
-        // Correct way to render headers without cards
-        card.render().find('.card__img, .card__view').remove(); // Remove unnecessary image/view elements
-        card.render().find('.card__title').html(`<span style="font-size:1.6em; color:#eee;">${element.title}</span>`);
-        card.onEnter = () => {}; // No action
-    } else {
+        card.onMenu = false;
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
 
@@ -155,29 +174,11 @@ function kinopoiskCollectionComponent(object) {
                 card: element
             });
         };
-
-        // Add golden rank digit for top 10
-        if (element.rank && element.rank <= 10) {
-            const rankBadge = $(`
-                <div style="
-                    position:absolute;
-                    top:8px; left:8px;
-                    background:gold; color:black;
-                    font-weight:bold; border-radius:8px;
-                    padding:2px 6px; font-size:1.4em;
-                    box-shadow:0 0 8px rgba(0,0,0,0.3);
-                    z-index:2;">
-                    ${element.rank}
-                </div>
-            `);
-            card.render().append(rankBadge);
-        }
-    }
-};
-
+    };
 
     return comp;
 }
+
 
 
 
