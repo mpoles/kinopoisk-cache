@@ -112,19 +112,6 @@ function kinopoiskCollectionComponent(object) {
         Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
 
-comp.cardRender = function (object, element, card) {
-    card.onMenu = false;
-    card.onEnter = function () {
-        const isTVShow = element.media_type === "tv"; // ✅ Check if it's a series
-
-        Lampa.Activity.push({
-            card: element.id,
-            media: isTVShow ? "tv" : "movie",
-            source: "tmdb"
-        });
-    };
-};
-
     return comp;
 }
 
