@@ -35,5 +35,5 @@ jobs:
           git config --global user.name "mpoles"
           git config --global user.email "mihopol@mail.ru"
           git add data.json
-          git commit -m "Auto-update data"
-          git push "https://$GH_TOKEN@github.com/mpoles/kinopoisk-cache.git"
+          git commit -m "Auto-update data" || echo "Nothing to commit"
+          git push --force https://$GH_TOKEN@github.com/mpoles/kinopoisk-cache.git main
