@@ -136,10 +136,6 @@ comp.cardRender = function (object, element, card) {
     return comp;
 }
 
-
-    return comp;
-}
-
     // Plugin initialization and menu button registration
     function initPlugin() {
         const manifest = {
