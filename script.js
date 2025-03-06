@@ -115,103 +115,96 @@ function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
-        Api.full(object, (json) => {
-            const items = json.results || [];
-            const sectionSize = 50;
+        Api.full(object, (data) => {
+            const results = data.results || [];
 
-            if (!items.length) {
-                this.empty();
-                return;
-            }
-
-            for (let i = 0; i < items.length; i += sectionSize) {
-                const sectionItems = items.slice(i, i + sectionSize);
-                const start = i + 1;
-                const end = i + sectionItems.length;
-
-                // Append section header
-                this.append($(`<div style="
-                    width:100%;
-                    padding:15px 0;
-                    font-size:28px;
-                    font-weight:bold;
-                    color:white;">
-                        ${start}-${end}
-                </div>`));
-
-                sectionItems.forEach((item, idx) => {
-                    const globalIndex = i + idx + 1; // actual rank
-                    const cardData = {
-                        title: item.title,
-                        release_year: (item.release_date || item.first_air_date || '').split('-')[0],
-                        poster: item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : '',
-                        rating: item.vote_average || ''
-                    };
-
-                    const card = Lampa.Template.get('card', cardData);
-                    const $card = $(card); // convert to jQuery element
-
-                    // Add beautiful golden rank for top-10
-                    if (globalIndex <= 10) {
-                        $card.append(`
-                            <div style="
-                                position:absolute;
-                                top:8px;left:8px;
-                                background-color:rgba(0,0,0,0.8);
-                                color:gold;
-                                font-weight:bold;
-                                font-size:24px;
-                                padding:2px 6px;
-                                border-radius:4px;
-                                z-index:2;">
-                                ${globalIndex}
-                            </div>
-                        `);
-                    }
-
-                    $card.on('hover:enter', () => {
-                        const isSeries = (object.url === 'series' || object.url === 'top500series');
-
-                        Lampa.Activity.push({
-                            component: 'full',
-                            id: item.id,
-                            method: isSeries ? 'tv' : 'movie',
-                            card: item
-                        });
-                    });
-
-                    // Correctly append card as jQuery object
-                    this.append($card);
+            // Split the array into sections of 50 items each
+            const sections = [];
+            for (let i = 0; i < results.length; i += 50) {
+                sections.push({
+                    title: `${i + 1} – ${Math.min(i + 50, results.length)}`,
+                    items: results.slice(i, i + 50)
                 });
             }
-        }, (e) => {
-            this.empty();
-            Lampa.Noty.show('Ошибка загрузки данных');
-            console.error(e);
-        });
+
+            // Build final data array with section titles as text headers
+            const finalResults = [];
+
+            sections.forEach(section => {
+                // Section header as a simple text element (non-card)
+                finalResults.push({
+                    title: section.title,
+                    type: 'title' // Custom type to identify headers
+                });
+
+                // Movies/series with optional golden 位 number for top 10
+                section.items.forEach((item, index) => {
+                    const globalIndex = finalResults.filter(i => i.type !== 'title').length + 1; // global position (1-500)
+                    finalResults.push({
+                        ...item,
+                        type: 'item',
+                        position: globalIndex
+                    });
+                });
+            });
+
+            this.build({ results: finalResults });
+        }, this.empty.bind(this));
     };
 
     comp.nextPageReuest = function (object, resolve, reject) {
-        Api.full(object, resolve.bind(comp), reject.bind(comp));
+        resolve({ results: [] });
     };
 
     comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
+        if (element.type === 'title') {
+            // Render simple title without card styling
+            card.empty();
+            card.append(`<div style="width:100%; text-align:left; font-size:1.4em; padding:1rem 0; opacity:0.8; color:#fff;">${element.title}</div>`);
+            card.addClass('no-hover');
+            card.onEnter = function() {}; // Disable click for titles
+        } else {
+            card.onMenu = false;
 
-        card.onEnter = function () {
-            const isSeries = (object.url === 'series' || object.url === 'top500series');
+            // Golden stylish 位 number for top 10
+            if (element.position <= 10) {
+                const goldenNumber = $(`
+                    <div style="
+                        position:absolute;
+                        top:8px;
+                        left:8px;
+                        width:36px;
+                        height:36px;
+                        background:#DAA520;
+                        color:#fff;
+                        font-size:22px;
+                        font-weight:bold;
+                        text-align:center;
+                        line-height:36px;
+                        border-radius:50%;
+                        box-shadow:0 0 8px rgba(0,0,0,0.3);
+                        z-index:5;
+                    ">${element.position}</div>
+                `);
+                card.append(goldenNumber);
+            }
 
-            Lampa.Activity.push({
-                component: 'full',
-                id: element.id,
-                method: isSeries ? 'tv' : 'movie',
-                card: element
-            });
-        };
+            card.onEnter = function () {
+                const isSeries = (object.url === 'series' || object.url === 'top500series');
+
+                Lampa.Activity.push({
+                    component: 'full',
+                    id: element.id,
+                    method: isSeries ? 'tv' : 'movie',
+                    card: element
+                });
+            };
+        }
     };
 
     return comp;
 }
+
 
 
     // Plugin initialization and menu button registration
