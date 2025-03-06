@@ -114,18 +114,28 @@ function kinopoiskCollectionComponent(object) {
 
 comp.cardRender = function (object, element, card) {
     card.onMenu = false;
+
     card.onEnter = function () {
         const isSeries = (object.url === 'series' || object.url === 'top500series');
 
         Lampa.Activity.push({
-            component: isSeries ? 'full_tv' : 'full',  // fixed condition
+            url: '',
+            title: element.title,
+            component: isSeries ? 'full_tv' : 'full',
             id: element.id,
             method: isSeries ? 'tv' : 'movie',
-            media: isSeries ? 'tv' : 'movie',
-            card: element
+            card: {
+                id: element.id,
+                title: element.title,
+                media_type: isSeries ? 'tv' : 'movie'
+            }
         });
     };
-};
+    };
+
+    return comp;
+}
+
 
     return comp;
 }
