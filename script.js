@@ -101,67 +101,63 @@
     }
 
     // Collection component for movies or series list
+// Collection component for movies or series list
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
-        Api.full(object, this.build.bind(this), this.empty.bind(this));
+        Api.full(object, (data) => {
+            let modified_results = [];
+
+            // Add rank number to the titles (top-10 highlighted)
+            data.results.forEach((item, idx) => {
+                const rank = idx + 1;
+                const rankLabel = rank <= 10
+                    ? `✨<span style="color:#FFD700;font-weight:bold;">${rank}位</span>`
+                    : `${rank}.`;
+                item.title = `${rankLabel} ${item.title}`;
+            });
+
+            // Divide into sections (1-50, 51-100, etc.)
+            const itemsPerSection = 50;
+            const resultsWithSections = [];
+            
+            for (let i = 0; i < data.results.length; i += sectionSize) {
+                const start = i + 1;
+                const end = Math.min(i + sectionSize, data.results.length);
+
+                // Add section header (non-clickable)
+                results_with_sections.push({
+                    title: `<div style="padding:15px 10px;font-size:1.5em;color:#fff;text-align:left;width:100%;">${start}–${end}</div>`,
+                    nonclickable: true
+                });
+
+                // Add the next 50 movies/series
+                results_with_sections.push(...data.results.slice(i, end));
+            }
+
+            comp.build({
+                results: results_with_sections,
+                total_pages: 1
+            });
+        }, this.empty.bind(this));
     };
 
     comp.nextPageReuest = function (object, resolve, reject) {
         Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
 
-    comp.build = function (data) {
-        const modified_results = [];
-        const original_results = data.results;
-
-        // Add stylish golden 位 digit for top 10
-        original_results.forEach((item, index) => {
-            const card = Object.assign({}, item);
-            card.title = index < 10
-                ? `✨<span style="color:#FFD700; font-weight:bold;">${index + 1}位</span> ${item.title}`
-                : `${index + 1}. ${item.title}`;
-
-            modified_results.push(card);
-        });
-
-        // Divide into sections of 50 each
-        const sectionSize = 50;
-        const results_with_sections = [];
-
-        for (let i = 0; i < modified_results.length; i += sectionSize) {
-            const start = i + 1;
-            const end = Math.min(i + sectionSize, modified_results.length);
-
-            // Add non-clickable heading
-            results_with_sections.push({
-                title: `<div style="width:100%;padding:15px 0;font-size:1.8em;color:white;text-align:left;">${start}–${end}</div>`,
-                nonclickable: true
-            });
-
-            // Add actual items
-            results_with_sections.push(...modified_results.slice(i, i + sectionSize));
-        }
-
-        // Finally call the original build with modified data
-        data.results = results_with_sections;
-        Lampa.InteractionCategory.prototype.build.call(this, data);
-    };
-
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
 
-        // Make sure non-clickable sections can't be clicked
         if (element.nonclickable) {
             card.addClass('card--section-header');
-            card.onEnter = function () {}; // Do nothing on click
-            card.visible = function () {}; // Do nothing special
-            card.render().find('.card__img, .card__view, .card__title').remove(); // remove images
-            card.render().append($(element.title)); // set styled text directly
+            card.visible = function () {}; // Disable interactivity
+            card.onEnter = function () {};
         } else {
             card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
+
                 Lampa.Activity.push({
                     component: 'full',
                     id: element.id,
@@ -174,6 +170,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
     // Plugin initialization and menu button registration
     function initPlugin() {
