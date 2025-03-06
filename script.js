@@ -107,24 +107,11 @@ function kinopoiskCollectionComponent(object) {
         Api.full(object, (data) => {
             const enhancedResults = [];
 
-            // Insert section headers and stylish top-10 ranks
             data.results.forEach((item, idx) => {
-                // Insert section header
-                if (idx % 50 === 0) {
-                    enhancedResults.push({
-                        type: 'header',
-                        title: `${idx + 1}-${idx + 50}`
-                    });
-                }
-
                     item.rank = idx + 1;
-
                 enhancedResults.push(item);
             });
-
-            // Override the results with our enhanced results
             data.results = enhancedResults;
-
             this.build(data);
         }, this.empty.bind(this));
     };
@@ -136,12 +123,6 @@ function kinopoiskCollectionComponent(object) {
 comp.cardRender = function (object, element, card) {
     card.onMenu = false;
 
-    if (element.type === 'header') {
-        // Correct way to render headers without cards
-        card.render().find('.card__img, .card__view').remove(); // Remove unnecessary image/view elements
-        card.render().find('.card__title').html(`<span style="font-size:1.6em; color:#eee;">${element.title}</span>`);
-        card.onEnter = () => {}; // No action
-    } else {
         card.onEnter = function () {
             const isSeries = (object.url === 'series' || object.url === 'top500series');
 
@@ -168,7 +149,6 @@ comp.cardRender = function (object, element, card) {
                 </div>
             `);
             card.render().append(rankBadge);
-        }
     }
 };
 
