@@ -43,6 +43,15 @@ async function fetchMultiplePages(baseUrl, pages) {
   return allDocs;
 }
 
+async function fetchCollectionCover(slug) {
+  const url = `https://api.kinopoisk.dev/v1.4/list?page=1&limit=1&selectFields=cover&slug=${slug}`;
+  const data = await fetchPage(url);
+  if (data && data.docs && data.docs.length) {
+    return data.docs[0].cover?.url || null;
+  }
+  return null;
+}
+
 async function fetchTmdbPosterPath(tmdbId, isMovie) {
   if (!tmdbId) return null;
 
@@ -122,12 +131,16 @@ async function enrichWithTmdbPosters(items, isMovie) {
     await enrichWithTmdbPosters(moviesProcessed, true);
     await enrichWithTmdbPosters(seriesProcessed, false);
 
-    // Build final JSON
+    const moviesCoverUrl = await fetchCollectionCover('popular-films');
+    const seriesCoverUrl = await fetchCollectionCover('popular-series');
+
     const today = new Date().toISOString().split('T')[0];
     const finalData = {
       date: today,
       movies: moviesProcessed,
-      series: seriesProcessed
+      series: seriesProcessed,
+      movies_cover: moviesCoverUrl,
+      series_cover: seriesCoverUrl
     };
 
     // Write data.json to repository (will be committed by the GH Action step)
