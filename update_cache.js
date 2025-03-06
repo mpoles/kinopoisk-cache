@@ -82,24 +82,25 @@ async function enrichWithTmdbPosters(items, isMovie) {
     const item = items[i];
     const tmdbPosterPath = await fetchTmdbPosterPath(item.id, isMovie);
     if (tmdbPosterPath) {
-      // Optionally prefix with an image path from TMDB, e.g. "https://image.tmdb.org/t/p/w500"
-      // or "https://image.tmdb.org/t/p/original"
       item.poster_path = tmdbPosterPath;
     }
   }
 }
 
-(async function main(){
+(async function main() {
   try {
     const moviesBase = `https://api.kinopoisk.dev/v1.4/movie?limit=250&page=PAGE
       &selectFields=externalId&selectFields=name&selectFields=premiere
       &selectFields=rating&selectFields=lists
       &notNullFields=externalId.tmdb
       &sortField=rating.kp&sortType=-1
-      &lists=top500`.replace(/\s+/g,'');
+      &lists=top500`.replace(/\s+/g, '');
 
     const moviesDocs = await fetchMultiplePages(moviesBase, 2);
-    const moviesProcessed = moviesDocs.map(item => ({
+
+    // Movies: assign rank based on the sorted list
+    const moviesProcessed = moviesDocs.map((item, index) => ({
+      rank: index + 1,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
       release_date: item.premiere?.world ?? null,
@@ -115,18 +116,20 @@ async function enrichWithTmdbPosters(items, isMovie) {
       &votes.kp=9999-9999999
       &sortField=top250&sortField=rating.kp
       &sortType=-1&sortType=-1
-      &isSeries=true`.replace(/\s+/g,'');
+      &isSeries=true`.replace(/\s+/g, '');
 
     const seriesDocs = await fetchMultiplePages(seriesBase, 2);
-    let seriesProcessed = seriesDocs.map(item => ({
+
+    seriesDocs.sort((a, b) => (a.top250 ?? 251) - (b.top250 ?? 251));
+
+    const seriesProcessed = seriesDocs.map((item, index) => ({
+      rank: index + 1,
       id: item.externalId?.tmdb ?? null,
       title: item.name ?? null,
       first_air_date: item.premiere?.world ?? null,
       vote_average: item.rating?.kp ?? null,
       top250: item.top250 ?? 251
     }));
-    // Sort series by top250 ascending
-    seriesProcessed.sort((a, b) => (a.top250 - b.top250) || 0);
 
     await enrichWithTmdbPosters(moviesProcessed, true);
     await enrichWithTmdbPosters(seriesProcessed, false);
@@ -143,11 +146,9 @@ async function enrichWithTmdbPosters(items, isMovie) {
       series_cover: seriesCoverUrl
     };
 
-    // Write data.json to repository (will be committed by the GH Action step)
     fs.writeFileSync('data.json', JSON.stringify(finalData, null, 2), 'utf-8');
-    console.log('data.json updated successfully!');
-  }
-  catch(e){
+    console.log('data.json updated successfully with ranks!');
+  } catch (e) {
     console.error('Error in main function:', e);
     process.exit(1);
   }
