@@ -100,68 +100,55 @@
         return comp;
     }
 
-    // Collection component for movies or series list
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
-        Api.full(object, this.build.bind(this), this.empty.bind(this));
+        Api.full(object, (data) => {
+            const enhancedResults = [];
+
+            // Insert section headers and stylish top-10 ranks
+            data.results.forEach((item, idx) => {
+                // Insert section header
+                if (idx % 50 === 0) {
+                    enhancedResults.push({
+                        type: 'header',
+                        title: `${idx + 1}-${idx + 50}`
+                    });
+                }
+
+                // Add rank numbers for top 10
+                if (idx < 10) {
+                    item.rank = idx + 1;
+                }
+
+                enhancedResults.push(item);
+            });
+
+            // Override the results with our enhanced results
+            data.results = enhancedResults;
+
+            this.build(data);
+        }, this.empty.bind(this));
     };
 
     comp.nextPageReuest = function (object, resolve, reject) {
         Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
 
-    comp.build = function (data) {
-        const modified_results = [];
-        const original_results = data.results;
-
-        // Add stylish golden 位 digit for top 10
-        original_results.forEach((item, index) => {
-            const card = Object.assign({}, item);
-            card.title = index < 10
-                ? `✨<span style="color:#FFD700; font-weight:bold;">${index + 1}</span> ${item.title}`
-                : `${index + 1}. ${item.title}`;
-
-            modified_results.push(card);
-        });
-
-        // Divide into sections of 50 each
-        const sectionSize = 50;
-        const results_with_sections = [];
-
-        for (let i = 0; i < modified_results.length; i += sectionSize) {
-            const start = i + 1;
-            const end = Math.min(i + sectionSize, modified_results.length);
-
-            // Add non-clickable heading
-            results_with_sections.push({
-                title: `<div style="width:100%;padding:15px 0;font-size:1.8em;color:white;text-align:left;">${start}–${end}</div>`,
-                nonclickable: true
-            });
-
-            // Add actual items
-            results_with_sections.push(...modified_results.slice(i, i + sectionSize));
-        }
-
-        // Finally call the original build with modified data
-        data.results = results_with_sections;
-        Lampa.InteractionCategory.prototype.build.call(this, data);
-    };
-
     comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
-
-        // Make sure non-clickable sections can't be clicked
-        if (element.nonclickable) {
-            card.addClass('card--section-header');
-            card.onEnter = function () {}; // Do nothing on click
-            card.visible = function () {}; // Do nothing special
-            card.render().find('.card__img, .card__view, .card__title').remove(); // remove images
-            card.render().append($(element.title)); // set styled text directly
+        if (element.type === 'header') {
+            // Style the section header (non-clickable)
+            card.empty();
+            card.addClass('category-header');
+            card.append($(`<div style="width:100%; text-align:left; font-size:2em; font-weight:bold; color:#eee; padding:20px 10px;">${element.title}</div>`));
+            card.onEnter = () => {};
+            card.onMenu = false;
         } else {
+            card.onMenu = false;
             card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
+
                 Lampa.Activity.push({
                     component: 'full',
                     id: element.id,
@@ -169,6 +156,16 @@ function kinopoiskCollectionComponent(object) {
                     card: element
                 });
             };
+
+            // Add golden rank digit for top 10
+            if (element.rank && element.rank <= 10) {
+                const rankBadge = $(
+                    `<div style="position:absolute; top:8px; left:8px; background:gold; color:black; font-weight:bold; border-radius:8px; padding:2px 6px; font-size:1.4em; box-shadow:0 0 8px rgba(0,0,0,0.3); z-index:2;">
+                        ${element.rank}
+                    </div>`
+                );
+                card.append(rankBadge);
+            }
         }
     };
 
