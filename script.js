@@ -101,98 +101,66 @@
     }
 
     // Collection component for movies or series list
-    function kinopoiskCollectionComponent(object) {
-        const comp = new Lampa.InteractionCategory(object);
+function kinopoiskCollectionComponent(object) {
+    const comp = new Lampa.InteractionCategory(object);
 
-        /**
-         * Overriding create(): fetch data, then build with our custom grouping logic.
-         */
-        comp.create = function () {
-            Api.full(object, (data) => {
-                this.buildSections(data); // custom grouping
-            }, this.empty.bind(this));
-        };
+    comp.create = function () {
+        Api.full(object, this.build.bind(this), this.empty.bind(this));
+    };
 
-        /**
-         * Instead of comp.build(data), we define our own "buildSections".
-         * This groups the list in chunks of 50, and for each chunk:
-         *   - adds an <h2> label (not navigable)
-         *   - appends the 50 items as standard Lampa cards
-         */
-        comp.buildSections = function (data) {
-            // store the data so that Lampa can reference it if needed
-            this.data = data;
+    comp.nextPageReuest = function (object, resolve, reject) {
+        Api.full(object, resolve.bind(comp), reject.bind(comp));
+    };
 
-            let results = data.results || [];
+    comp.build = function (data) {
+        const modified_results = [];
+        const original_results = data.results;
 
-            // Add a __rank property to each item so we know which are top 10
-            results.forEach((item, i) => {
-                item.__rank = i + 1; // 1-based index
+        // Add stylish golden 位 digit for top 10
+        original_results.forEach((item, index) => {
+            const card = Object.assign({}, item);
+            card.title = index < 10
+                ? `✨<span style="color:#FFD700; font-weight:bold;">${index + 1}</span> ${item.title}`
+                : `${index + 1}. ${item.title}`;
+
+            modified_results.push(card);
+        });
+
+        // Divide into sections of 50 each
+        const sectionSize = 50;
+        const results_with_sections = [];
+
+        for (let i = 0; i < modified_results.length; i += sectionSize) {
+            const start = i + 1;
+            const end = Math.min(i + sectionSize, modified_results.length);
+
+            // Add non-clickable heading
+            results_with_sections.push({
+                title: `<div style="width:100%;padding:15px 0;font-size:1.8em;color:white;text-align:left;">${start}–${end}</div>`,
+                nonclickable: true
             });
 
-            // The main container in which we'll place headings + cards
-            const container = $('<div></div>');
+            // Add actual items
+            results_with_sections.push(...modified_results.slice(i, i + sectionSize));
+        }
 
-            // We'll chunk by 50
-            const chunkSize = 50;
-            let total = results.length;
+        // Finally call the original build with modified data
+        data.results = results_with_sections;
+        Lampa.InteractionCategory.prototype.build.call(this, data);
+    };
 
-            for (let start = 0; start < total; start += chunkSize) {
-                let end = Math.min(start + chunkSize, total);
-                let headingText = (start + 1) + '-' + end;
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
 
-                // Insert an <h2> heading for this chunk
-                let heading = $(`<h2 class="collection-section-heading">${headingText}</h2>`);
-                container.append(heading);
-
-                // Slice out the subset of items for this chunk
-                let subset = results.slice(start, end);
-
-                // Render each item as a standard Lampa card
-                subset.forEach(element => {
-                    let card = Lampa.Template.get('card', {}, true);
-
-                    // "cardRender" is your standard logic that sets up how cards behave
-                    this.cardRender(object, element, card);
-
-                    // Write the item title into the card's .card__title
-                    card.find('.card__title').text(element.title);
-
-                    // If this item is in top 10, prepend a fancy golden rank label
-                    if (element.__rank <= 10) {
-                        let goldBadge = $(`<div class="golden-rank">#${element.__rank}</div>`);
-                        // We can place it in the .card__view or near the title
-                        card.find('.card__view').prepend(goldBadge);
-                    }
-
-                    container.append(card);
-                });
-            }
-
-            // Append everything to the main component HTML
-            this.html.append(container);
-            
-            // Hide loader
-            this.activity.loader(false);
-
-            // Bind standard Lampa events
-            this.bind(this.html);
-        };
-
-        /**
-         * We'll leave nextPageReuest alone, since we aren't doing multiple pages in Lampa terms.
-         */
-        comp.nextPageReuest = function (object, resolve, reject) {
-            Api.full(object, resolve.bind(comp), reject.bind(comp));
-        };
-
-        /**
-         * Overriding cardRender so we can push correct item details for Lampa's "full" activity.
-         */
-        comp.cardRender = function (object, element, card) {
-            card.onMenu = false;
-
-            card.onEnter = () => {
+        // Make sure non-clickable sections can't be clicked
+        if (element.nonclickable) {
+            card.addClass('card--section-header');
+            card.onEnter = function () {}; // Do nothing on click
+            card.visible = function () {}; // Do nothing special
+            card.render().find('.card__img, .card__view, .card__title').remove(); // remove images
+            card.render().append($(element.title)); // set styled text directly
+        } else {
+            card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
                 Lampa.Activity.push({
                     component: 'full',
@@ -201,10 +169,12 @@
                     card: element
                 });
             };
-        };
+        }
+    };
 
-        return comp;
-    }
+    return comp;
+}
+
 
     // Plugin initialization and menu button registration
     function initPlugin() {
@@ -221,16 +191,16 @@
 
         // Add the plugin button to the menu
         function addMenuButton() {
-            const button = $(`
+            const button = $(
                 <li class="menu__item selector">
                     <div class="menu__ico">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" width="64" height="64">
-                            <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
-                        </svg>
+  <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
+</svg>
                     </div>
                     <div class="menu__text">${manifest.name}</div>
                 </li>
-            `);
+            );
 
             button.on('hover:enter', () => {
                 Lampa.Activity.push({
