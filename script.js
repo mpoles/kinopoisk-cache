@@ -92,7 +92,9 @@
                     url: element.hpu,
                     title: element.title,
                     component: 'kinopoisk_collection',
-                    page: 1
+                    page: 1,
+                    card: element,
+                    media_type: element.media_type
                 });
             };
         };
