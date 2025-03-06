@@ -15,7 +15,7 @@
             let movies = json.movies || [];
             let series = json.series || [];
 
-            // Use first item poster as collection image if available, else fallback
+            // Use cover images from the data if available
             let movies_img = json.movies_cover;
             let series_img = json.series_cover;
 
@@ -24,7 +24,7 @@
                     {
                         title: "Топ 500 фильмов",
                         img: movies_img,
-                        hpu: "movies" // identifier for the collection
+                        hpu: "movies"
                     },
                     {
                         title: "Топ 500 сериалов",
@@ -100,80 +100,115 @@
         return comp;
     }
 
-function kinopoiskCollectionComponent(object) {
-    const comp = new Lampa.InteractionCategory(object);
+    // Collection component for movies or series list
+    function kinopoiskCollectionComponent(object) {
+        const comp = new Lampa.InteractionCategory(object);
 
-    comp.create = function () {
-        Api.full(object, (data) => {
-            const collection = data.results || [];
-            const sections = [];
+        // Overriding create
+        comp.create = function () {
+            Api.full(object, (data) => {
+                this.build(data);
+            }, this.empty.bind(this));
+        };
 
-            for (let i = 0; i < collection.length; i += 50) {
-                sections.push({
-                    title: `${i + 1} - ${Math.min(i + 50, collection.length)}`,
-                    results: collection.slice(i, i + 50)
+        comp.nextPageReuest = function (object, resolve, reject) {
+            Api.full(object, resolve.bind(comp), reject.bind(comp));
+        };
+
+        /**
+         * Overriding build to chunk items into sections of 50
+         * and render top-10 golden rank.
+         */
+        comp.build = function (data) {
+            // Save data so Lampa can handle some internal details if needed
+            this.saveData(data);
+            this.clear();
+            this.loading(false);
+
+            let items = data.results || [];
+            let chunkSize = 50;
+            let total = items.length;
+
+            // For sorting or for top-10, we assume items are already in the order you want.
+            // We'll attach a "_rank" property so we know their absolute position.
+            for (let i = 0; i < total; i++) {
+                items[i]._rank = i; // zero-based index
+            }
+
+            // Now chunk them into sets of 50
+            let startIndex = 0;
+            let sectionNumber = 1;
+            while (startIndex < total) {
+                let endIndex = startIndex + chunkSize;
+                let chunk = items.slice(startIndex, endIndex);
+
+                // Add an <h2> for this chunk
+                let heading = document.createElement('h2');
+                heading.textContent = `${startIndex + 1} - ${Math.min(endIndex, total)}`;
+                heading.style.margin = '1.5em 0 0.5em 1.5em';
+                heading.style.fontSize = '1.4em';
+                heading.style.color = '#ffd700'; // gold color if you like
+                this.body.append(heading);
+
+                // Render each item in the chunk
+                chunk.forEach((element) => {
+                    // use Lampa's built-in "renderItem()" => calls `cardRender`
+                    let card = this.renderItem(element);
+                    this.body.append(card);
                 });
+
+                startIndex = endIndex;
+                sectionNumber++;
             }
 
-            this.build({ results: sections }); // <-- Corrected here!
-        }, this.empty.bind(this));
-    };
+            // Force a DOM update for Lampa to arrange items
+            this.append(this.body);
 
-    comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
-
-        card.onRender = function () {
-            // Calculate correct global index
-            let globalIndex = -1;
-            let counter = 0;
-            for (const section of object.results) {
-                const idx = section.results.indexOf(element);
-                if (idx !== -1) {
-                    globalIndex = object.results.indexOf(section) * 50 + idx;
-                    break;
-                }
-            }
-
-            // Add top 10 badge
-            if (globalIndex < 10) {
-                const badge = $(`
-                    <div style="
-                        position:absolute;
-                        top:6px;
-                        left:6px;
-                        background:linear-gradient(135deg, gold, #ffb700);
-                        color:#000;
-                        font-weight:bold;
-                        padding:4px 7px;
-                        border-radius:4px;
-                        z-index:10;
-                        font-size:16px;">
-                        №${globalIndex + 1}
-                    </div>`);
-
-                card.img.append(badge);
-            }
+            // Let Lampa know we are done
+            this.loading(false);
         };
 
-        card.onEnter = function () {
-            const isSeries = (object.url === 'series' || object.url === 'top500series');
+        /**
+         * Enhanced cardRender: if item is in top 10 => add golden rank digit
+         */
+        comp.cardRender = function (object, element, card) {
+            card.onMenu = false;
 
-            Lampa.Activity.push({
-                component: isSeries ? 'full_tv' : 'full',
-                id: element.id,
-                method: isSeries ? 'tv' : 'movie',
-                card: {
+            // If it's top 10, show golden rank
+            if (element._rank < 10) {
+                const rankLabel = document.createElement('div');
+                rankLabel.textContent = element._rank + 1; // 1-based index
+                rankLabel.style.position = 'absolute';
+                rankLabel.style.top = '0';
+                rankLabel.style.left = '0';
+                rankLabel.style.backgroundColor = 'gold';
+                rankLabel.style.color = 'black';
+                rankLabel.style.padding = '0.2em 0.4em';
+                rankLabel.style.fontWeight = 'bold';
+                rankLabel.style.fontSize = '1.2em';
+                rankLabel.style.borderRadius = '0 0.5em 0.5em 0';
+                rankLabel.style.zIndex = '10';
+
+                // "card.render()" usually returns the DOM element of the card
+                card.render().style.position = 'relative';
+                card.render().appendChild(rankLabel);
+            }
+
+            // onEnter for opening the selected item
+            card.onEnter = function () {
+                const isSeries = (object.url === 'series' || object.url === 'top500series');
+
+                Lampa.Activity.push({
+                    component: 'full',
                     id: element.id,
-                    title: element.title,
-                    media_type: isSeries ? 'tv' : 'movie'
-                }
-            });
+                    method: isSeries ? 'tv' : 'movie',
+                    card: element
+                });
+            };
         };
-    };
 
-    return comp;
-}
-
+        return comp;
+    }
 
     // Plugin initialization and menu button registration
     function initPlugin() {
