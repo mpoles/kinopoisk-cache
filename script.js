@@ -118,88 +118,51 @@ function kinopoiskCollectionComponent(object) {
         Api.full(object, (data) => {
             const results = data.results || [];
 
-            // Split the array into sections of 50 items each
-            const sections = [];
-            for (let i = 0; i < results.length; i += 50) {
-                sections.push({
-                    title: `${i + 1} – ${Math.min(i + 50, results.length)}`,
-                    items: results.slice(i, i + 50)
-                });
-            }
-
-            // Build final data array with section titles as text headers
-            const finalResults = [];
-
-            sections.forEach(section => {
-                // Section header as a simple text element (non-card)
-                finalResults.push({
-                    title: section.title,
-                    type: 'title' // Custom type to identify headers
-                });
-
-                // Movies/series with optional golden 位 number for top 10
-                section.items.forEach((item, index) => {
-                    const globalIndex = finalResults.filter(i => i.type !== 'title').length + 1; // global position (1-500)
-                    finalResults.push({
-                        ...item,
-                        type: 'item',
-                        position: globalIndex
-                    });
-                });
-            });
+            // Build results with positions
+            const finalResults = results.map((item, idx) => ({
+                ...item,
+                position: idx + 1 // global rank
+            }));
 
             this.build({ results: finalResults });
         }, this.empty.bind(this));
     };
 
-    comp.nextPageReuest = function (object, resolve, reject) {
-        resolve({ results: [] });
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
+
+        // Insert Section Headers every 50 items
+        if ((element.position - 1) % 50 === 0) {
+            const sectionNumber = element.position;
+            card.before(`<div style="width:100%;padding:0.5rem 1rem;color:#fff;font-size:1.4em;opacity:0.7;">${sectionNumber}-${sectionNumber + 49}</div>`);
+        }
+
+        // Add a Golden Rank for top 10
+        if (element.position <= 10) {
+            card.append(`<div style="
+                position:absolute;top:8px;left:8px;
+                width:36px;height:36px;background:#DAA520;
+                color:#fff;border-radius:50%;text-align:center;
+                line-height:36px;font-weight:bold;font-size:20px;
+                box-shadow:0 2px 5px rgba(0,0,0,0.4);z-index:5;">
+                ${element.position}
+            </div>`);
+        }
+
+        card.onEnter = function () {
+            const isSeries = (object.url === 'series' || object.url === 'top500series');
+
+            Lampa.Activity.push({
+                component: 'full',
+                id: element.id,
+                method: isSeries ? 'tv' : 'movie',
+                card: element
+            });
+        };
     };
 
-    comp.cardRender = function (object, element, card) {
-        if (element.type === 'title') {
-            // Render simple title without card styling
-            card.empty();
-            card.append(`<div style="width:100%; text-align:left; font-size:1.4em; padding:1rem 0; opacity:0.8; color:#fff;">${element.title}</div>`);
-            card.addClass('no-hover');
-            card.onEnter = function() {}; // Disable click for titles
-        } else {
-            card.onMenu = false;
-
-            // Golden stylish 位 number for top 10
-            if (element.position <= 10) {
-                const goldenNumber = $(`
-                    <div style="
-                        position:absolute;
-                        top:8px;
-                        left:8px;
-                        width:36px;
-                        height:36px;
-                        background:#DAA520;
-                        color:#fff;
-                        font-size:22px;
-                        font-weight:bold;
-                        text-align:center;
-                        line-height:36px;
-                        border-radius:50%;
-                        box-shadow:0 0 8px rgba(0,0,0,0.3);
-                        z-index:5;
-                    ">${element.position}</div>
-                `);
-                card.append(goldenNumber);
-            }
-
-            card.onEnter = function () {
-                const isSeries = (object.url === 'series' || object.url === 'top500series');
-
-                Lampa.Activity.push({
-                    component: 'full',
-                    id: element.id,
-                    method: isSeries ? 'tv' : 'movie',
-                    card: element
-                });
-            };
-        }
+    comp.nextPageReuest = function (object, resolve, reject) {
+        Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
 
     return comp;
