@@ -12,6 +12,10 @@
     // MAIN MENU: fetch the data and build two collection items
     function main(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
+            let movies = json.movies || [];
+            let series = json.series || [];
+
+            // Use first item poster as collection image if available, else fallback
             let movies_img = json.movies_cover;
             let series_img = json.series_cover;
 
@@ -41,34 +45,19 @@
     // COLLECTION: fetch full list details from the same data.json
     function full(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
+            let movies = json.movies || [];
+            let series = json.series || [];
             let collection = [];
+
             if (params.url === "movies" || params.url === "top500movies"){
-                collection = json.movies || [];
+                collection = movies;
             }
             else if (params.url === "series" || params.url === "top500series"){
-                collection = json.series || [];
-            }
-
-            // Assign a rank number to each item (starting at 1)
-            collection = collection.map((item, index) => {
-                item.rank = index + 1;
-                return item;
-            });
-
-            // Create a new grouped array with section headers for every 50 items.
-            let grouped = [];
-            for(let i = 0; i < collection.length; i++){
-                // Insert a header at the start of each section
-                if(i % 50 === 0){
-                    let start = i + 1;
-                    let end = Math.min(i + 50, collection.length);
-                    grouped.push({ header: true, title: `${start}-${end}` });
-                }
-                grouped.push(collection[i]);
+                collection = series;
             }
 
             const data = {
-                results: grouped,
+                results: collection,
                 total_pages: 1
             };
 
@@ -111,85 +100,111 @@
         return comp;
     }
 
-function kinopoiskCollectionComponent(object) {
-    const comp = new Lampa.InteractionCategory(object);
+    // Collection component for movies or series list
+    function kinopoiskCollectionComponent(object) {
+        const comp = new Lampa.InteractionCategory(object);
 
-    comp.create = function () {
-        Api.full(object, (data) => {
-            const results = data.results || [];
-
-            const finalResults = results.map((item, idx) => ({
-                ...item,
-                position: idx + 1
-            }));
-
-            this.build({ results: finalResults });
-
-            // Insert section headers after build completes
-            setTimeout(() => {
-                $('.category__cards').each(function () {
-                    const cards = $(this).find('.card');
-                    cards.each(function (idx) {
-                        if (idx % 50 === 0) {
-                            const sectionStart = idx + 1;
-                            const sectionEnd = Math.min(idx + 50, cards.length);
-                            $(`<div style="
-                                width: 100%; 
-                                padding: 0.5rem 1rem; 
-                                color: #fff; 
-                                font-size: 1.4em; 
-                                opacity: 0.7;
-                                box-sizing: border-box;">
-                                ${sectionStart} – ${sectionEnd}
-                            </div>`).insertBefore($(this));
-                        }
-                    });
-                });
-            }, 0);
-        }, this.empty.bind(this));
-    };
-
-    comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
-
-        // Golden stylish number for top 10
-        if (element.position <= 10) {
-            card.append(`<div style="
-                position:absolute;
-                top:8px;left:8px;
-                width:36px;height:36px;
-                background:#DAA520;
-                color:#fff;font-size:20px;
-                border-radius:50%;
-                text-align:center;
-                line-height:36px;
-                box-shadow:0 2px 5px rgba(0,0,0,0.4);
-                z-index:5;">
-                ${element.position}
-            </div>`);
-        }
-
-        card.onEnter = function () {
-            const isSeries = (object.url === 'series' || object.url === 'top500series');
-
-            Lampa.Activity.push({
-                component: 'full',
-                id: element.id,
-                method: isSeries ? 'tv' : 'movie',
-                card: element
-            });
+        /**
+         * Overriding create(): fetch data, then build with our custom grouping logic.
+         */
+        comp.create = function () {
+            Api.full(object, (data) => {
+                this.buildSections(data); // custom grouping
+            }, this.empty.bind(this));
         };
-    };
 
-    comp.nextPageReuest = function (object, resolve, reject) {
-        Api.full(object, resolve.bind(comp), reject.bind(comp));
-    };
+        /**
+         * Instead of comp.build(data), we define our own "buildSections".
+         * This groups the list in chunks of 50, and for each chunk:
+         *   - adds an <h2> label (not navigable)
+         *   - appends the 50 items as standard Lampa cards
+         */
+        comp.buildSections = function (data) {
+            // store the data so that Lampa can reference it if needed
+            this.data = data;
 
-    return comp;
-}
+            let results = data.results || [];
 
+            // Add a __rank property to each item so we know which are top 10
+            results.forEach((item, i) => {
+                item.__rank = i + 1; // 1-based index
+            });
 
+            // The main container in which we'll place headings + cards
+            const container = $('<div></div>');
 
+            // We'll chunk by 50
+            const chunkSize = 50;
+            let total = results.length;
+
+            for (let start = 0; start < total; start += chunkSize) {
+                let end = Math.min(start + chunkSize, total);
+                let headingText = (start + 1) + '-' + end;
+
+                // Insert an <h2> heading for this chunk
+                let heading = $(`<h2 class="collection-section-heading">${headingText}</h2>`);
+                container.append(heading);
+
+                // Slice out the subset of items for this chunk
+                let subset = results.slice(start, end);
+
+                // Render each item as a standard Lampa card
+                subset.forEach(element => {
+                    let card = Lampa.Template.get('card', {}, true);
+
+                    // "cardRender" is your standard logic that sets up how cards behave
+                    this.cardRender(object, element, card);
+
+                    // Write the item title into the card's .card__title
+                    card.find('.card__title').text(element.title);
+
+                    // If this item is in top 10, prepend a fancy golden rank label
+                    if (element.__rank <= 10) {
+                        let goldBadge = $(`<div class="golden-rank">#${element.__rank}</div>`);
+                        // We can place it in the .card__view or near the title
+                        card.find('.card__view').prepend(goldBadge);
+                    }
+
+                    container.append(card);
+                });
+            }
+
+            // Append everything to the main component HTML
+            this.html.append(container);
+            
+            // Hide loader
+            this.activity.loader(false);
+
+            // Bind standard Lampa events
+            this.bind(this.html);
+        };
+
+        /**
+         * We'll leave nextPageReuest alone, since we aren't doing multiple pages in Lampa terms.
+         */
+        comp.nextPageReuest = function (object, resolve, reject) {
+            Api.full(object, resolve.bind(comp), reject.bind(comp));
+        };
+
+        /**
+         * Overriding cardRender so we can push correct item details for Lampa's "full" activity.
+         */
+        comp.cardRender = function (object, element, card) {
+            card.onMenu = false;
+
+            card.onEnter = () => {
+                const isSeries = (object.url === 'series' || object.url === 'top500series');
+                Lampa.Activity.push({
+                    component: 'full',
+                    id: element.id,
+                    method: isSeries ? 'tv' : 'movie',
+                    card: element
+                });
+            };
+        };
+
+        return comp;
+    }
 
     // Plugin initialization and menu button registration
     function initPlugin() {
@@ -204,7 +219,7 @@ function kinopoiskCollectionComponent(object) {
         Lampa.Component.add('kinopoisk_main', kinopoiskMainComponent);
         Lampa.Component.add('kinopoisk_collection', kinopoiskCollectionComponent);
 
-        // Add the plugin button to the menu.
+        // Add the plugin button to the menu
         function addMenuButton() {
             const button = $(`
                 <li class="menu__item selector">
