@@ -92,9 +92,7 @@
                     url: element.hpu,
                     title: element.title,
                     component: 'kinopoisk_collection',
-                    page: 1,
-                    card: element,
-                    media_type: element.media_type
+                    page: 1
                 });
             };
         };
@@ -103,19 +101,33 @@
     }
 
     // Collection component for movies or series list
-    function kinopoiskCollectionComponent(object) {
-        const comp = new Lampa.InteractionCategory(object);
+function kinopoiskCollectionComponent(object) {
+    const comp = new Lampa.InteractionCategory(object);
 
-        comp.create = function () {
-            Api.full(object, this.build.bind(this), this.empty.bind(this));
+    comp.create = function () {
+        Api.full(object, this.build.bind(this), this.empty.bind(this));
+    };
+
+    comp.nextPageReuest = function (object, resolve, reject) {
+        Api.full(object, resolve.bind(comp), reject.bind(comp));
+    };
+
+    comp.cardRender = function (object, element, card) {
+        card.onMenu = false;
+        card.onEnter = function () {
+            Lampa.Activity.push({
+                url: '',
+                title: element.title,
+                component: object.url === 'series' ? 'tv' : 'movie', // Fix here
+                id: element.id,
+                method: 'tmdb',
+                card: element
+            });
         };
+    };
 
-        comp.nextPageReuest = function (object, resolve, reject) {
-            Api.full(object, resolve.bind(comp), reject.bind(comp));
-        };
-
-        return comp;
-    }
+    return comp;
+}
 
     // Plugin initialization and menu button registration
     function initPlugin() {
