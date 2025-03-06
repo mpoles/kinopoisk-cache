@@ -82,9 +82,9 @@ async function enrichWithTmdbPosters(items, isMovie) {
 
     const moviesProcessed = moviesDocs.map((item, index) => ({
       rank: index + 1,
-      id: item.externalId?.tmdb ?? null,
+      id: item.externalId?.tmdb,
       title: item.name ?? null,
-      release_date: item.premiere?.world?.slice(0,10) ?? null,
+      release_date: item.premiere?.world?.slice(0,10) ?? '',
       vote_average: item.rating?.kp ?? null
     }));
 
@@ -100,7 +100,6 @@ async function enrichWithTmdbPosters(items, isMovie) {
       title: item.name ?? null,
       first_air_date: item.premiere?.world?.slice(0,10) ?? null,
       vote_average: item.rating?.kp ?? null,
-      top250: item.top250 ?? 251
     }));
 
     await enrichWithTmdbPosters(moviesProcessed, true);
