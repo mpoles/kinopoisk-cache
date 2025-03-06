@@ -88,12 +88,11 @@
         comp.cardRender = function (object, element, card) {
             card.onMenu = false;
             card.onEnter = function () {
-                const isTVShow = element.media_type === "tv"; // ✅ Check if it's a series
                 Lampa.Activity.push({
-                    url: element.id, // Use TMDB ID
+                    url: element.hpu,
                     title: element.title,
-                    component: isTVShow ? "full_tv" : "full", // ✅ Use "full_tv" for series
-                    method: isTVShow ? "tv" : "movie" // ✅ Ensure correct TMDB lookup
+                    component: 'kinopoisk_collection',
+                    page: 1
                 });
             };
         };
