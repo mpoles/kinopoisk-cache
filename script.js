@@ -4,18 +4,18 @@
     if (window.kinopoisk_ready) return;
     window.kinopoisk_ready = true;
 
-    // Change this to your actual GitHub Pages URL
+    // URL to your data.json on GitHub Pages
     const GITHUB_DATA_URL = 'https://mpoles.github.io/kinopoisk-cache/data.json';
 
     const network = new Lampa.Reguest();
 
-    // MAIN MENU: fetch the data and build two collection items
+    // 1) MAIN MENU
     function main(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
             let movies = json.movies || [];
             let series = json.series || [];
 
-            // Use cover images from the data if available
+            // Use covers from data.json if available
             let movies_img = json.movies_cover;
             let series_img = json.series_cover;
 
@@ -42,17 +42,17 @@
         });
     }
 
-    // COLLECTION: fetch full list details from the same data.json
+    // 2) COLLECTION
     function full(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
             let movies = json.movies || [];
             let series = json.series || [];
             let collection = [];
 
-            if (params.url === "movies" || params.url === "top500movies") {
+            if (params.url === "movies" || params.url === "top500movies"){
                 collection = movies;
             }
-            else if (params.url === "series" || params.url === "top500series") {
+            else if (params.url === "series" || params.url === "top500series"){
                 collection = series;
             }
 
@@ -73,7 +73,7 @@
 
     const Api = { main, full, clear };
 
-    // Main menu component for the plugin
+    // 3) MAIN MENU COMPONENT
     function kinopoiskMainComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -100,7 +100,7 @@
         return comp;
     }
 
-    // Collection component for movies or series list
+    // 4) COLLECTION COMPONENT
     function kinopoiskCollectionComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -115,27 +115,27 @@
         };
 
         /**
-         * We override build to chunk items into sections of 50
-         * and render top-10 golden rank.
+         * Build the custom layout:
+         * - chunk items into sections of 50,
+         * - give top-10 a gold rank label
          */
         comp.build = function (data) {
-            this.loading(false);
-            this.scrollrender = new Lampa.Scroll({ mask: false, over: true });
-            this.scrollrender.onEnd = () => {};
+            comp.empty(); // clear any existing DOM content
 
-            let body = this.scrollrender.render();
-            this.html(body);
+            // create a wrapper div for everything
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('kinopoisk-wrapper');
 
             let items = data.results || [];
             let total = items.length;
             let chunkSize = 50;
 
-            // Tag each item with its zero-based rank
-            for (let i = 0; i < total; i++) {
-                items[i]._rank = i;
-            }
+            // Tag each item with zero-based rank
+            items.forEach((it, idx) => {
+                it._rank = idx; // store the rank so we can highlight top 10
+            });
 
-            // Chunk them in groups of 50
+            // Now chunk the array into groups of 50
             let startIndex = 0;
             while (startIndex < total) {
                 let endIndex = startIndex + chunkSize;
@@ -146,34 +146,34 @@
                 heading.textContent = `${startIndex + 1} - ${Math.min(endIndex, total)}`;
                 heading.style.margin = '1.5em 1em 0.5em';
                 heading.style.fontSize = '1.4em';
-                heading.style.color = '#ffd700'; // gold color for heading
-                body.appendChild(heading);
+                heading.style.color = '#ffd700'; // gold color for headings
+                wrapper.appendChild(heading);
 
-                // Render each item
+                // Render each item within this chunk
                 chunk.forEach((element) => {
+                    // let Lampa build the card DOM
                     let card = this.renderItem(element);
-                    body.appendChild(card);
+                    wrapper.appendChild(card);
                 });
 
                 startIndex = endIndex;
             }
 
-            // Notify Lampa that we have finished building
-            this.loading(false);
-            this.start();
+            // Finally, append everything to the component
+            comp.append(wrapper);
         };
 
         /**
-         * If item is top 10 => add golden rank label
-         * Also handle movie vs tv click
+         * Called automatically for each item to create the card.
+         * We inject a top-10 gold label if `_rank < 10`.
          */
         comp.cardRender = function (object, element, card) {
             card.onMenu = false;
 
-            // if top 10 => show golden rank
+            // If item is top 10 => show golden rank
             if (element._rank < 10) {
                 let rankLabel = document.createElement('div');
-                rankLabel.textContent = (element._rank + 1);
+                rankLabel.textContent = (element._rank + 1).toString(); // 1-based rank
                 rankLabel.style.position = 'absolute';
                 rankLabel.style.top = '0';
                 rankLabel.style.left = '0';
@@ -189,7 +189,8 @@
                 card.render().appendChild(rankLabel);
             }
 
-            card.onEnter = () => {
+            // onEnter to open movie or tv detail
+            card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
 
                 Lampa.Activity.push({
@@ -204,7 +205,7 @@
         return comp;
     }
 
-    // Plugin initialization and menu button registration
+    // 5) INIT PLUGIN & MENU BUTTON
     function initPlugin() {
         const manifest = {
             type: 'video',
@@ -217,13 +218,12 @@
         Lampa.Component.add('kinopoisk_main', kinopoiskMainComponent);
         Lampa.Component.add('kinopoisk_collection', kinopoiskCollectionComponent);
 
-        // Add the plugin button to the menu
         function addMenuButton() {
             const button = $(`
                 <li class="menu__item selector">
                     <div class="menu__ico">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" width="64" height="64">
-                        <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
+                            <path fill="rgb(255,255,255)" d="M110,-108.5C110,-108.5-52.109,-22.912-52.109,-22.912C-52.109,-22.912,32.371,-108.5,32.371,-108.5C32.371,-108.5,-14.457,-108.5,-14.457,-108.5C-14.457,-108.5,-71.971,-29.757,-71.971,-29.757C-71.971,-29.757,-71.971,-108.5,-71.971,-108.5C-71.971,-108.5,-110,-108.5,-110,-108.5C-110,-108.5,-110,108.5,-110,108.5C-110,108.5,-71.971,108.5,-71.971,108.5C-71.971,108.5,-71.971,29.884,-71.971,29.884C-71.971,29.884,-14.457,108.5,-14.457,108.5C-14.457,108.5,32.371,108.5,32.371,108.5C32.371,108.5,-49.915,25.603,-49.915,25.603C-49.915,25.603,110,108.5,110,108.5C110,108.5,110,68.2,110,68.2C110,68.2,-35.854,10.484,-35.854,10.484C-35.854,10.484,110,20.15,110,20.15C110,20.15,110,-20.15,110,-20.15C110,-20.15,-34.93,-10.856,-34.93,-10.856C-34.93,-10.856,110,-68.2,110,-68.2C110,-68.2,110,-108.5,110,-108.5Z"/>
                         </svg>
                     </div>
                     <div class="menu__text">${manifest.name}</div>
