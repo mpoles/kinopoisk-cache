@@ -112,19 +112,19 @@ function kinopoiskCollectionComponent(object) {
         Api.full(object, resolve.bind(comp), reject.bind(comp));
     };
 
-    comp.cardRender = function (object, element, card) {
-        card.onMenu = false;
-        card.onEnter = function () {
-            Lampa.Activity.push({
-                url: '',
-                title: element.title,
-                component: object.url === 'series' ? 'tv' : 'movie', // Fix here
-                id: element.id,
-                method: 'tmdb',
-                card: element
-            });
-        };
+comp.cardRender = function (object, element, card) {
+    card.onMenu = false;
+    card.onEnter = function () {
+        const isTVShow = element.media_type === "tv"; // ✅ Check if it's a series
+
+        Lampa.Activity.push({
+            url: element.id, // Use TMDB ID
+            title: element.title,
+            component: isTVShow ? "full_tv" : "full", // ✅ Use "full_tv" for series
+            method: isTVShow ? "tv" : "movie" // ✅ Ensure correct TMDB lookup
+        });
     };
+};
 
     return comp;
 }
