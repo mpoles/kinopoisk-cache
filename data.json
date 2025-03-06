@@ -1,5 +1,5 @@
 {
-  "date": "2025-03-05",
+  "date": "2025-03-06",
   "movies": [
     {
       "id": 278,
@@ -7198,5 +7198,7 @@
       "vote_average": 8.138,
       "top250": 251
     }
-  ]
+  ],
+  "movies_cover": "https://image.openmoviedb.com/kinopoisk-images/10809116/cde603b9-a74c-4018-9df8-215e9bdf85b3/orig",
+  "series_cover": "https://image.openmoviedb.com/kinopoisk-images/10703859/6376ba45-54fc-477e-8b6d-3a094a7f0318/orig"
 }
