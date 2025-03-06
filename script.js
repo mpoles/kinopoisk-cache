@@ -1,4 +1,4 @@
-(function () {
+(function () { 
     'use strict';
 
     if (window.kinopoisk_ready) return;
@@ -9,24 +9,22 @@
 
     const network = new Lampa.Reguest();
 
-    /**
-     * 1) MAIN MENU
-     */
+    // MAIN MENU: fetch the data and build two collection items
     function main(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
-            const moviesImg = json.movies_cover;
-            const seriesImg = json.series_cover;
+            let movies_img = json.movies_cover;
+            let series_img = json.series_cover;
 
             const data = {
                 results: [
                     {
                         title: "Топ 500 фильмов",
-                        img: moviesImg,
-                        hpu: "movies"
+                        img: movies_img,
+                        hpu: "movies" // identifier for the collection
                     },
                     {
                         title: "Топ 500 сериалов",
-                        img: seriesImg,
+                        img: series_img,
                         hpu: "series"
                     }
                 ],
@@ -35,27 +33,49 @@
             };
 
             oncomplite(data);
-        }, onerror);
+        }, (e) => {
+            onerror(e);
+        });
     }
 
-    /**
-     * 2) COLLECTION
-     */
+    // COLLECTION: fetch full list details from the same data.json
     function full(params, oncomplite, onerror) {
         network.silent(GITHUB_DATA_URL, (json) => {
             let collection = [];
-
-            if (params.url === "movies" || params.url === "top500movies") {
+            if (params.url === "movies" || params.url === "top500movies"){
                 collection = json.movies || [];
-            } else if (params.url === "series" || params.url === "top500series") {
+            }
+            else if (params.url === "series" || params.url === "top500series"){
                 collection = json.series || [];
             }
 
-            oncomplite({
-                results: collection,
-                total_pages: 1
+            // Assign a rank number to each item (starting at 1)
+            collection = collection.map((item, index) => {
+                item.rank = index + 1;
+                return item;
             });
-        }, onerror);
+
+            // Create a new grouped array with section headers for every 50 items.
+            let grouped = [];
+            for(let i = 0; i < collection.length; i++){
+                // Insert a header at the start of each section
+                if(i % 50 === 0){
+                    let start = i + 1;
+                    let end = Math.min(i + 50, collection.length);
+                    grouped.push({ header: true, title: `${start}-${end}` });
+                }
+                grouped.push(collection[i]);
+            }
+
+            const data = {
+                results: grouped,
+                total_pages: 1
+            };
+
+            oncomplite(data);
+        }, (e) => {
+            onerror(e);
+        });
     }
 
     function clear() {
@@ -64,9 +84,7 @@
 
     const Api = { main, full, clear };
 
-    /**
-     * 3) MAIN MENU COMPONENT
-     */
+    // Main menu component for the plugin
     function kinopoiskMainComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -80,7 +98,7 @@
 
         comp.cardRender = function (object, element, card) {
             card.onMenu = false;
-            card.onEnter = () => {
+            card.onEnter = function () {
                 Lampa.Activity.push({
                     url: element.hpu,
                     title: element.title,
@@ -93,102 +111,39 @@
         return comp;
     }
 
-    /**
-     * 4) COLLECTION COMPONENT
-     *    - No `this.renderItem`, so we create Card objects ourselves.
-     */
+    // Collection component for movies or series list
     function kinopoiskCollectionComponent(object) {
         const comp = new Lampa.InteractionCategory(object);
 
         comp.create = function () {
-            Api.full(object, (data) => {
-                this.build(data);
-            }, this.empty.bind(this));
+            Api.full(object, this.build.bind(this), this.empty.bind(this));
         };
 
         comp.nextPageReuest = function (object, resolve, reject) {
             Api.full(object, resolve.bind(comp), reject.bind(comp));
         };
 
-        /**
-         * Build the layout in sections of 50, with top-10 golden rank.
-         */
-        comp.build = function (data) {
-            // Clear anything currently rendered in this component
-            comp.empty();
-
-            // We'll gather everything in a single container
-            const container = document.createElement('div');
-            container.classList.add('kinopoisk-wrapper');
-
-            const items = data.results || [];
-            // Tag each item with zero-based rank
-            items.forEach((it, idx) => {
-                it._rank = idx; // so we know if it's in the top 10
-            });
-
-            const total = items.length;
-            const chunkSize = 50;
-
-            let startIndex = 0;
-            while (startIndex < total) {
-                const endIndex = startIndex + chunkSize;
-                const chunk = items.slice(startIndex, endIndex);
-
-                // Add a heading for this chunk
-                const heading = document.createElement('h2');
-                heading.textContent = `${startIndex + 1} - ${Math.min(endIndex, total)}`;
-                heading.style.margin = '1.5em 1em 0.5em';
-                heading.style.fontSize = '1.4em';
-                heading.style.color = '#ffd700';
-                container.appendChild(heading);
-
-                // For each item, build a Card and append it
-                chunk.forEach((element) => {
-                    const cardNode = buildCard(element, object.url);
-                    container.appendChild(cardNode);
-                });
-
-                startIndex = endIndex;
+        comp.cardRender = function (object, element, card) {
+            // If this is a header item, render it as a section header.
+            if(element.header) {
+                card.onMenu = false;
+                // Clear previous content and set header styling.
+                card.dom.html(
+                    '<div style="text-align:center;font-size:24px;font-weight:bold;color:#FFD700;padding:10px 0;">' +
+                    element.title +
+                    '</div>'
+                );
+                card.onEnter = function () {}; // Disable clicking on header.
+                return;
             }
-
-            // Finally, attach container to the component
-            comp.append(container);
-        };
-
-        /**
-         * Lampa normally calls `cardRender`. We'll replicate that logic
-         * by building a Card object ourselves and returning its DOM.
-         */
-        function buildCard(element, currentUrl) {
-            // 1) Create a Lampa Card
-            // The constructor signature is: new Lampa.Card(data, options)
-            const card = new Lampa.Card(element, { iscollection: true });
-            card.create(); // builds the internal DOM
-
-            // 2) If in top 10 => add a golden label
-            if (element._rank < 10) {
-                const rankLabel = document.createElement('div');
-                rankLabel.textContent = (element._rank + 1).toString();
-                rankLabel.style.position = 'absolute';
-                rankLabel.style.top = '0';
-                rankLabel.style.left = '0';
-                rankLabel.style.backgroundColor = 'gold';
-                rankLabel.style.color = 'black';
-                rankLabel.style.padding = '0.2em 0.4em';
-                rankLabel.style.fontWeight = 'bold';
-                rankLabel.style.fontSize = '1.2em';
-                rankLabel.style.borderRadius = '0 0.5em 0.5em 0';
-                rankLabel.style.zIndex = '10';
-
-                card.render().style.position = 'relative';
-                card.render().appendChild(rankLabel);
-            }
-
-            // 3) On Enter => open detail
-            card.onEnter = () => {
-                const isSeries = (currentUrl === 'series' || currentUrl === 'top500series');
+            
+            // Normal card rendering for a movie/series item.
+            card.onMenu = false;
+            card.onEnter = function () {
+                const isSeries = (object.url === 'series' || object.url === 'top500series');
                 Lampa.Activity.push({
+                    url: '',
+                    title: element.title,
                     component: 'full',
                     id: element.id,
                     method: isSeries ? 'tv' : 'movie',
@@ -196,16 +151,31 @@
                 });
             };
 
-            // 4) Return the actual DOM node
-            return card.render();
-        }
+            // Add a golden rank badge for top 10 items.
+            if(element.rank && element.rank <= 10) {
+                if(!card.dom.find('.rank-badge').length) { // Avoid duplicate badges.
+                    let badge = $('<div class="rank-badge">' + element.rank + '</div>');
+                    badge.css({
+                        position: 'absolute',
+                        top: '5px',
+                        left: '5px',
+                        background: 'linear-gradient(45deg, #FFD700, #FFB700)',
+                        color: '#fff',
+                        padding: '5px 8px',
+                        fontSize: '20px',
+                        fontWeight: 'bold',
+                        borderRadius: '4px',
+                        zIndex: 10
+                    });
+                    card.dom.append(badge);
+                }
+            }
+        };
 
         return comp;
     }
 
-    /**
-     * 5) INIT PLUGIN: Register components & add menu button
-     */
+    // Plugin initialization and menu button registration
     function initPlugin() {
         const manifest = {
             type: 'video',
@@ -218,6 +188,7 @@
         Lampa.Component.add('kinopoisk_main', kinopoiskMainComponent);
         Lampa.Component.add('kinopoisk_collection', kinopoiskCollectionComponent);
 
+        // Add the plugin button to the menu.
         function addMenuButton() {
             const button = $(`
                 <li class="menu__item selector">
@@ -252,5 +223,4 @@
 
     // Start the plugin
     initPlugin();
-
 })();
