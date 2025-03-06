@@ -100,42 +100,38 @@
         return comp;
     }
 
-    // Collection component for movies or series list
-// Collection component for movies or series list
 function kinopoiskCollectionComponent(object) {
     const comp = new Lampa.InteractionCategory(object);
 
     comp.create = function () {
         Api.full(object, (data) => {
-            const sectionSize = 50;  // <-- defined here
+            const sectionSize = 50;
             const results_with_sections = [];
 
             data.results.forEach((item, idx) => {
                 const rank = idx + 1;
-                const rankLabel = rank <= 10
-                    ? `✨<span style="color:#FFD700;font-weight:bold;">${rank}位</span>`
-                    : `${rank}.`;
 
-                item.title = `${rankLabel} ${item.title}`;
-
-                // Insert section header every 50 items
+                // Insert section headers every 50 items
                 if ((rank - 1) % sectionSize === 0) {
                     const start = rank;
                     const end = Math.min(rank + sectionSize - 1, data.results.length);
                     results_with_sections.push({
-                        title: `<div style="padding:15px 0;font-size:1.8em;color:white;">${start}–${end}</div>`,
+                        title: `<div style="width:100%;padding:15px 0;font-size:1.8em;color:#fff;text-align:center;">${start}–${end}</div>`,
                         nonclickable: true
                     });
                 }
 
-                results_with_sections.push(item);
+                // Add stylish golden 位 rank numbers to top-10 entries
+                results_with_sections.push({
+                    ...item,
+                    title: rank <= 10
+                        ? `✨<span style="color:#FFD700;font-weight:bold;">${rank}位</span> ${item.title}`
+                        : `${rank}. ${item.title}`
+                });
             });
 
-            // Pass the processed data to Lampa build
-            this.build({
-                results: results_with_sections,
-                total_pages: 1
-            });
+            // Call Lampa build method explicitly
+            this.build({ results: results_with_sections, total_pages: 1 });
         }, this.empty.bind(this));
     };
 
@@ -146,9 +142,9 @@ function kinopoiskCollectionComponent(object) {
     comp.cardRender = function (object, element, card) {
         card.onMenu = false;
 
+        // If it's a non-clickable section header, disable action
         if (element.nonclickable) {
-            card.addClass('card--section-header');
-            card.onEnter = function () {}; // non-clickable headers
+            card.onEnter = function () {};
         } else {
             card.onEnter = function () {
                 const isSeries = (object.url === 'series' || object.url === 'top500series');
@@ -165,6 +161,7 @@ function kinopoiskCollectionComponent(object) {
 
     return comp;
 }
+
 
 
 
