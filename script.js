@@ -1,19 +1,33 @@
 (() => {
     'use strict';
 
-    if (window.kinopoisk_ready) return;
+    // Prevent double initialization.
+    if (window.kinopoisk_ready) {
+        console.warn('Kinopoisk plugin already initialized.');
+        return;
+    }
     window.kinopoisk_ready = true;
 
     const GITHUB_DATA_URL = 'https://mpoles.github.io/kinopoisk-cache/data.json';
     const network = new Lampa.Reguest();
 
-    // Wrap network.silent in a promise for cleaner async handling
+    // Wrap network.silent in a Promise with extra logging.
     const fetchData = () =>
         new Promise((resolve, reject) => {
-            network.silent(GITHUB_DATA_URL, resolve, reject);
+            network.silent(
+                GITHUB_DATA_URL,
+                (json) => {
+                    console.log('Fetched data:', json);
+                    resolve(json);
+                },
+                (error) => {
+                    console.error('Error in network.silent:', error);
+                    reject(error);
+                }
+            );
         });
 
-    // MAIN MENU: fetch the data and build two collection items
+    // MAIN MENU: fetch the data and build two collection items.
     const main = (params, onComplete, onError) => {
         fetchData()
             .then((json) => {
@@ -37,7 +51,7 @@
             .catch(onError);
     };
 
-    // COLLECTION: fetch full list details from the same data.json
+    // COLLECTION: fetch full list details from the same data.json.
     const full = (params, onComplete, onError) => {
         fetchData()
             .then((json) => {
@@ -56,7 +70,7 @@
 
     const Api = { main, full, clear };
 
-    // Main menu component for the plugin
+    // Main menu component for the plugin.
     const kinopoiskMainComponent = (object) => {
         const comp = new Lampa.InteractionCategory(object);
 
@@ -82,7 +96,7 @@
         return comp;
     };
 
-    // Collection component with paginated results
+    // Collection component with paginated results.
     const kinopoiskCollectionComponent = (object) => {
         const comp = new Lampa.InteractionCategory(object);
         const ITEMS_PER_PAGE = 50;
@@ -98,17 +112,15 @@
         comp.nextPageReuest = (object, resolve, reject) =>
             comp.loadPage(object.page, resolve, reject);
 
-        // Load a specific page of results
+        // Load a specific page.
         comp.loadPage = function (page, resolve, reject) {
             const start = (page - 1) * ITEMS_PER_PAGE;
             const pageResults = comp.allResults.slice(start, start + ITEMS_PER_PAGE);
-
             const data = {
                 results: pageResults,
                 total_pages: comp.total_pages,
                 page
             };
-
             if (resolve) resolve(data);
             else comp.build(data);
         };
@@ -145,7 +157,7 @@
         return comp;
     };
 
-    // Plugin initialization and menu button registration
+    // Plugin initialization and menu button registration.
     const initPlugin = () => {
         const manifest = {
             type: 'video',
@@ -158,7 +170,6 @@
         Lampa.Component.add('kinopoisk_main', kinopoiskMainComponent);
         Lampa.Component.add('kinopoisk_collection', kinopoiskCollectionComponent);
 
-        // Add the plugin button to the menu
         const addMenuButton = () => {
             const button = $(`
                 <li class="menu__item selector">
@@ -184,11 +195,13 @@
         };
 
         if (window.appready) addMenuButton();
-        else Lampa.Listener.follow('app', (e) => {
-            if (e.type === 'ready') addMenuButton();
-        });
+        else {
+            Lampa.Listener.follow('app', (e) => {
+                if (e.type === 'ready') addMenuButton();
+            });
+        }
     };
 
-    // Start the plugin
+    // Start the plugin.
     initPlugin();
 })();
