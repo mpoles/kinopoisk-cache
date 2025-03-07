@@ -147,7 +147,7 @@ function kinopoiskCollectionComponent(object) {
         };
 
         if (element.rank) {
-            const rankBadge = $(
+            const rankBadge = $(`
                 <div style="
                     position:absolute;
                     top:8px; left:8px;
@@ -158,7 +158,7 @@ function kinopoiskCollectionComponent(object) {
                     z-index:2;">
                     ${element.rank}
                 </div>
-            );
+            `);
             card.render().append(rankBadge);
         }
     };
@@ -182,7 +182,7 @@ function kinopoiskCollectionComponent(object) {
 
         // Add the plugin button to the menu
         function addMenuButton() {
-            const button = $(
+            const button = $(`
                 <li class="menu__item selector">
                     <div class="menu__ico">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-110 -110 220 220" width="64" height="64">
@@ -191,7 +191,7 @@ function kinopoiskCollectionComponent(object) {
                     </div>
                     <div class="menu__text">${manifest.name}</div>
                 </li>
-            );
+            `);
 
             button.on('hover:enter', () => {
                 Lampa.Activity.push({
