@@ -128,7 +128,7 @@ const fetchTmdbDataForMissingIds = async (title) => {
           rank: index + 1,
           id,
           title: item.name || null,
-          release_date: year || '',
+          release_date: item.year || '',
           vote_average: item.rating?.kp || null,
           poster_path
         };
