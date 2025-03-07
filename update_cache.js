@@ -144,7 +144,7 @@ const fetchTmdbDataForMissingIds = async (title) => {
       rank: index + 1,
       id: item.externalId?.tmdb || null,
       title: item.name || null,
-      first_air_date: year || '',
+      first_air_date: item.year || '',
       vote_average: item.rating?.kp || null
     }));
     
