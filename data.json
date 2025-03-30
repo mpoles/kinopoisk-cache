@@ -1,5 +1,5 @@
 {
-  "date": "2025-03-29",
+  "date": "2025-03-30",
   "movies": [
     {
       "rank": 1,
@@ -87,7 +87,7 @@
       "title": "Атака Титанов: Последняя атака",
       "release_date": "2024",
       "vote_average": 8.695,
-      "poster_path": "/wgwldDDlTDDMrluOMkpSA8lyKjv.jpg"
+      "poster_path": "/aH0N5FnQsU38FJojQus8MUnGm0f.jpg"
     },
     {
       "rank": 12,
@@ -2223,7 +2223,7 @@
       "title": "Маска",
       "release_date": "1994",
       "vote_average": 7.986,
-      "poster_path": "/q1lEcpir3jbKFv4nnoze95GBpVx.jpg"
+      "poster_path": "/7IU2yNnORVv0pH8Arv7ucl13CrJ.jpg"
     },
     {
       "rank": 279,
@@ -4625,7 +4625,7 @@
       "title": "Атака титанов: Выбор без сожалений",
       "first_air_date": "2014",
       "vote_average": 8.628,
-      "poster_path": "/8gbKzjPlZBdZf2HeGZIk5DE6TmJ.jpg"
+      "poster_path": "/p5nYJj1N5pVMUixtyIJtfkw1FEr.jpg"
     },
     {
       "rank": 79,
@@ -5809,7 +5809,7 @@
       "title": "Атака титанов",
       "first_air_date": "2013",
       "vote_average": 8.725,
-      "poster_path": "/8gbKzjPlZBdZf2HeGZIk5DE6TmJ.jpg"
+      "poster_path": "/p5nYJj1N5pVMUixtyIJtfkw1FEr.jpg"
     },
     {
       "rank": 227,
@@ -5873,7 +5873,7 @@
       "title": "Ковбой Бибоп",
       "first_air_date": "1998",
       "vote_average": 8.657,
-      "poster_path": "/zw3vD1XBR0wmr5XR8a3U8Vhvekh.jpg"
+      "poster_path": "/d5UKV5R8PMjdTTxOtJTYp2efT6F.jpg"
     },
     {
       "rank": 235,
@@ -6393,7 +6393,7 @@
       "title": "Джодха и Акбар: История великой любви",
       "first_air_date": "2013",
       "vote_average": 8.402,
-      "poster_path": "/w95kRZ4YvebswNjLBwdaOHCah0K.jpg"
+      "poster_path": null
     },
     {
       "rank": 300,
@@ -7217,7 +7217,7 @@
       "title": "Атака титанов: Потерянные девушки",
       "first_air_date": "2017",
       "vote_average": 8.201,
-      "poster_path": "/8gbKzjPlZBdZf2HeGZIk5DE6TmJ.jpg"
+      "poster_path": "/p5nYJj1N5pVMUixtyIJtfkw1FEr.jpg"
     },
     {
       "rank": 403,
@@ -8004,6 +8004,6 @@
       "poster_path": "/jFskmFnVsI8I8ZrjqtmUMrWnh0B.jpg"
     }
   ],
-  "movies_cover": "https://image.openmoviedb.com/kinopoisk-images/9784475/40eca5df-6e35-4680-8796-71282a106a50/orig",
-  "series_cover": "https://image.openmoviedb.com/kinopoisk-images/10809116/9967843c-e6ae-4295-bddc-b627a9a003fe/orig"
+  "movies_cover": null,
+  "series_cover": null
 }
