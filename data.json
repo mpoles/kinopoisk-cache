@@ -1,5 +1,5 @@
 {
-  "date": "2025-05-28",
+  "date": "2025-05-29",
   "movies": [
     {
       "rank": 1,
@@ -1262,7 +1262,7 @@
       "id": 1892,
       "title": "Звёздные войны: Эпизод 6 – Возвращение Джедая",
       "release_date": "1983",
-      "vote_average": 8.152,
+      "vote_average": 8.153,
       "poster_path": "/91bG08Mpa4T7YWFMjsiNi2Fh6jc.jpg"
     },
     {
@@ -2270,7 +2270,7 @@
       "id": 218,
       "title": "Терминатор",
       "release_date": "1984",
-      "vote_average": 7.982,
+      "vote_average": 7.983,
       "poster_path": "/hcItc8IMO0WKyRWPGkI6xtKVu6X.jpg"
     },
     {
@@ -2790,7 +2790,7 @@
       "id": 9495,
       "title": "Ворон",
       "release_date": "1994",
-      "vote_average": 7.879,
+      "vote_average": 7.878,
       "poster_path": "/a5ZZ2XfFkcpik8M56lDznqrsyTp.jpg"
     },
     {
@@ -3318,7 +3318,7 @@
       "id": 694,
       "title": "Сияние",
       "release_date": "1980",
-      "vote_average": 7.782,
+      "vote_average": 7.783,
       "poster_path": "/1wC2orV29cl2kvaBIzcqo0BIkWS.jpg"
     },
     {
@@ -3523,19 +3523,19 @@
     },
     {
       "rank": 441,
+      "id": 78,
+      "title": "Бегущий по лезвию",
+      "release_date": "1982",
+      "vote_average": 7.742,
+      "poster_path": "/dFzA82XdkobzdOjrYLMIfApzCVC.jpg"
+    },
+    {
+      "rank": 442,
       "id": 44214,
       "title": "Чёрный лебедь",
       "release_date": "2010",
       "vote_average": 7.742,
       "poster_path": "/gaNI208wIqL1DD76pg1Mu6EM0hp.jpg"
-    },
-    {
-      "rank": 442,
-      "id": 78,
-      "title": "Бегущий по лезвию",
-      "release_date": "1982",
-      "vote_average": 7.741,
-      "poster_path": "/dFzA82XdkobzdOjrYLMIfApzCVC.jpg"
     },
     {
       "rank": 443,
