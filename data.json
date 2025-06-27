@@ -1,5 +1,5 @@
 {
-  "date": "2025-06-26",
+  "date": "2025-06-27",
   "movies": [
     {
       "rank": 1,
@@ -4006,7 +4006,7 @@
     {
       "rank": 1,
       "id": 1399,
-      "title": "Игра престолов",
+      "title": "Игра Престолов",
       "first_air_date": "2011",
       "vote_average": 9.002,
       "poster_path": "/tbBQW8jpDH7RpAymMGnBluIsdmH.jpg"
@@ -4136,7 +4136,7 @@
       "id": 116221,
       "title": "Отчий берег",
       "first_air_date": "2017",
-      "vote_average": 8.511,
+      "vote_average": 8.512,
       "poster_path": "/5MX6m7BNwRV1wK3MnoRnkkgrDVG.jpg"
     },
     {
@@ -4293,6 +4293,14 @@
     },
     {
       "rank": 37,
+      "id": 240411,
+      "title": "Дандадан",
+      "first_air_date": "2024",
+      "vote_average": 8.539,
+      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
+    },
+    {
+      "rank": 38,
       "id": 247141,
       "title": "Последний богатырь. Наследие",
       "first_air_date": "",
@@ -4300,28 +4308,20 @@
       "poster_path": "/5LohQ85QxG11UgFgKCQfC5HWIeO.jpg"
     },
     {
-      "rank": 38,
-      "id": 240411,
-      "title": "Дандадан",
-      "first_air_date": "2024",
-      "vote_average": 8.534,
-      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
-    },
-    {
       "rank": 39,
-      "id": 105,
-      "title": "Секс в большом городе",
-      "first_air_date": "1998",
-      "vote_average": 8.205,
-      "poster_path": "/3fOeTFOMpY9hldaQivq2JsnNNk.jpg"
-    },
-    {
-      "rank": 40,
       "id": 1405,
       "title": "Декстер",
       "first_air_date": "2006",
       "vote_average": 8.287,
       "poster_path": "/h59kGpnh7czSkVkND55Cp91UL32.jpg"
+    },
+    {
+      "rank": 40,
+      "id": 105,
+      "title": "Секс в большом городе",
+      "first_air_date": "1998",
+      "vote_average": 8.205,
+      "poster_path": "/3fOeTFOMpY9hldaQivq2JsnNNk.jpg"
     },
     {
       "rank": 41,
@@ -4373,19 +4373,19 @@
     },
     {
       "rank": 47,
-      "id": 1438,
-      "title": "Прослушка",
-      "first_air_date": "2002",
-      "vote_average": 8.484,
-      "poster_path": "/aoy6XphJtLvCfVmLFqBLaR56BAW.jpg"
-    },
-    {
-      "rank": 48,
       "id": 88803,
       "title": "Сага о Винланде",
       "first_air_date": "2019",
       "vote_average": 8.528,
       "poster_path": "/aFJf2FeSFSGGBFUm4L97tUw1nQe.jpg"
+    },
+    {
+      "rank": 48,
+      "id": 1438,
+      "title": "Прослушка",
+      "first_air_date": "2002",
+      "vote_average": 8.484,
+      "poster_path": "/aoy6XphJtLvCfVmLFqBLaR56BAW.jpg"
     },
     {
       "rank": 49,
@@ -4661,14 +4661,6 @@
     },
     {
       "rank": 83,
-      "id": 153621,
-      "title": "5:32",
-      "first_air_date": "2021",
-      "vote_average": 8.191,
-      "poster_path": "/ip459kBQQEBRmwRqdIVHCuqzcRD.jpg"
-    },
-    {
-      "rank": 84,
       "id": 85611,
       "title": "Жёлтый глаз тигра",
       "first_air_date": "2018",
@@ -4676,12 +4668,20 @@
       "poster_path": "/dZa0APn1z1ubazFJlUMJWVTNFsR.jpg"
     },
     {
-      "rank": 85,
+      "rank": 84,
       "id": 60574,
       "title": "Острые козырьки",
       "first_air_date": "2013",
       "vote_average": 8.354,
       "poster_path": "/pVJzfWgb3sHN29hLaiI5jmBN9vx.jpg"
+    },
+    {
+      "rank": 85,
+      "id": 153621,
+      "title": "5:32",
+      "first_air_date": "2021",
+      "vote_average": 8.191,
+      "poster_path": "/ip459kBQQEBRmwRqdIVHCuqzcRD.jpg"
     },
     {
       "rank": 86,
@@ -4909,14 +4909,6 @@
     },
     {
       "rank": 114,
-      "id": 82684,
-      "title": "О моём перерождении в слизь",
-      "first_air_date": "2018",
-      "vote_average": 8.34,
-      "poster_path": "/dyvUkf3bFFd0tC2yJCJ6rUgeZRO.jpg"
-    },
-    {
-      "rank": 115,
       "id": 117303,
       "title": "Уроки химии",
       "first_air_date": "2023",
@@ -4924,7 +4916,7 @@
       "poster_path": "/pJVr0PmoHK26MaxZY7fCYLoYNuL.jpg"
     },
     {
-      "rank": 116,
+      "rank": 115,
       "id": 106379,
       "title": "Fallout",
       "first_air_date": "2024",
@@ -4932,12 +4924,20 @@
       "poster_path": "/kyLV5XGS3hRdn1q8bkrCXKcYhfl.jpg"
     },
     {
-      "rank": 117,
+      "rank": 116,
       "id": 79744,
       "title": "Новичок",
       "first_air_date": "2018",
       "vote_average": 8.374,
       "poster_path": "/jfxInWjSixQeeyT7oiBvdXjd7HM.jpg"
+    },
+    {
+      "rank": 117,
+      "id": 82684,
+      "title": "О моём перерождении в слизь",
+      "first_air_date": "2018",
+      "vote_average": 8.34,
+      "poster_path": "/dyvUkf3bFFd0tC2yJCJ6rUgeZRO.jpg"
     },
     {
       "rank": 118,
@@ -6593,7 +6593,7 @@
       "title": "Внутри",
       "first_air_date": "2016",
       "vote_average": 8.296,
-      "poster_path": "/63v7p8t5sShiCGRLzePlgCu6TNj.jpg"
+      "poster_path": "/zQeXNTF5pefO9XWXaQEr2nRCdo4.jpg"
     },
     {
       "rank": 325,
@@ -7853,19 +7853,19 @@
     },
     {
       "rank": 482,
-      "id": 73223,
-      "title": "Чёрный клевер",
-      "first_air_date": "2017",
-      "vote_average": 8.107,
-      "poster_path": "/vcsAzsoSJEHgJZ29EkxXWSEVbDN.jpg"
-    },
-    {
-      "rank": 483,
       "id": 26453,
       "title": "Триган",
       "first_air_date": "1998",
       "vote_average": 8.106,
       "poster_path": "/clvyqPm3nnJZung0nKJyB2gFirE.jpg"
+    },
+    {
+      "rank": 483,
+      "id": 73223,
+      "title": "Чёрный клевер",
+      "first_air_date": "2017",
+      "vote_average": 8.106,
+      "poster_path": "/vcsAzsoSJEHgJZ29EkxXWSEVbDN.jpg"
     },
     {
       "rank": 484,
