@@ -1,5 +1,5 @@
 {
-  "date": "2025-07-06",
+  "date": "2025-07-07",
   "movies": [
     {
       "rank": 1,
@@ -4501,14 +4501,6 @@
     },
     {
       "rank": 63,
-      "id": 60625,
-      "title": "Рик и Морти",
-      "first_air_date": "2013",
-      "vote_average": 8.942,
-      "poster_path": "/wdzk1wPGOnO8dCnaQozSpe1oH9l.jpg"
-    },
-    {
-      "rank": 64,
       "id": 87739,
       "title": "Ход королевы",
       "first_air_date": "2020",
@@ -4516,7 +4508,7 @@
       "poster_path": "/s2s3E4yNyErQZ081jDEONfLFYxb.jpg"
     },
     {
-      "rank": 65,
+      "rank": 64,
       "id": 112349,
       "title": "Казанова",
       "first_air_date": "2020",
@@ -4524,12 +4516,20 @@
       "poster_path": "/1WC3DwHG7B00hcgBNo2G9ppDnC9.jpg"
     },
     {
-      "rank": 66,
+      "rank": 65,
       "id": 1402,
       "title": "Ходячие мертвецы",
       "first_air_date": "2010",
       "vote_average": 7.998,
       "poster_path": "/3metsxLVhlJU0mNj5gVfKIih0EF.jpg"
+    },
+    {
+      "rank": 66,
+      "id": 60625,
+      "title": "Рик и Морти",
+      "first_air_date": "2013",
+      "vote_average": 8.942,
+      "poster_path": "/wdzk1wPGOnO8dCnaQozSpe1oH9l.jpg"
     },
     {
       "rank": 67,
@@ -4741,14 +4741,6 @@
     },
     {
       "rank": 93,
-      "id": 92621,
-      "title": "Голяк",
-      "first_air_date": "2019",
-      "vote_average": 8.59,
-      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
-    },
-    {
-      "rank": 94,
       "id": 135570,
       "title": "Вертинский",
       "first_air_date": "",
@@ -4756,7 +4748,7 @@
       "poster_path": "/gzVzVYzEBTnxAFxrYj0myn0XJOQ.jpg"
     },
     {
-      "rank": 95,
+      "rank": 94,
       "id": 199318,
       "title": "Заговор сестёр Гарви",
       "first_air_date": "2022",
@@ -4764,12 +4756,20 @@
       "poster_path": "/hZIQeRjZCdhd7uBxhu8TYfQqe3G.jpg"
     },
     {
-      "rank": 96,
+      "rank": 95,
       "id": 41727,
       "title": "Банши",
       "first_air_date": "2013",
       "vote_average": 8.109,
       "poster_path": "/1FS2Oj1mXBDNif6MuifULdGVU6w.jpg"
+    },
+    {
+      "rank": 96,
+      "id": 92621,
+      "title": "Голяк",
+      "first_air_date": "2019",
+      "vote_average": 8.59,
+      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
     },
     {
       "rank": 97,
