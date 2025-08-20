@@ -1,5 +1,5 @@
 {
-  "date": "2025-08-19",
+  "date": "2025-08-20",
   "movies": [
     {
       "rank": 1,
@@ -270,7 +270,7 @@
       "id": 129,
       "title": "Унесённые призраками",
       "release_date": "2001",
-      "vote_average": 8.546,
+      "vote_average": 8.547,
       "poster_path": "/xV3zYcOA6xFjYwizIMDDkl2MGT7.jpg"
     },
     {
@@ -4152,7 +4152,7 @@
       "id": 64446,
       "title": "Метод",
       "first_air_date": "2015",
-      "vote_average": 8.35,
+      "vote_average": 8.351,
       "poster_path": "/sJisz5RxZnZtDxEcTT7oUjJ3LQ0.jpg"
     },
     {
@@ -4213,19 +4213,19 @@
     },
     {
       "rank": 27,
-      "id": 240411,
-      "title": "Дандадан",
-      "first_air_date": "2024",
-      "vote_average": 8.602,
-      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
-    },
-    {
-      "rank": 28,
       "id": 97546,
       "title": "Тед Лассо",
       "first_air_date": "2020",
       "vote_average": 8.516,
       "poster_path": "/htV1GTyatTXJB589hjiqUQPegjd.jpg"
+    },
+    {
+      "rank": 28,
+      "id": 240411,
+      "title": "Дандадан",
+      "first_air_date": "2024",
+      "vote_average": 8.602,
+      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
     },
     {
       "rank": 29,
@@ -4757,6 +4757,14 @@
     },
     {
       "rank": 95,
+      "id": 92621,
+      "title": "Голяк",
+      "first_air_date": "2019",
+      "vote_average": 8.588,
+      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
+    },
+    {
+      "rank": 96,
       "id": 67915,
       "title": "Демон",
       "first_air_date": "2016",
@@ -4764,7 +4772,7 @@
       "poster_path": "/j7WFcMIYVD9Ri81KVGtmF0wCxzd.jpg"
     },
     {
-      "rank": 96,
+      "rank": 97,
       "id": 41727,
       "title": "Банши",
       "first_air_date": "2013",
@@ -4772,7 +4780,7 @@
       "poster_path": "/1FS2Oj1mXBDNif6MuifULdGVU6w.jpg"
     },
     {
-      "rank": 97,
+      "rank": 98,
       "id": 199318,
       "title": "Заговор сестёр Гарви",
       "first_air_date": "2022",
@@ -4780,20 +4788,12 @@
       "poster_path": "/hZIQeRjZCdhd7uBxhu8TYfQqe3G.jpg"
     },
     {
-      "rank": 98,
+      "rank": 99,
       "id": 34307,
       "title": "Бесстыжие",
       "first_air_date": "2011",
       "vote_average": 8.624,
       "poster_path": "/no7WPFDM1W1J3WJiISjasEm0Jjx.jpg"
-    },
-    {
-      "rank": 99,
-      "id": 92621,
-      "title": "Голяк",
-      "first_air_date": "2019",
-      "vote_average": 8.59,
-      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
     },
     {
       "rank": 100,
@@ -6129,7 +6129,7 @@
       "title": "Десятое королевство",
       "first_air_date": "2000",
       "vote_average": 8.473,
-      "poster_path": "/b7MFyjoLouR96q2MCYWyLEhjPxy.jpg"
+      "poster_path": "/4x82LywISRnkNWJOiOhDThBf2nh.jpg"
     },
     {
       "rank": 267,
@@ -6633,7 +6633,7 @@
       "title": "Внутри",
       "first_air_date": "2016",
       "vote_average": 8.296,
-      "poster_path": "/zQeXNTF5pefO9XWXaQEr2nRCdo4.jpg"
+      "poster_path": "/2BSpVtiHFT88JIbuTKnAjpZUJOT.jpg"
     },
     {
       "rank": 330,
