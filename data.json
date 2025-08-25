@@ -1,5 +1,5 @@
 {
-  "date": "2025-08-24",
+  "date": "2025-08-25",
   "movies": [
     {
       "rank": 1,
@@ -7181,14 +7181,6 @@
     },
     {
       "rank": 398,
-      "id": 253905,
-      "title": "Набранный Вами номер",
-      "first_air_date": "2024",
-      "vote_average": 8.191,
-      "poster_path": "/pOlgdF6PIWeBf7pazcYjWTkeoTn.jpg"
-    },
-    {
-      "rank": 399,
       "id": 82369,
       "title": "Моя дочь",
       "first_air_date": "2018",
@@ -7196,7 +7188,7 @@
       "poster_path": "/7SqtolPu5hs3BXJVLgA7eqmBMMW.jpg"
     },
     {
-      "rank": 400,
+      "rank": 399,
       "id": 116386,
       "title": "Однажды разрушение постучалось в мою дверь",
       "first_air_date": "2021",
@@ -7204,7 +7196,7 @@
       "poster_path": "/tgsWD4dJI5YFY8Kyk6vVjZoIKfO.jpg"
     },
     {
-      "rank": 401,
+      "rank": 400,
       "id": 80706,
       "title": "Приключения капитана Врунгеля",
       "first_air_date": "",
@@ -7212,7 +7204,7 @@
       "poster_path": "/5hmZ4UpnI0w5LsCoHiZdWGYdfa9.jpg"
     },
     {
-      "rank": 402,
+      "rank": 401,
       "id": 257073,
       "title": "Плевако",
       "first_air_date": "",
@@ -7220,7 +7212,7 @@
       "poster_path": "/tYIyIF56Cbew2CoJFeQARzOXpuc.jpg"
     },
     {
-      "rank": 403,
+      "rank": 402,
       "id": 2290,
       "title": "Звездные врата: Атлантида",
       "first_air_date": "2004",
@@ -7228,7 +7220,7 @@
       "poster_path": "/bTx3BEq1rBygcSUP7f6uRB5obh2.jpg"
     },
     {
-      "rank": 404,
+      "rank": 403,
       "id": 117067,
       "title": "КиннПорш",
       "first_air_date": "2022",
@@ -7236,12 +7228,20 @@
       "poster_path": "/9HQnq4nFVxlK4YUeTJ4t4IbQ5fJ.jpg"
     },
     {
-      "rank": 405,
+      "rank": 404,
       "id": 74440,
       "title": "Харли Квинн",
       "first_air_date": "2019",
       "vote_average": 8.186,
       "poster_path": "/4jNimEp4AJgPMDDKUWBZaE9CXkq.jpg"
+    },
+    {
+      "rank": 405,
+      "id": 253905,
+      "title": "Набранный Вами номер",
+      "first_air_date": "2024",
+      "vote_average": 8.185,
+      "poster_path": "/pOlgdF6PIWeBf7pazcYjWTkeoTn.jpg"
     },
     {
       "rank": 406,
@@ -7401,7 +7401,7 @@
       "title": "911 служба спасения",
       "first_air_date": "2018",
       "vote_average": 8.166,
-      "poster_path": "/9dNWZPjFWdKo5Avr5JEEzLShLMZ.jpg"
+      "poster_path": "/5DgXjJucHLWexDda0BjDnoqT2O7.jpg"
     },
     {
       "rank": 426,
