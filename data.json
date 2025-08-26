@@ -1,5 +1,5 @@
 {
-  "date": "2025-08-25",
+  "date": "2025-08-26",
   "movies": [
     {
       "rank": 1,
@@ -367,7 +367,7 @@
       "title": "Пролетая над гнездом кукушки",
       "release_date": "1975",
       "vote_average": 8.508,
-      "poster_path": "/zu8ytydlKyIpTeYfNs2VHvj9XCx.jpg"
+      "poster_path": "/fn5m0hbHOqEWpSGmDzvhj8G0KCq.jpg"
     },
     {
       "rank": 47,
@@ -4237,19 +4237,19 @@
     },
     {
       "rank": 30,
-      "id": 96894,
-      "title": "Рюриковичи. История первой династии",
-      "first_air_date": "2019",
-      "vote_average": 8.72,
-      "poster_path": "/l2uIzFRU1zbzCje2IUJ1wz1P6OP.jpg"
-    },
-    {
-      "rank": 31,
       "id": 240411,
       "title": "Дандадан",
       "first_air_date": "2024",
       "vote_average": 8.602,
       "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
+    },
+    {
+      "rank": 31,
+      "id": 96894,
+      "title": "Рюриковичи. История первой династии",
+      "first_air_date": "2019",
+      "vote_average": 8.72,
+      "poster_path": "/l2uIzFRU1zbzCje2IUJ1wz1P6OP.jpg"
     },
     {
       "rank": 32,
@@ -4765,19 +4765,19 @@
     },
     {
       "rank": 96,
-      "id": 92621,
-      "title": "Голяк",
-      "first_air_date": "2019",
-      "vote_average": 8.588,
-      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
-    },
-    {
-      "rank": 97,
       "id": 67915,
       "title": "Демон",
       "first_air_date": "2016",
       "vote_average": 8.466,
       "poster_path": "/j7WFcMIYVD9Ri81KVGtmF0wCxzd.jpg"
+    },
+    {
+      "rank": 97,
+      "id": 92621,
+      "title": "Голяк",
+      "first_air_date": "2019",
+      "vote_average": 8.588,
+      "poster_path": "/b2cu9k8oKhsvyyKlm9CDl4uDW0x.jpg"
     },
     {
       "rank": 98,
