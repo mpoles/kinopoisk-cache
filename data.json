@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-01",
+  "date": "2025-09-02",
   "movies": [
     {
       "rank": 1,
@@ -4221,6 +4221,14 @@
     },
     {
       "rank": 28,
+      "id": 240411,
+      "title": "Дандадан",
+      "first_air_date": "2024",
+      "vote_average": 8.604,
+      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
+    },
+    {
+      "rank": 29,
       "id": 73586,
       "title": "Йеллоустоун",
       "first_air_date": "2018",
@@ -4228,28 +4236,20 @@
       "poster_path": "/muLDL6UrK6Rh47OwgbNZbNcwUc.jpg"
     },
     {
-      "rank": 29,
-      "id": 240411,
-      "title": "Дандадан",
-      "first_air_date": "2024",
-      "vote_average": 8.602,
-      "poster_path": "/jVqBZCjJExroTswUgRmALqGSAEY.jpg"
-    },
-    {
       "rank": 30,
-      "id": 96894,
-      "title": "Рюриковичи. История первой династии",
-      "first_air_date": "2019",
-      "vote_average": 8.72,
-      "poster_path": "/l2uIzFRU1zbzCje2IUJ1wz1P6OP.jpg"
-    },
-    {
-      "rank": 31,
       "id": 99671,
       "title": "Триггер",
       "first_air_date": "2018",
       "vote_average": 8.452,
       "poster_path": "/uuazbi6lYO7NsFrslI4UU96NJ30.jpg"
+    },
+    {
+      "rank": 31,
+      "id": 96894,
+      "title": "Рюриковичи. История первой династии",
+      "first_air_date": "2019",
+      "vote_average": 8.72,
+      "poster_path": "/l2uIzFRU1zbzCje2IUJ1wz1P6OP.jpg"
     },
     {
       "rank": 32,
@@ -4429,19 +4429,19 @@
     },
     {
       "rank": 54,
-      "id": 195339,
-      "title": "Пантеон",
-      "first_air_date": "2022",
-      "vote_average": 8.541,
-      "poster_path": "/mp6XyE21H8YnU9weXzwnnrVnnBG.jpg"
-    },
-    {
-      "rank": 55,
       "id": 35935,
       "title": "Берсерк",
       "first_air_date": "1997",
       "vote_average": 8.614,
       "poster_path": "/kdkdDl0VZUfOavld4p5qItr35cw.jpg"
+    },
+    {
+      "rank": 55,
+      "id": 195339,
+      "title": "Пантеон",
+      "first_air_date": "2022",
+      "vote_average": 8.541,
+      "poster_path": "/mp6XyE21H8YnU9weXzwnnrVnnBG.jpg"
     },
     {
       "rank": 56,
@@ -4616,7 +4616,7 @@
       "id": 76479,
       "title": "Пацаны",
       "first_air_date": "2019",
-      "vote_average": 8.287,
+      "vote_average": 8.286,
       "poster_path": "/3NqlBDpWI83TgQ9nmeFwTVxEmtZ.jpg"
     },
     {
@@ -4973,19 +4973,19 @@
     },
     {
       "rank": 122,
+      "id": 82684,
+      "title": "О моём перерождении в слизь",
+      "first_air_date": "2018",
+      "vote_average": 8.351,
+      "poster_path": "/dyvUkf3bFFd0tC2yJCJ6rUgeZRO.jpg"
+    },
+    {
+      "rank": 123,
       "id": 68025,
       "title": "Жизнь и приключения Мишки Япончика",
       "first_air_date": "2011",
       "vote_average": 8.216,
       "poster_path": "/5Kf4weXXepx3tEnDPV7Ptc2tyoI.jpg"
-    },
-    {
-      "rank": 123,
-      "id": 82684,
-      "title": "О моём перерождении в слизь",
-      "first_air_date": "2018",
-      "vote_average": 8.352,
-      "poster_path": "/dyvUkf3bFFd0tC2yJCJ6rUgeZRO.jpg"
     },
     {
       "rank": 124,
@@ -6617,7 +6617,7 @@
       "title": "Внутри",
       "first_air_date": "2016",
       "vote_average": 8.296,
-      "poster_path": "/2BSpVtiHFT88JIbuTKnAjpZUJOT.jpg"
+      "poster_path": "/zQeXNTF5pefO9XWXaQEr2nRCdo4.jpg"
     },
     {
       "rank": 328,
