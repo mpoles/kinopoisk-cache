@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-18",
+  "date": "2025-09-19",
   "movies": [
     {
       "rank": 1,
@@ -2331,19 +2331,19 @@
     },
     {
       "rank": 292,
+      "id": 9323,
+      "title": "Призрак в доспехах",
+      "release_date": "1995",
+      "vote_average": 8.003,
+      "poster_path": "/q1rLN197K4faderh0YT5YLx13IQ.jpg"
+    },
+    {
+      "rank": 293,
       "id": 593,
       "title": "Солярис",
       "release_date": "1972",
       "vote_average": 8.002,
       "poster_path": "/xYN3dwytiL3vgcuynzYitIcKmKS.jpg"
-    },
-    {
-      "rank": 293,
-      "id": 9323,
-      "title": "Призрак в доспехах",
-      "release_date": "1995",
-      "vote_average": 8.002,
-      "poster_path": "/q1rLN197K4faderh0YT5YLx13IQ.jpg"
     },
     {
       "rank": 294,
@@ -3011,19 +3011,19 @@
     },
     {
       "rank": 377,
+      "id": 149,
+      "title": "Акира",
+      "release_date": "1988",
+      "vote_average": 7.864,
+      "poster_path": "/3F0bDMbhjlXiMCYMEiIVpxUaVDZ.jpg"
+    },
+    {
+      "rank": 378,
       "id": 1064486,
       "title": "Мемуары Улитки",
       "release_date": "2024",
       "vote_average": 7.862,
       "poster_path": "/5tsnwOU1BX1v9ifpFgeVd7i0yMe.jpg"
-    },
-    {
-      "rank": 378,
-      "id": 149,
-      "title": "Акира",
-      "release_date": "1988",
-      "vote_average": 7.862,
-      "poster_path": "/3F0bDMbhjlXiMCYMEiIVpxUaVDZ.jpg"
     },
     {
       "rank": 379,
