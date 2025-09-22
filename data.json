@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-21",
+  "date": "2025-09-22",
   "movies": [
     {
       "rank": 1,
@@ -191,7 +191,7 @@
       "title": "Шерлок Холмс и доктор Ватсон: Знакомство",
       "release_date": "1980",
       "vote_average": 8.613,
-      "poster_path": "/1nrwELwQGfSnDLP7GFN57T2mAkP.jpg"
+      "poster_path": "/u2JhH3S3HFuM6bBEaWSyY6qAEdI.jpg"
     },
     {
       "rank": 25,
@@ -415,7 +415,7 @@
       "title": "Нюрнберг. Многомерность зла",
       "release_date": "",
       "vote_average": 8.483,
-      "poster_path": "/zbuAYYXdq0I7rBVznzCglGRsVOE.jpg"
+      "poster_path": "/lBq0xJOXKcEm24QR0UvDYjb9kCU.jpg"
     },
     {
       "rank": 53,
@@ -439,7 +439,7 @@
       "title": "Шерлок Холмс и доктор Ватсон: Смертельная схватка",
       "release_date": "",
       "vote_average": 8.461,
-      "poster_path": "/qnzWCWPglb8Aoj3UlesfMXf6qrG.jpg"
+      "poster_path": "/zHCBBn2asb00aOOfzsThnuCIzun.jpg"
     },
     {
       "rank": 56,
@@ -487,7 +487,7 @@
       "title": "Приключения Шерлока Холмса и доктора Ватсона: Охота на тигра",
       "release_date": "",
       "vote_average": 8.444,
-      "poster_path": "/jjmSEOYrVQ7Eja3Tw77xUQPuNQd.jpg"
+      "poster_path": "/iEduiYp2RCIUOhLEUjHp8XChKFb.jpg"
     },
     {
       "rank": 62,
@@ -567,7 +567,7 @@
       "title": "Приключения Шерлока Холмса и доктора Ватсона: Король шантажа",
       "release_date": "",
       "vote_average": 8.4,
-      "poster_path": "/f8DfsnLKFWjQ5L21VSwDeODJ4iN.jpg"
+      "poster_path": "/uSVz0PDiOpwMN475oVcNz7vB4W0.jpg"
     },
     {
       "rank": 72,
@@ -2331,19 +2331,19 @@
     },
     {
       "rank": 292,
-      "id": 9323,
-      "title": "Призрак в доспехах",
-      "release_date": "1995",
-      "vote_average": 8.003,
-      "poster_path": "/q1rLN197K4faderh0YT5YLx13IQ.jpg"
-    },
-    {
-      "rank": 293,
       "id": 593,
       "title": "Солярис",
       "release_date": "1972",
       "vote_average": 8.002,
       "poster_path": "/xYN3dwytiL3vgcuynzYitIcKmKS.jpg"
+    },
+    {
+      "rank": 293,
+      "id": 9323,
+      "title": "Призрак в доспехах",
+      "release_date": "1995",
+      "vote_average": 8.002,
+      "poster_path": "/q1rLN197K4faderh0YT5YLx13IQ.jpg"
     },
     {
       "rank": 294,
@@ -3011,19 +3011,19 @@
     },
     {
       "rank": 377,
+      "id": 149,
+      "title": "Акира",
+      "release_date": "1988",
+      "vote_average": 7.865,
+      "poster_path": "/3F0bDMbhjlXiMCYMEiIVpxUaVDZ.jpg"
+    },
+    {
+      "rank": 378,
       "id": 3933,
       "title": "Труп невесты",
       "release_date": "2005",
       "vote_average": 7.865,
       "poster_path": "/sgqR6vsyc3SGGIjlK2HseG0vrQX.jpg"
-    },
-    {
-      "rank": 378,
-      "id": 149,
-      "title": "Акира",
-      "release_date": "1988",
-      "vote_average": 7.864,
-      "poster_path": "/3F0bDMbhjlXiMCYMEiIVpxUaVDZ.jpg"
     },
     {
       "rank": 379,
@@ -3735,7 +3735,7 @@
       "title": "Королевство полной луны",
       "release_date": "2012",
       "vote_average": 7.697,
-      "poster_path": "/l2irG6cKVmEHKma4AYo8q3AInwP.jpg"
+      "poster_path": "/akqRPjPaMlewQXQtRJqUTPh07u1.jpg"
     },
     {
       "rank": 468,
@@ -5273,7 +5273,7 @@
       "title": "Плевако",
       "first_air_date": "",
       "vote_average": 8.258,
-      "poster_path": "/tYIyIF56Cbew2CoJFeQARzOXpuc.jpg"
+      "poster_path": "/hvbzrtVxBwZZnaq20Z3YJ7Bi6go.jpg"
     },
     {
       "rank": 160,
@@ -7385,7 +7385,7 @@
       "title": "Невский. Близкий враг",
       "first_air_date": "2024",
       "vote_average": 8.176,
-      "poster_path": "/348feBCjEQzcQVd9J6NZNyASLVF.jpg"
+      "poster_path": "/lWoawp3et5nMLmX9LDDckKNSOHo.jpg"
     },
     {
       "rank": 424,
