@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-28",
+  "date": "2025-09-29",
   "movies": [
     {
       "rank": 1,
@@ -4373,19 +4373,19 @@
     },
     {
       "rank": 47,
-      "id": 87428,
-      "title": "Почему женщины убивают",
-      "first_air_date": "2019",
-      "vote_average": 8.263,
-      "poster_path": "/9rzkfaW7nKbHU6nUHc9WTV5mTF2.jpg"
-    },
-    {
-      "rank": 48,
       "id": 105,
       "title": "Секс в большом городе",
       "first_air_date": "1998",
       "vote_average": 8.21,
       "poster_path": "/3fOeTFOMpY9hldaQivq2JsnNNk.jpg"
+    },
+    {
+      "rank": 48,
+      "id": 87428,
+      "title": "Почему женщины убивают",
+      "first_air_date": "2019",
+      "vote_average": 8.263,
+      "poster_path": "/9rzkfaW7nKbHU6nUHc9WTV5mTF2.jpg"
     },
     {
       "rank": 49,
@@ -4421,19 +4421,19 @@
     },
     {
       "rank": 53,
-      "id": 123901,
-      "title": "Хрустальный",
-      "first_air_date": "",
-      "vote_average": 8.208,
-      "poster_path": "/jknYZMZUvCim3DArNDbrOSmuCjM.jpg"
-    },
-    {
-      "rank": 54,
       "id": 229564,
       "title": "Телохранители",
       "first_air_date": "2023",
       "vote_average": 8.255,
       "poster_path": "/vDtHxGvYgklcMAqbSxVVLpbgLaC.jpg"
+    },
+    {
+      "rank": 54,
+      "id": 123901,
+      "title": "Хрустальный",
+      "first_air_date": "",
+      "vote_average": 8.208,
+      "poster_path": "/jknYZMZUvCim3DArNDbrOSmuCjM.jpg"
     },
     {
       "rank": 55,
@@ -5285,19 +5285,19 @@
     },
     {
       "rank": 161,
-      "id": 95480,
-      "title": "Медленные лошади",
-      "first_air_date": "2022",
-      "vote_average": 7.803,
-      "poster_path": "/jfqdoAd3MjFBoOmJe8WmIye8Dh1.jpg"
-    },
-    {
-      "rank": 162,
       "id": 236235,
       "title": "Джентльмены",
       "first_air_date": "2024",
       "vote_average": 7.809,
       "poster_path": "/zRdUl8TxpXD3LTFqH9wiya14ZYS.jpg"
+    },
+    {
+      "rank": 162,
+      "id": 95480,
+      "title": "Медленные лошади",
+      "first_air_date": "2022",
+      "vote_average": 7.803,
+      "poster_path": "/jfqdoAd3MjFBoOmJe8WmIye8Dh1.jpg"
     },
     {
       "rank": 163,
@@ -6685,6 +6685,14 @@
     },
     {
       "rank": 336,
+      "id": 261145,
+      "title": "Удивительный цифровой цирк",
+      "first_air_date": "2023",
+      "vote_average": 8.293,
+      "poster_path": "/lpfrgfomX8uNFxv4VaEzvJGs9TK.jpg"
+    },
+    {
+      "rank": 337,
       "id": 46296,
       "title": "Спартак: Боги арены",
       "first_air_date": "2011",
@@ -6692,7 +6700,7 @@
       "poster_path": "/bLAYKXC077lHKmOgC5SAe885EzB.jpg"
     },
     {
-      "rank": 337,
+      "rank": 338,
       "id": 13643,
       "title": "Север и Юг",
       "first_air_date": "2004",
@@ -6700,7 +6708,7 @@
       "poster_path": "/djdM8JblEUsJN23vXd869X7ACQE.jpg"
     },
     {
-      "rank": 338,
+      "rank": 339,
       "id": 13269,
       "title": "Джейн Эйр",
       "first_air_date": "1983",
@@ -6708,7 +6716,7 @@
       "poster_path": "/w8uSN5n75FiF3e49g6xUt68G8M1.jpg"
     },
     {
-      "rank": 339,
+      "rank": 340,
       "id": 128883,
       "title": "Ча-ча-ча в приморском городе",
       "first_air_date": "2021",
@@ -6716,7 +6724,7 @@
       "poster_path": "/ub2ZaobABSYtkWKaEycWmMjkorP.jpg"
     },
     {
-      "rank": 340,
+      "rank": 341,
       "id": 790,
       "title": "Пуаро",
       "first_air_date": "1989",
@@ -6724,20 +6732,12 @@
       "poster_path": "/b2mAqBmNvKMQqiqowVZKvYCmXcL.jpg"
     },
     {
-      "rank": 341,
+      "rank": 342,
       "id": 67018,
       "title": "Легенда синего моря",
       "first_air_date": "2016",
       "vote_average": 8.283,
       "poster_path": "/lI5ngBpdH2hOiXNpJTn96lgdnGB.jpg"
-    },
-    {
-      "rank": 342,
-      "id": 261145,
-      "title": "Удивительный цифровой цирк",
-      "first_air_date": "2023",
-      "vote_average": 8.283,
-      "poster_path": "/lpfrgfomX8uNFxv4VaEzvJGs9TK.jpg"
     },
     {
       "rank": 343,
