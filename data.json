@@ -1,5 +1,5 @@
 {
-  "date": "2025-12-01",
+  "date": "2025-12-02",
   "movies": [
     {
       "rank": 1,
@@ -4025,7 +4025,7 @@
       "title": "Сопрано",
       "first_air_date": "1999",
       "vote_average": 8.867,
-      "poster_path": "/ilcNSuJriOY2TyaNmaeGAFv8zSo.jpg"
+      "poster_path": "/5u58YIvqkU45QBsI7Xs5RhOl6UC.jpg"
     },
     {
       "rank": 4,
@@ -8004,6 +8004,6 @@
       "poster_path": "/n2iPX89w7oY5Dff1lDMa75Zi3Di.jpg"
     }
   ],
-  "movies_cover": null,
+  "movies_cover": "https://image.openmoviedb.com/kinopoisk-images/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/orig",
   "series_cover": "https://image.openmoviedb.com/kinopoisk-images/10703959/7d1793e4-6217-4a76-89e1-c8da8d652797/orig"
 }
