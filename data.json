@@ -1,5 +1,5 @@
 {
-  "date": "2026-01-26",
+  "date": "2026-01-27",
   "movies": [
     {
       "rank": 1,
@@ -1266,28 +1266,12 @@
       "poster_path": "/33Wj3LSyoAqtqkeh7YXcVMvTQzc.jpg"
     },
     {
-      "rank": 163,
-      "id": 11441,
-      "title": "Безумно влюблённый",
-      "release_date": "1981",
-      "vote_average": 8.147,
-      "poster_path": "/9Mo9IKxv7XOMJrdVpWY0iZqPMhe.jpg"
-    },
-    {
       "rank": 164,
       "id": 28,
       "title": "Апокалипсис сегодня",
       "release_date": "1979",
       "vote_average": 8.145,
       "poster_path": "/qD22STmuP6DiBmqIUmFrWSlpwCW.jpg"
-    },
-    {
-      "rank": 165,
-      "id": 399174,
-      "title": "Остров собак",
-      "release_date": "2018",
-      "vote_average": 8.145,
-      "poster_path": "/c0nUX6Q1ZB0P2t1Jo6EeFSVnOGQ.jpg"
     },
     {
       "rank": 166,
@@ -1338,14 +1322,6 @@
       "poster_path": "/xnyRGjhSIbM2ZVaolkhmPVNncL2.jpg"
     },
     {
-      "rank": 172,
-      "id": 54970,
-      "title": "Весна на Заречной улице",
-      "release_date": "1956",
-      "vote_average": 8.136,
-      "poster_path": "/qtk1BjKPcl3NTb9f0Kerqj4KoJv.jpg"
-    },
-    {
       "rank": 173,
       "id": 1107215,
       "title": "Моя мама — волшебница",
@@ -1368,14 +1344,6 @@
       "release_date": "1987",
       "vote_average": 8.132,
       "poster_path": "/9GAPbG2B0NEBaWXRO04VHnJ1UVg.jpg"
-    },
-    {
-      "rank": 176,
-      "id": 50618,
-      "title": "Брестская крепость",
-      "release_date": "2010",
-      "vote_average": 8.132,
-      "poster_path": "/6pocaDiLUONtU3bNY57XGPfBqVr.jpg"
     },
     {
       "rank": 177,
@@ -3178,14 +3146,6 @@
       "poster_path": "/bu3Qb0fpAFtTLcRAPgj8bK5KrIG.jpg"
     },
     {
-      "rank": 404,
-      "id": 322,
-      "title": "Таинственная река",
-      "release_date": "2003",
-      "vote_average": 7.784,
-      "poster_path": "/hCHVDbo6XJGj3r2i4hVjKhE0GKF.jpg"
-    },
-    {
       "rank": 406,
       "id": 283995,
       "title": "Стражи Галактики. Часть 2",
@@ -3280,14 +3240,6 @@
       "release_date": "2025",
       "vote_average": 7.765,
       "poster_path": "/vspMmox0F2pdiNr68BTfYLeDNd8.jpg"
-    },
-    {
-      "rank": 423,
-      "id": 9667,
-      "title": "Пиджак",
-      "release_date": "2005",
-      "vote_average": 7.762,
-      "poster_path": "/bt89UfRhjAvJDAO9CWJnRFXAN3p.jpg"
     },
     {
       "rank": 424,
@@ -3490,12 +3442,36 @@
       "poster_path": "/82Jnyq9YFlXo59ArGpuBLyAF4L9.jpg"
     },
     {
+      "rank": 451,
+      "id": 395834,
+      "title": "Ветреная река",
+      "release_date": "2017",
+      "vote_average": 7.688,
+      "poster_path": "/pySivdR845Hom4u4T2WNkJxe6Ad.jpg"
+    },
+    {
+      "rank": 452,
+      "id": 1018,
+      "title": "Малхолланд Драйв",
+      "release_date": "2001",
+      "vote_average": 7.682,
+      "poster_path": "/x7A59t6ySylr1L7aubOQEA480vM.jpg"
+    },
+    {
       "rank": 453,
       "id": 314365,
       "title": "В центре внимания",
       "release_date": "2015",
       "vote_average": 7.68,
       "poster_path": "/tKcRxAfMcvTA7xGqQCZGNYJETIq.jpg"
+    },
+    {
+      "rank": 454,
+      "id": 4638,
+      "title": "Типа крутые легавые",
+      "release_date": "2007",
+      "vote_average": 7.668,
+      "poster_path": "/zPib4ukTSdXvHP9pxGkFCe34f3y.jpg"
     },
     {
       "rank": 455,
@@ -3546,20 +3522,20 @@
       "poster_path": "/hikJQzjhgcQpGIQ18c0AXjDEdF4.jpg"
     },
     {
-      "rank": 461,
-      "id": 5548,
-      "title": "Робокоп",
-      "release_date": "1987",
-      "vote_average": 7.654,
-      "poster_path": "/esmAU0fCO28FbS6bUBKLAzJrohZ.jpg"
-    },
-    {
       "rank": 462,
       "id": 1161617,
       "title": "Код 3",
       "release_date": "2025",
       "vote_average": 7.653,
       "poster_path": "/sm3YCy9Db2TwhIckjsQ247KAxS2.jpg"
+    },
+    {
+      "rank": 464,
+      "id": 783416,
+      "title": "Секрет",
+      "release_date": "2020",
+      "vote_average": 7.651,
+      "poster_path": "/Efoat1wsj1kcHzR53MSQjDerL5.jpg"
     },
     {
       "rank": 466,
