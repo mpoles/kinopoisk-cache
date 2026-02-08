@@ -1,5 +1,5 @@
 {
-  "date": "2026-02-07",
+  "date": "2026-02-08",
   "movies": [
     {
       "rank": 1,
@@ -184,14 +184,6 @@
       "release_date": "2000",
       "vote_average": 8.59,
       "poster_path": "/1wjNqlfsuHNTXTpCt2ZOV2iPxaf.jpg"
-    },
-    {
-      "rank": 25,
-      "id": 49106,
-      "title": "...А зори здесь тихие",
-      "release_date": "1972",
-      "vote_average": 8.585,
-      "poster_path": "/q3jXq6rahRFqNwvbOWUUN1iPL8v.jpg"
     },
     {
       "rank": 26,
@@ -1690,14 +1682,6 @@
       "poster_path": "/wmVLPh1WFUe8CglklJYpXFMQqiG.jpg"
     },
     {
-      "rank": 217,
-      "id": 521,
-      "title": "В случае убийства набирайте «М»",
-      "release_date": "1954",
-      "vote_average": 8.074,
-      "poster_path": "/4KKiFDvtEusJzqzlwHp7iMceXKS.jpg"
-    },
-    {
       "rank": 218,
       "id": 10975,
       "title": "Доспехи Бога 2: Операция Кондор",
@@ -1944,14 +1928,6 @@
       "release_date": "2016",
       "vote_average": 8.041,
       "poster_path": "/g7f8GdnJKS0Z3QJ5G6P9BZrqs36.jpg"
-    },
-    {
-      "rank": 249,
-      "id": 949,
-      "title": "Схватка",
-      "release_date": "1995",
-      "vote_average": 8.041,
-      "poster_path": "/e09dLw1Ljtccd2P4NsuUvVtS5du.jpg"
     },
     {
       "rank": 250,
@@ -2594,14 +2570,6 @@
       "poster_path": "/whyUni70Oz6S5hvhZsggcTikdAp.jpg"
     },
     {
-      "rank": 330,
-      "id": 31011,
-      "title": "Господин Никто",
-      "release_date": "2009",
-      "vote_average": 7.917,
-      "poster_path": "/qNkIONc4Rgmzo23ph7qWp9QfVnW.jpg"
-    },
-    {
       "rank": 331,
       "id": 12444,
       "title": "Гарри Поттер и Дары Смерти: Часть I",
@@ -2794,6 +2762,22 @@
       "poster_path": "/kxOAIDJd23t8HIZaOWyXMPu4rpi.jpg"
     },
     {
+      "rank": 356,
+      "id": 11544,
+      "title": "Лило и Стич",
+      "release_date": "2002",
+      "vote_average": 7.862,
+      "poster_path": "/d73UqZWyw3MUMpeaFcENgLZ2kWS.jpg"
+    },
+    {
+      "rank": 357,
+      "id": 750658,
+      "title": "Один день",
+      "release_date": "2011",
+      "vote_average": 7.86,
+      "poster_path": "/s2yFUdNGo1h74Fjp5DatwPbn54G.jpg"
+    },
+    {
       "rank": 358,
       "id": 1064486,
       "title": "Мемуары Улитки",
@@ -2858,6 +2842,14 @@
       "poster_path": "/zhMOIXezutmTCeP1AvPZHakGCYs.jpg"
     },
     {
+      "rank": 366,
+      "id": 9812,
+      "title": "Кровавый четверг",
+      "release_date": "1998",
+      "vote_average": 7.849,
+      "poster_path": "/pbfBCMSzmKlAHZUDwsrtmG7GZP3.jpg"
+    },
+    {
       "rank": 367,
       "id": 76341,
       "title": "Безумный Макс: Дорога ярости",
@@ -2890,12 +2882,44 @@
       "poster_path": "/n9C7YPkBKuz77Xn44xq35mqLTT2.jpg"
     },
     {
+      "rank": 371,
+      "id": 14306,
+      "title": "Марли и я",
+      "release_date": "2008",
+      "vote_average": 7.839,
+      "poster_path": "/pnB6hjTKylb0Ve2nUWt16gzkErr.jpg"
+    },
+    {
       "rank": 372,
       "id": 600354,
       "title": "Отец",
       "release_date": "2020",
       "vote_average": 7.838,
       "poster_path": "/xL2A41uKed4nepCCb0621kAxUiL.jpg"
+    },
+    {
+      "rank": 373,
+      "id": 10474,
+      "title": "Дневник баскетболиста",
+      "release_date": "1995",
+      "vote_average": 7.837,
+      "poster_path": "/AhvO1GGDPIgN0hOqZEgaFCbswMK.jpg"
+    },
+    {
+      "rank": 374,
+      "id": 9631,
+      "title": "Переговорщик",
+      "release_date": "1998",
+      "vote_average": 7.837,
+      "poster_path": "/dUMHEymATOGbs2K3E4dmNSVBgFQ.jpg"
+    },
+    {
+      "rank": 375,
+      "id": 4951,
+      "title": "10 причин моей ненависти",
+      "release_date": "1999",
+      "vote_average": 7.836,
+      "poster_path": "/ujERk3aKABXU3NDXOAxEQYTHe9A.jpg"
     },
     {
       "rank": 376,
@@ -2912,14 +2936,6 @@
       "release_date": "1993",
       "vote_average": 7.833,
       "poster_path": "/xcqO13dmGi32LVUUuN75vmHRhya.jpg"
-    },
-    {
-      "rank": 378,
-      "id": 74308,
-      "title": "Учитель на замену",
-      "release_date": "2011",
-      "vote_average": 7.831,
-      "poster_path": "/bC5H2dabnHrQJD1KmQUSUUeuCXU.jpg"
     },
     {
       "rank": 379,
@@ -2984,6 +3000,14 @@
       "release_date": "2000",
       "vote_average": 7.819,
       "poster_path": "/uWtrsJr7ahv6jP6Qg5e1wp5Tu2f.jpg"
+    },
+    {
+      "rank": 387,
+      "id": 124364,
+      "title": "Одержимость",
+      "release_date": "2004",
+      "vote_average": 7.818,
+      "poster_path": "/exf0zfgketF2jbOctCbICygtqFz.jpg"
     },
     {
       "rank": 388,
@@ -3226,6 +3250,14 @@
       "poster_path": "/kGLOLum7xU95spakBEfxCjEfNn0.jpg"
     },
     {
+      "rank": 418,
+      "id": 402,
+      "title": "Основной инстинкт",
+      "release_date": "1992",
+      "vote_average": 7.769,
+      "poster_path": "/76Ts0yoHk8kVQj9MMnoMixhRWoh.jpg"
+    },
+    {
       "rank": 419,
       "id": 286217,
       "title": "Марсианин",
@@ -3312,6 +3344,14 @@
       "release_date": "2003",
       "vote_average": 7.742,
       "poster_path": "/d0xVNNxIYxId2qHkqpgE39soOvD.jpg"
+    },
+    {
+      "rank": 430,
+      "id": 11093,
+      "title": "Дом из песка и тумана",
+      "release_date": "2003",
+      "vote_average": 7.738,
+      "poster_path": "/hLxSOukLfC4j5pNbdE7lqaw8KgL.jpg"
     },
     {
       "rank": 431,
@@ -3482,6 +3522,14 @@
       "poster_path": "/82Jnyq9YFlXo59ArGpuBLyAF4L9.jpg"
     },
     {
+      "rank": 452,
+      "id": 1018,
+      "title": "Малхолланд Драйв",
+      "release_date": "2001",
+      "vote_average": 7.684,
+      "poster_path": "/x7A59t6ySylr1L7aubOQEA480vM.jpg"
+    },
+    {
       "rank": 453,
       "id": 314365,
       "title": "В центре внимания",
@@ -3496,6 +3544,14 @@
       "release_date": "2017",
       "vote_average": 7.673,
       "poster_path": "/s2ktgF2ze4aVt9bXBUvxFJllqyd.jpg"
+    },
+    {
+      "rank": 455,
+      "id": 4638,
+      "title": "Типа крутые легавые",
+      "release_date": "2007",
+      "vote_average": 7.668,
+      "poster_path": "/zPib4ukTSdXvHP9pxGkFCe34f3y.jpg"
     },
     {
       "rank": 456,
@@ -3520,6 +3576,14 @@
       "release_date": "2013",
       "vote_average": 7.662,
       "poster_path": "/3Pnkt6NcB7Xc6cDftTBAF6gIzC6.jpg"
+    },
+    {
+      "rank": 459,
+      "id": 12783,
+      "title": "Герцогиня",
+      "release_date": "2008",
+      "vote_average": 7.661,
+      "poster_path": "/77ckyYrWmR12kl3qToqmDySnuwv.jpg"
     },
     {
       "rank": 460,
@@ -3552,6 +3616,14 @@
       "release_date": "2025",
       "vote_average": 7.651,
       "poster_path": "/sm3YCy9Db2TwhIckjsQ247KAxS2.jpg"
+    },
+    {
+      "rank": 465,
+      "id": 11423,
+      "title": "Воспоминания об убийстве",
+      "release_date": "2003",
+      "vote_average": 7.65,
+      "poster_path": "/rxndHKwUeFgTHx0PuuhZS4dMtrB.jpg"
     },
     {
       "rank": 466,
@@ -3610,14 +3682,6 @@
       "poster_path": "/pVHjVOt47EkDNIkukmHxolxLpAI.jpg"
     },
     {
-      "rank": 473,
-      "id": 49797,
-      "title": "Я видел дьявола",
-      "release_date": "2010",
-      "vote_average": 7.631,
-      "poster_path": "/zp5NrmYp80axIGiEiYPmm1CW6uH.jpg"
-    },
-    {
       "rank": 474,
       "id": 393,
       "title": "Убить Билла 2",
@@ -3674,6 +3738,22 @@
       "poster_path": "/qowx0xUFxy3u5zx2AHF59Cm9gGc.jpg"
     },
     {
+      "rank": 481,
+      "id": 141,
+      "title": "Донни Дарко",
+      "release_date": "2001",
+      "vote_average": 7.601,
+      "poster_path": "/fhQoQfejY1hUcwyuLgpBrYs6uFt.jpg"
+    },
+    {
+      "rank": 482,
+      "id": 10045,
+      "title": "13-й район",
+      "release_date": "2004",
+      "vote_average": 7.596,
+      "poster_path": "/uYIDJ15RLBsFFBSAkqjIirZCgVi.jpg"
+    },
+    {
       "rank": 483,
       "id": 97666,
       "title": "Ширли-мырли",
@@ -3690,12 +3770,36 @@
       "poster_path": "/r5PYZGOiIQuGpaZas9TTplNZ5Ox.jpg"
     },
     {
+      "rank": 485,
+      "id": 563,
+      "title": "Звездный десант",
+      "release_date": "1997",
+      "vote_average": 7.578,
+      "poster_path": "/cxCmv23O7p3hyHwqoktHYkZcGsY.jpg"
+    },
+    {
       "rank": 487,
       "id": 580175,
       "title": "Еще по одной",
       "release_date": "2020",
       "vote_average": 7.563,
       "poster_path": "/1iAyKvrc6FoIpSk4iXJKZsiUjZJ.jpg"
+    },
+    {
+      "rank": 488,
+      "id": 33273,
+      "title": "Камера 211",
+      "release_date": "2009",
+      "vote_average": 7.551,
+      "poster_path": "/koap5B3bQHQi3yaZ39vpWR66TGP.jpg"
+    },
+    {
+      "rank": 489,
+      "id": 7457,
+      "title": "Альфа Дог",
+      "release_date": "2006",
+      "vote_average": 7.549,
+      "poster_path": "/t9pirEsDxe102mSQGoDZWBbdcCD.jpg"
     },
     {
       "rank": 490,
@@ -5905,7 +6009,7 @@
       "title": "Визит к Минотавру",
       "first_air_date": "1987",
       "vote_average": 8.207,
-      "poster_path": "/cRzU9n5QdZHDswmyYpCT9GhyV04.jpg"
+      "poster_path": "/sAiemvPIJS9IoxepEJ7nYhXUurh.jpg"
     },
     {
       "rank": 276,
