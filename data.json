@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-09",
+  "date": "2026-04-10",
   "movies": [
     {
       "rank": 1,
@@ -499,19 +499,19 @@
     },
     {
       "rank": 64,
-      "id": 569094,
-      "title": "Человек-паук: Паутина вселенных",
-      "release_date": "2023",
-      "vote_average": 8.342,
-      "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"
-    },
-    {
-      "rank": 65,
       "id": 64745,
       "title": "В августе 44-го",
       "release_date": "2002",
       "vote_average": 8.342,
       "poster_path": "/dUX5I24hILFV0jZfFIHS0Qr3UBi.jpg"
+    },
+    {
+      "rank": 65,
+      "id": 569094,
+      "title": "Человек-паук: Паутина вселенных",
+      "release_date": "2023",
+      "vote_average": 8.341,
+      "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"
     },
     {
       "rank": 67,
@@ -547,6 +547,14 @@
     },
     {
       "rank": 71,
+      "id": 818415,
+      "title": "Небо",
+      "release_date": "2021",
+      "vote_average": 8.324,
+      "poster_path": "/sNaPKisUI4ZtuAHLHOGYpQhAxkw.jpg"
+    },
+    {
+      "rank": 72,
       "id": 37176,
       "title": "Покровские ворота",
       "release_date": "1983",
@@ -554,19 +562,11 @@
       "poster_path": "/wrf1p3LFAllzrm7wgXRWOg6c4We.jpg"
     },
     {
-      "rank": 72,
-      "id": 818415,
-      "title": "Небо",
-      "release_date": "2021",
-      "vote_average": 8.323,
-      "poster_path": "/sNaPKisUI4ZtuAHLHOGYpQhAxkw.jpg"
-    },
-    {
       "rank": 73,
       "id": 20886,
       "title": "Добро пожаловать, или Посторонним вход воспрещен",
       "release_date": "1964",
-      "vote_average": 8.32,
+      "vote_average": 8.321,
       "poster_path": "/u9CaUFPBKA0N0xvu0V7ftpVuZdc.jpg"
     },
     {
@@ -739,6 +739,14 @@
     },
     {
       "rank": 95,
+      "id": 876127,
+      "title": "Хвостатый переполох",
+      "release_date": "2024",
+      "vote_average": 8.263,
+      "poster_path": "/c2rwrRP3Z0zEejWXVuSgiroADmn.jpg"
+    },
+    {
+      "rank": 96,
       "id": 346648,
       "title": "Приключения Паддингтона 2",
       "release_date": "2017",
@@ -746,7 +754,7 @@
       "poster_path": "/rqegEjWMbVXiE5XhPJ4NhvDU8ps.jpg"
     },
     {
-      "rank": 96,
+      "rank": 97,
       "id": 315465,
       "title": "Ученик чудовища",
       "release_date": "2015",
@@ -754,20 +762,12 @@
       "poster_path": "/6uIycsGE257YUvgdhJNyFio8JFz.jpg"
     },
     {
-      "rank": 97,
+      "rank": 98,
       "id": 207,
       "title": "Общество мертвых поэтов",
       "release_date": "1989",
       "vote_average": 8.261,
       "poster_path": "/1josLrBovuxYylg6QimE0Y1FUs.jpg"
-    },
-    {
-      "rank": 98,
-      "id": 876127,
-      "title": "Хвостатый переполох",
-      "release_date": "2024",
-      "vote_average": 8.26,
-      "poster_path": "/c2rwrRP3Z0zEejWXVuSgiroADmn.jpg"
     },
     {
       "rank": 99,
@@ -1043,19 +1043,19 @@
     },
     {
       "rank": 133,
-      "id": 1487712,
-      "title": "Ритмы мечты",
-      "release_date": "2025",
-      "vote_average": 8.171,
-      "poster_path": "/tnB6UZBug7XzOKeWEaTXWKBIQGa.jpg"
-    },
-    {
-      "rank": 134,
       "id": 111,
       "title": "Лицо со шрамом",
       "release_date": "1983",
       "vote_average": 8.171,
       "poster_path": "/9rGmgcmnnlrzB4K2SPIM8bgnNpw.jpg"
+    },
+    {
+      "rank": 134,
+      "id": 1487712,
+      "title": "Ритмы мечты",
+      "release_date": "2025",
+      "vote_average": 8.17,
+      "poster_path": "/tnB6UZBug7XzOKeWEaTXWKBIQGa.jpg"
     },
     {
       "rank": 135,
@@ -1238,7 +1238,7 @@
       "id": 524,
       "title": "Казино",
       "release_date": "1995",
-      "vote_average": 8.133,
+      "vote_average": 8.132,
       "poster_path": "/gziIkUSnYuj9ChCi8qOu2ZunpSC.jpg"
     },
     {
@@ -1262,7 +1262,7 @@
       "id": 1895,
       "title": "Звёздные войны: Эпизод 3 – Месть ситхов",
       "release_date": "2005",
-      "vote_average": 8.127,
+      "vote_average": 8.128,
       "poster_path": "/a1f0xvhIfUlzgWlPYL3XS8n5XuL.jpg"
     },
     {
@@ -1350,7 +1350,7 @@
       "id": 842859,
       "title": "Самый ценный груз",
       "release_date": "2024",
-      "vote_average": 8.109,
+      "vote_average": 8.11,
       "poster_path": "/fSgdY5h8syaa0l7aGN9SyghtYXS.jpg"
     },
     {
@@ -2531,19 +2531,19 @@
     },
     {
       "rank": 321,
+      "id": 1064486,
+      "title": "Мемуары Улитки",
+      "release_date": "2024",
+      "vote_average": 7.862,
+      "poster_path": "/5tsnwOU1BX1v9ifpFgeVd7i0yMe.jpg"
+    },
+    {
+      "rank": 322,
       "id": 508883,
       "title": "Мальчик и птица",
       "release_date": "2023",
       "vote_average": 7.862,
       "poster_path": "/oTmSnrE9MuQMhZkosZRE5bYvstK.jpg"
-    },
-    {
-      "rank": 322,
-      "id": 1064486,
-      "title": "Мемуары Улитки",
-      "release_date": "2024",
-      "vote_average": 7.861,
-      "poster_path": "/5tsnwOU1BX1v9ifpFgeVd7i0yMe.jpg"
     },
     {
       "rank": 323,
@@ -3355,6 +3355,14 @@
     },
     {
       "rank": 424,
+      "id": 438740,
+      "title": "Салют-7",
+      "release_date": "2017",
+      "vote_average": 7.693,
+      "poster_path": "/s2ktgF2ze4aVt9bXBUvxFJllqyd.jpg"
+    },
+    {
+      "rank": 425,
       "id": 1155257,
       "title": "Последний подозреваемый",
       "release_date": "2023",
@@ -3362,7 +3370,7 @@
       "poster_path": "/imeSir4uEoEHOKB2zFbLW1MXwtn.jpg"
     },
     {
-      "rank": 425,
+      "rank": 426,
       "id": 2140,
       "title": "Поцелуй дракона",
       "release_date": "2001",
@@ -3370,20 +3378,12 @@
       "poster_path": "/1ubtSyagwfNF9Bn9s2CKITRtx1d.jpg"
     },
     {
-      "rank": 426,
+      "rank": 427,
       "id": 13183,
       "title": "Хранители",
       "release_date": "2009",
       "vote_average": 7.691,
       "poster_path": "/vxDpI0PwoXNhkoxEvy8BtZAFoYZ.jpg"
-    },
-    {
-      "rank": 427,
-      "id": 438740,
-      "title": "Салют-7",
-      "release_date": "2017",
-      "vote_average": 7.69,
-      "poster_path": "/s2ktgF2ze4aVt9bXBUvxFJllqyd.jpg"
     },
     {
       "rank": 428,
@@ -3430,7 +3430,7 @@
       "id": 803796,
       "title": "Кей-поп-охотницы на демонов",
       "release_date": "2025",
-      "vote_average": 7.679,
+      "vote_average": 7.678,
       "poster_path": "/vspMmox0F2pdiNr68BTfYLeDNd8.jpg"
     },
     {
@@ -3642,14 +3642,6 @@
       "poster_path": "/vHjEVTD8ucuwKSFOZJeyAnTZYli.jpg"
     },
     {
-      "rank": 461,
-      "id": 327,
-      "title": "Брат якудзы",
-      "release_date": "2000",
-      "vote_average": 7.61,
-      "poster_path": "/rSRJozSafFFuiFT9XnwsE1ricHT.jpg"
-    },
-    {
       "rank": 462,
       "id": 9352,
       "title": "Евротур",
@@ -3690,20 +3682,28 @@
       "poster_path": "/aboB73RjkfM3oqxTad0lF9JRLGw.jpg"
     },
     {
+      "rank": 467,
+      "id": 141,
+      "title": "Донни Дарко",
+      "release_date": "2001",
+      "vote_average": 7.601,
+      "poster_path": "/sv7D4vlfIH25lNjQYoXzoOFCYaz.jpg"
+    },
+    {
+      "rank": 468,
+      "id": 10045,
+      "title": "13-й район",
+      "release_date": "2004",
+      "vote_average": 7.598,
+      "poster_path": "/uYIDJ15RLBsFFBSAkqjIirZCgVi.jpg"
+    },
+    {
       "rank": 469,
       "id": 77528,
       "title": "Охотники за головами",
       "release_date": "2011",
       "vote_average": 7.587,
       "poster_path": "/1RP8Dqivk3HMdAY8E3tiZjQwAwY.jpg"
-    },
-    {
-      "rank": 470,
-      "id": 50646,
-      "title": "Эта дурацкая любовь",
-      "release_date": "2011",
-      "vote_average": 7.586,
-      "poster_path": "/p4RafgAPk558muOjnBMHhMArjS2.jpg"
     },
     {
       "rank": 471,
@@ -3720,14 +3720,6 @@
       "release_date": "2006",
       "vote_average": 7.578,
       "poster_path": "/z7xXihu5wHuSMWymq5VAulPVuvg.jpg"
-    },
-    {
-      "rank": 473,
-      "id": 2501,
-      "title": "Идентификация",
-      "release_date": "2003",
-      "vote_average": 7.576,
-      "poster_path": "/aP8swke3gmowbkfZ6lmNidu0y9p.jpg"
     },
     {
       "rank": 474,
@@ -3786,12 +3778,12 @@
       "poster_path": "/i3hxOQV0F334Vb4HMFxhI1J0iyZ.jpg"
     },
     {
-      "rank": 481,
-      "id": 33273,
-      "title": "Камера 211",
-      "release_date": "2009",
+      "rank": 482,
+      "id": 7457,
+      "title": "Альфа Дог",
+      "release_date": "2006",
       "vote_average": 7.549,
-      "poster_path": "/koap5B3bQHQi3yaZ39vpWR66TGP.jpg"
+      "poster_path": "/t9pirEsDxe102mSQGoDZWBbdcCD.jpg"
     },
     {
       "rank": 485,
@@ -3846,7 +3838,7 @@
       "id": 1242898,
       "title": "Хищник: Планета смерти",
       "release_date": "2025",
-      "vote_average": 7.351,
+      "vote_average": 7.35,
       "poster_path": "/pu5Aj7nyx9ISKMcmWvUjZv68GLs.jpg"
     },
     {
@@ -3872,6 +3864,14 @@
       "release_date": "2025",
       "vote_average": 7.273,
       "poster_path": "/obeihpiGpQTdE7rPoWy1BVQsumY.jpg"
+    },
+    {
+      "rank": 500,
+      "id": 273481,
+      "title": "Убийца",
+      "release_date": "2015",
+      "vote_average": 7.213,
+      "poster_path": "/lz8vNyXeidqqOdJW9ZjnDAMb5Vr.jpg"
     }
   ],
   "series": [
@@ -3960,7 +3960,7 @@
       "id": 85077,
       "title": "Избранные",
       "first_air_date": "2017",
-      "vote_average": 8.928,
+      "vote_average": 8.926,
       "poster_path": "/loocNikWYS4KSZNrTFQWSKADpSd.jpg"
     },
     {
@@ -4056,7 +4056,7 @@
       "id": 230923,
       "title": "Хватай Сон-джэ и беги",
       "first_air_date": "2024",
-      "vote_average": 8.801,
+      "vote_average": 8.802,
       "poster_path": "/5YsAe66JOrausOfDCCg0U3ouXR2.jpg"
     },
     {
@@ -4208,7 +4208,7 @@
       "id": 223911,
       "title": "Противостояние святого",
       "first_air_date": "2023",
-      "vote_average": 8.678,
+      "vote_average": 8.676,
       "poster_path": "/6AVM12M6UunFmX0bSmP2o4N5Bnt.jpg"
     },
     {
@@ -4224,7 +4224,7 @@
       "id": 250307,
       "title": "Питт",
       "first_air_date": "2025",
-      "vote_average": 8.665,
+      "vote_average": 8.664,
       "poster_path": "/qNABFhduyxg5gvzFuuSPFRh2uls.jpg"
     },
     {
@@ -4293,6 +4293,14 @@
     },
     {
       "rank": 53,
+      "id": 107371,
+      "title": "Вечная воля",
+      "first_air_date": "2020",
+      "vote_average": 8.618,
+      "poster_path": "/tlkh63hYyniV4EXuh4zdMx3trXA.jpg"
+    },
+    {
+      "rank": 54,
       "id": 73586,
       "title": "Йеллоустоун",
       "first_air_date": "2018",
@@ -4300,20 +4308,12 @@
       "poster_path": "/muLDL6UrK6Rh47OwgbNZbNcwUc.jpg"
     },
     {
-      "rank": 54,
+      "rank": 55,
       "id": 34307,
       "title": "Бесстыжие",
       "first_air_date": "2011",
       "vote_average": 8.616,
       "poster_path": "/ahhEWtnEnp8TgHAVzD19JGpbIbu.jpg"
-    },
-    {
-      "rank": 55,
-      "id": 107371,
-      "title": "Вечная воля",
-      "first_air_date": "2020",
-      "vote_average": 8.616,
-      "poster_path": "/tlkh63hYyniV4EXuh4zdMx3trXA.jpg"
     },
     {
       "rank": 56,
@@ -4416,7 +4416,7 @@
       "id": 137206,
       "title": "Светлый пепел луны",
       "first_air_date": "2023",
-      "vote_average": 8.579,
+      "vote_average": 8.578,
       "poster_path": "/xPyyJtt0HZ3TTWkVsHrwRUx6n3P.jpg"
     },
     {
@@ -4429,19 +4429,19 @@
     },
     {
       "rank": 70,
-      "id": 129888,
-      "title": "Двадцать пять, двадцать один",
-      "first_air_date": "2022",
-      "vote_average": 8.57,
-      "poster_path": "/yCQFnmYhYf7XALMka2EoBRAFmPO.jpg"
-    },
-    {
-      "rank": 71,
       "id": 124067,
       "title": "Время побеждать: Расцвет династии Лейкерс",
       "first_air_date": "2022",
       "vote_average": 8.569,
       "poster_path": "/2adL2vF0zodVrPzeEN3Vpct5ZB4.jpg"
+    },
+    {
+      "rank": 71,
+      "id": 129888,
+      "title": "Двадцать пять, двадцать один",
+      "first_air_date": "2022",
+      "vote_average": 8.569,
+      "poster_path": "/yCQFnmYhYf7XALMka2EoBRAFmPO.jpg"
     },
     {
       "rank": 72,
@@ -4472,7 +4472,7 @@
       "id": 256721,
       "title": "Гачиакута",
       "first_air_date": "2025",
-      "vote_average": 8.556,
+      "vote_average": 8.555,
       "poster_path": "/qU5hJXaY6IjDqBrlDaAhlbPvXVU.jpg"
     },
     {
@@ -4504,7 +4504,7 @@
       "id": 138149,
       "title": "Седьмая симфония",
       "first_air_date": "2021",
-      "vote_average": 8.54,
+      "vote_average": 8.539,
       "poster_path": "/sFcZIPFko3ATiUJg6ihJXdzwji6.jpg"
     },
     {
@@ -4536,7 +4536,7 @@
       "id": 213402,
       "title": "Кулинарные скитания в параллельном мире",
       "first_air_date": "2023",
-      "vote_average": 8.532,
+      "vote_average": 8.533,
       "poster_path": "/h8xhmuQu3gww9fJr39j58wbpRmM.jpg"
     },
     {
@@ -4560,7 +4560,7 @@
       "id": 85114,
       "title": "Щит и меч",
       "first_air_date": "1968",
-      "vote_average": 8.523,
+      "vote_average": 8.524,
       "poster_path": "/qGnaleBM3ujGUE72C1Vvj5YyLtn.jpg"
     },
     {
@@ -4632,7 +4632,7 @@
       "id": 66017,
       "title": "Воскресший Эртугрул",
       "first_air_date": "2014",
-      "vote_average": 8.493,
+      "vote_average": 8.492,
       "poster_path": "/nahAQVlIaYtZ0bU5n4eva1Gzyz0.jpg"
     },
     {
@@ -4753,7 +4753,7 @@
       "title": "Война Фойла",
       "first_air_date": "2002",
       "vote_average": 8.451,
-      "poster_path": "/avPXLCHNUGVtTu52X5VStZRoHDD.jpg"
+      "poster_path": "/dNqHn5UCoa2vodPv5g1nfQE89R4.jpg"
     },
     {
       "rank": 111,
@@ -4829,19 +4829,19 @@
     },
     {
       "rank": 120,
-      "id": 112398,
-      "title": "Благословение небожителей",
-      "first_air_date": "2020",
-      "vote_average": 8.439,
-      "poster_path": "/bpZGjRLgqfa1C4QA6TxxiycCaLI.jpg"
-    },
-    {
-      "rank": 121,
       "id": 274556,
       "title": "Далёкий город",
       "first_air_date": "2024",
       "vote_average": 8.438,
       "poster_path": "/vHK6YZFfbCXis8R8Rc1e6xyzO9J.jpg"
+    },
+    {
+      "rank": 121,
+      "id": 112398,
+      "title": "Благословение небожителей",
+      "first_air_date": "2020",
+      "vote_average": 8.438,
+      "poster_path": "/bpZGjRLgqfa1C4QA6TxxiycCaLI.jpg"
     },
     {
       "rank": 122,
@@ -4856,7 +4856,7 @@
       "id": 72636,
       "title": "Созданный в Бездне",
       "first_air_date": "2017",
-      "vote_average": 8.423,
+      "vote_average": 8.424,
       "poster_path": "/gLMPBatdaMg1DejiePiy0TCaSWF.jpg"
     },
     {
@@ -4933,19 +4933,19 @@
     },
     {
       "rank": 133,
+      "id": 43035,
+      "title": "ТАСС уполномочен заявить…",
+      "first_air_date": "1984",
+      "vote_average": 8.398,
+      "poster_path": "/yhRYNexHKSVAzyjtogLIsXPJpFj.jpg"
+    },
+    {
+      "rank": 134,
       "id": 60863,
       "title": "Волейбол!!",
       "first_air_date": "2014",
       "vote_average": 8.397,
       "poster_path": "/5lrJDEQjwCJPLdlfhBmJ8mfpnpX.jpg"
-    },
-    {
-      "rank": 134,
-      "id": 43035,
-      "title": "ТАСС уполномочен заявить…",
-      "first_air_date": "1984",
-      "vote_average": 8.397,
-      "poster_path": "/yhRYNexHKSVAzyjtogLIsXPJpFj.jpg"
     },
     {
       "rank": 135,
@@ -4997,19 +4997,19 @@
     },
     {
       "rank": 141,
+      "id": 67136,
+      "title": "Это мы",
+      "first_air_date": "2016",
+      "vote_average": 8.393,
+      "poster_path": "/eVjbVfDbntRwujt3EWH99uDLyx7.jpg"
+    },
+    {
+      "rank": 142,
       "id": 119769,
       "title": "Таксист",
       "first_air_date": "2021",
       "vote_average": 8.392,
       "poster_path": "/eAJaqqIw27AYGomDl00cek7AQTM.jpg"
-    },
-    {
-      "rank": 142,
-      "id": 67136,
-      "title": "Это мы",
-      "first_air_date": "2016",
-      "vote_average": 8.392,
-      "poster_path": "/eVjbVfDbntRwujt3EWH99uDLyx7.jpg"
     },
     {
       "rank": 143,
@@ -5229,14 +5229,6 @@
     },
     {
       "rank": 170,
-      "id": 300388,
-      "title": "Розы и грехи",
-      "first_air_date": "2025",
-      "vote_average": 8.353,
-      "poster_path": "/3Qwhs7xxf9LILllWLnxbSaCBNDf.jpg"
-    },
-    {
-      "rank": 171,
       "id": 60580,
       "title": "Джодха и Акбар: История великой любви",
       "first_air_date": "2013",
@@ -5244,7 +5236,7 @@
       "poster_path": "/wFN58NzfAQFdmckqxFTkELHsjWC.jpg"
     },
     {
-      "rank": 172,
+      "rank": 171,
       "id": 71694,
       "title": "Снегопад",
       "first_air_date": "2017",
@@ -5252,7 +5244,7 @@
       "poster_path": "/bgSvSxnu7seQrfnlLEAStcJZBbx.jpg"
     },
     {
-      "rank": 173,
+      "rank": 172,
       "id": 60574,
       "title": "Острые козырьки",
       "first_air_date": "2013",
@@ -5260,7 +5252,7 @@
       "poster_path": "/pVJzfWgb3sHN29hLaiI5jmBN9vx.jpg"
     },
     {
-      "rank": 174,
+      "rank": 173,
       "id": 117465,
       "title": "Адский рай",
       "first_air_date": "2023",
@@ -5268,7 +5260,7 @@
       "poster_path": "/75OaIA4S8ZKFVNmKnTCgAcNqwlC.jpg"
     },
     {
-      "rank": 175,
+      "rank": 174,
       "id": 95603,
       "title": "Основание: Осман",
       "first_air_date": "2019",
@@ -5276,7 +5268,7 @@
       "poster_path": "/i8BlxTt8RLZPL3m0qUMrpd7bSdI.jpg"
     },
     {
-      "rank": 176,
+      "rank": 175,
       "id": 83100,
       "title": "Дороро",
       "first_air_date": "2019",
@@ -5284,7 +5276,23 @@
       "poster_path": "/oudk6QIrLLtMlmVBBQoheNzcqeI.jpg"
     },
     {
+      "rank": 176,
+      "id": 300388,
+      "title": "Розы и грехи",
+      "first_air_date": "2025",
+      "vote_average": 8.344,
+      "poster_path": "/3Qwhs7xxf9LILllWLnxbSaCBNDf.jpg"
+    },
+    {
       "rank": 177,
+      "id": 255064,
+      "title": "Инцидент Дарвина",
+      "first_air_date": "2026",
+      "vote_average": 8.341,
+      "poster_path": "/czZ1X8djGNlkCxsMJ8pjj2dDro5.jpg"
+    },
+    {
+      "rank": 178,
       "id": 211231,
       "title": "Тётя Марта",
       "first_air_date": "2022",
@@ -5292,7 +5300,7 @@
       "poster_path": "/lQFDiY5BYWbny7hyrvi6uFP33q5.jpg"
     },
     {
-      "rank": 178,
+      "rank": 179,
       "id": 106761,
       "title": "Пропавшие: Другая сторона",
       "first_air_date": "2020",
@@ -5300,20 +5308,12 @@
       "poster_path": "/uGZzGuQjVd0X4Bgcaph4WpqC1qh.jpg"
     },
     {
-      "rank": 179,
+      "rank": 180,
       "id": 105136,
       "title": "Вампиры средней полосы",
       "first_air_date": "2021",
       "vote_average": 8.339,
       "poster_path": "/clHLjRvAGdNV0uQggne6LnbgIeA.jpg"
-    },
-    {
-      "rank": 180,
-      "id": 255064,
-      "title": "Инцидент Дарвина",
-      "first_air_date": "2026",
-      "vote_average": 8.336,
-      "poster_path": "/czZ1X8djGNlkCxsMJ8pjj2dDro5.jpg"
     },
     {
       "rank": 181,
@@ -5352,7 +5352,7 @@
       "id": 31910,
       "title": "Наруто: Ураганные хроники",
       "first_air_date": "2007",
-      "vote_average": 8.33,
+      "vote_average": 8.331,
       "poster_path": "/d43i3GyHhEHmANAXoxkRcjAeK6f.jpg"
     },
     {
@@ -5405,19 +5405,19 @@
     },
     {
       "rank": 192,
-      "id": 169593,
-      "title": "Люблю тебя бесконечно",
-      "first_air_date": "2023",
-      "vote_average": 8.319,
-      "poster_path": "/s4ASbhqWhJEHGd0iTz8NBLud635.jpg"
-    },
-    {
-      "rank": 193,
       "id": 888,
       "title": "Человек-паук",
       "first_air_date": "1994",
       "vote_average": 8.319,
       "poster_path": "/j5vvg52stGUtqXKStcx1numaHTS.jpg"
+    },
+    {
+      "rank": 193,
+      "id": 169593,
+      "title": "Люблю тебя бесконечно",
+      "first_air_date": "2023",
+      "vote_average": 8.318,
+      "poster_path": "/s4ASbhqWhJEHGd0iTz8NBLud635.jpg"
     },
     {
       "rank": 194,
@@ -5616,7 +5616,7 @@
       "id": 128883,
       "title": "Ча-ча-ча в приморском городе",
       "first_air_date": "2021",
-      "vote_average": 8.278,
+      "vote_average": 8.277,
       "poster_path": "/ub2ZaobABSYtkWKaEycWmMjkorP.jpg"
     },
     {
@@ -5957,19 +5957,19 @@
     },
     {
       "rank": 261,
-      "id": 152299,
-      "title": "Ваша честь",
-      "first_air_date": "2021",
-      "vote_average": 8.231,
-      "poster_path": "/rN05Db7yRQRF8njxNcAP3pmlhCp.jpg"
-    },
-    {
-      "rank": 262,
       "id": 99988,
       "title": "Красная королева",
       "first_air_date": "2015",
       "vote_average": 8.231,
       "poster_path": "/mgdSJPXKIyj4MAIMXwLEphh7ZcR.jpg"
+    },
+    {
+      "rank": 262,
+      "id": 152299,
+      "title": "Ваша честь",
+      "first_air_date": "2021",
+      "vote_average": 8.23,
+      "poster_path": "/rN05Db7yRQRF8njxNcAP3pmlhCp.jpg"
     },
     {
       "rank": 263,
@@ -6197,14 +6197,6 @@
     },
     {
       "rank": 291,
-      "id": 68814,
-      "title": "Силачка До Бон Сун",
-      "first_air_date": "2017",
-      "vote_average": 8.205,
-      "poster_path": "/sPdS6oUdXfBNGKROE5RY5s5laqx.jpg"
-    },
-    {
-      "rank": 292,
       "id": 285816,
       "title": "Между нами химия",
       "first_air_date": "",
@@ -6212,12 +6204,20 @@
       "poster_path": "/mU9yvNZJhXczinlV8FY418Vn63G.jpg"
     },
     {
-      "rank": 293,
+      "rank": 292,
       "id": 119466,
       "title": "Майская молодость",
       "first_air_date": "2021",
       "vote_average": 8.204,
       "poster_path": "/eT7cWCkUGhQXL8bAOPYLuPazeXs.jpg"
+    },
+    {
+      "rank": 293,
+      "id": 68814,
+      "title": "Силачка До Бон Сун",
+      "first_air_date": "2017",
+      "vote_average": 8.204,
+      "poster_path": "/sPdS6oUdXfBNGKROE5RY5s5laqx.jpg"
     },
     {
       "rank": 294,
@@ -6317,19 +6317,19 @@
     },
     {
       "rank": 306,
+      "id": 113542,
+      "title": "Маргарита Назарова",
+      "first_air_date": "2016",
+      "vote_average": 8.192,
+      "poster_path": "/kLJeI7HXyAYs8l21pxt7umwofpv.jpg"
+    },
+    {
+      "rank": 307,
       "id": 221851,
       "title": "Выходи замуж за моего супруга!",
       "first_air_date": "2024",
       "vote_average": 8.191,
       "poster_path": "/9ZptM9JBG7MwswjMnFRH0kIEG72.jpg"
-    },
-    {
-      "rank": 307,
-      "id": 113542,
-      "title": "Маргарита Назарова",
-      "first_air_date": "2016",
-      "vote_average": 8.191,
-      "poster_path": "/kLJeI7HXyAYs8l21pxt7umwofpv.jpg"
     },
     {
       "rank": 308,
@@ -6645,6 +6645,14 @@
     },
     {
       "rank": 347,
+      "id": 90447,
+      "title": "Отель «Дель Луна»",
+      "first_air_date": "2019",
+      "vote_average": 8.157,
+      "poster_path": "/8iW8nojbKJ8klohbaJ2wLjatv1e.jpg"
+    },
+    {
+      "rank": 348,
       "id": 115004,
       "title": "Мейр из Исттауна",
       "first_air_date": "2021",
@@ -6652,19 +6660,11 @@
       "poster_path": "/sBQ6ad1ttKkSIyuTpJIqEwi0uQL.jpg"
     },
     {
-      "rank": 348,
-      "id": 90447,
-      "title": "Отель «Дель Луна»",
-      "first_air_date": "2019",
-      "vote_average": 8.156,
-      "poster_path": "/8iW8nojbKJ8klohbaJ2wLjatv1e.jpg"
-    },
-    {
       "rank": 349,
       "id": 83867,
       "title": "Андор",
       "first_air_date": "2022",
-      "vote_average": 8.155,
+      "vote_average": 8.154,
       "poster_path": "/jzL9WLPi4GLg4ricmVuiWYkjbTb.jpg"
     },
     {
@@ -6720,7 +6720,7 @@
       "id": 6395,
       "title": "Мастер и Маргарита",
       "first_air_date": "2007",
-      "vote_average": 8.146,
+      "vote_average": 8.145,
       "poster_path": "/fdHbRajsZmrs7TNmPF3NjjYCMaM.jpg"
     },
     {
@@ -6845,6 +6845,14 @@
     },
     {
       "rank": 372,
+      "id": 73223,
+      "title": "Чёрный клевер",
+      "first_air_date": "2017",
+      "vote_average": 8.132,
+      "poster_path": "/vcsAzsoSJEHgJZ29EkxXWSEVbDN.jpg"
+    },
+    {
+      "rank": 373,
       "id": 8358,
       "title": "Обмани меня",
       "first_air_date": "2009",
@@ -6852,7 +6860,7 @@
       "poster_path": "/68zEdyI8MnGeCQdnTzHGBgjjQWS.jpg"
     },
     {
-      "rank": 373,
+      "rank": 374,
       "id": 8592,
       "title": "Парки и зоны отдыха",
       "first_air_date": "2009",
@@ -6860,19 +6868,11 @@
       "poster_path": "/95ilzv0DIxYfu6ahbxkYhm4pk2I.jpg"
     },
     {
-      "rank": 374,
-      "id": 73223,
-      "title": "Чёрный клевер",
-      "first_air_date": "2017",
-      "vote_average": 8.131,
-      "poster_path": "/vcsAzsoSJEHgJZ29EkxXWSEVbDN.jpg"
-    },
-    {
       "rank": 375,
       "id": 60957,
       "title": "Человек со звезды",
       "first_air_date": "2013",
-      "vote_average": 8.131,
+      "vote_average": 8.13,
       "poster_path": "/kGjdC4pOdVnBP8uv4V38XpWGCkX.jpg"
     },
     {
@@ -6912,19 +6912,11 @@
       "id": 67084,
       "title": "Золушка и четыре рыцаря",
       "first_air_date": "2016",
-      "vote_average": 8.127,
+      "vote_average": 8.128,
       "poster_path": "/jgE63Z609gr10IoFu4pe4OdliBr.jpg"
     },
     {
       "rank": 381,
-      "id": 94664,
-      "title": "Реинкарнация безработного: История о приключениях в другом мире",
-      "first_air_date": "2021",
-      "vote_average": 8.126,
-      "poster_path": "/bC2DRV5S6BDtW0DmAqN3g3xtLoP.jpg"
-    },
-    {
-      "rank": 382,
       "id": 72548,
       "title": "Ты тоже человек?",
       "first_air_date": "2018",
@@ -6932,12 +6924,20 @@
       "poster_path": "/5gRKiZMN49TICCRP0pjaLKYJNWK.jpg"
     },
     {
-      "rank": 383,
+      "rank": 382,
       "id": 64052,
       "title": "Ментовские войны",
       "first_air_date": "2005",
       "vote_average": 8.126,
       "poster_path": "/4gvHCfKYwWSXZL2LHRgS4RVvI5S.jpg"
+    },
+    {
+      "rank": 383,
+      "id": 94664,
+      "title": "Реинкарнация безработного: История о приключениях в другом мире",
+      "first_air_date": "2021",
+      "vote_average": 8.125,
+      "poster_path": "/bC2DRV5S6BDtW0DmAqN3g3xtLoP.jpg"
     },
     {
       "rank": 384,
@@ -6949,19 +6949,19 @@
     },
     {
       "rank": 385,
+      "id": 219826,
+      "title": "Меня зовут Фарах",
+      "first_air_date": "2023",
+      "vote_average": 8.125,
+      "poster_path": "/Aj4qfs1KxhdfcPphWyJiTNYXirE.jpg"
+    },
+    {
+      "rank": 386,
       "id": 26707,
       "title": "Волчица и пряности",
       "first_air_date": "2008",
       "vote_average": 8.125,
       "poster_path": "/jArXlsLeIEsgoS13whjawePPpjh.jpg"
-    },
-    {
-      "rank": 386,
-      "id": 219826,
-      "title": "Меня зовут Фарах",
-      "first_air_date": "2023",
-      "vote_average": 8.124,
-      "poster_path": "/Aj4qfs1KxhdfcPphWyJiTNYXirE.jpg"
     },
     {
       "rank": 387,
@@ -6973,14 +6973,6 @@
     },
     {
       "rank": 388,
-      "id": 204199,
-      "title": "Без правил",
-      "first_air_date": "",
-      "vote_average": 8.123,
-      "poster_path": "/cvMiu0WfKMFpsTYP0Q9xC7g3Oak.jpg"
-    },
-    {
-      "rank": 389,
       "id": 104877,
       "title": "Постучись в мою дверь",
       "first_air_date": "2020",
@@ -6988,12 +6980,20 @@
       "poster_path": "/2aqsQfjBEOdt4oZ8xk6XR2lKkDm.jpg"
     },
     {
-      "rank": 390,
+      "rank": 389,
       "id": 45013,
       "title": "С приветом по планетам",
       "first_air_date": "2013",
       "vote_average": 8.123,
       "poster_path": "/j9zLV2sROOEAMr58G63xPZFMlxP.jpg"
+    },
+    {
+      "rank": 390,
+      "id": 204199,
+      "title": "Без правил",
+      "first_air_date": "",
+      "vote_average": 8.122,
+      "poster_path": "/cvMiu0WfKMFpsTYP0Q9xC7g3Oak.jpg"
     },
     {
       "rank": 391,
@@ -7032,7 +7032,7 @@
       "id": 84231,
       "title": "Уэйн",
       "first_air_date": "2019",
-      "vote_average": 8.119,
+      "vote_average": 8.118,
       "poster_path": "/sKC0DNZKNy1e5Lt54VyZKqyfRkm.jpg"
     },
     {
@@ -7056,7 +7056,7 @@
       "id": 215001,
       "title": "Суждено быть с тобой",
       "first_air_date": "2023",
-      "vote_average": 8.115,
+      "vote_average": 8.116,
       "poster_path": "/8KxGVT5dWrHZObv1B5oYcIt6xzU.jpg"
     },
     {
@@ -7064,7 +7064,7 @@
       "id": 116761,
       "title": "Джулия",
       "first_air_date": "2022",
-      "vote_average": 8.114,
+      "vote_average": 8.115,
       "poster_path": "/yAMDnoAHkCZ2gw5JgwMkV3Z8VBh.jpg"
     },
     {
@@ -7176,24 +7176,24 @@
       "id": 890,
       "title": "Евангелион",
       "first_air_date": "1995",
-      "vote_average": 8.103,
+      "vote_average": 8.102,
       "poster_path": "/hqi15xMrQKWBOmYvEKcDIl59SgP.jpg"
     },
     {
       "rank": 414,
-      "id": 234590,
-      "title": "Связь",
-      "first_air_date": "2024",
-      "vote_average": 8.102,
-      "poster_path": "/2ECdWiQ86vegLpYA3OWGv4BbcX5.jpg"
-    },
-    {
-      "rank": 415,
       "id": 76331,
       "title": "Наследники",
       "first_air_date": "2018",
       "vote_average": 8.102,
       "poster_path": "/5vZjUwl2NxNJY2cH7e8tmXdIjBA.jpg"
+    },
+    {
+      "rank": 415,
+      "id": 234590,
+      "title": "Связь",
+      "first_air_date": "2024",
+      "vote_average": 8.101,
+      "poster_path": "/2ECdWiQ86vegLpYA3OWGv4BbcX5.jpg"
     },
     {
       "rank": 416,
@@ -7213,6 +7213,14 @@
     },
     {
       "rank": 418,
+      "id": 60585,
+      "title": "Босх",
+      "first_air_date": "2014",
+      "vote_average": 8.098,
+      "poster_path": "/kbxP6SItyu5W4DiDdjdFDPeTU5H.jpg"
+    },
+    {
+      "rank": 419,
       "id": 71431,
       "title": "Мунч",
       "first_air_date": "2016",
@@ -7220,20 +7228,12 @@
       "poster_path": "/uLrXTCh8RGTyGKa4RE4c2udMtpQ.jpg"
     },
     {
-      "rank": 419,
+      "rank": 420,
       "id": 46268,
       "title": "Самогон",
       "first_air_date": "2024",
       "vote_average": 8.097,
       "poster_path": "/brgOpuQs3nhqRKQWomMv0jpHqxM.jpg"
-    },
-    {
-      "rank": 420,
-      "id": 60585,
-      "title": "Босх",
-      "first_air_date": "2014",
-      "vote_average": 8.097,
-      "poster_path": "/kbxP6SItyu5W4DiDdjdFDPeTU5H.jpg"
     },
     {
       "rank": 421,
@@ -7312,7 +7312,7 @@
       "id": 10283,
       "title": "Арчер",
       "first_air_date": "2009",
-      "vote_average": 8.09,
+      "vote_average": 8.089,
       "poster_path": "/vhnrkTGYPqcB63ALcSJm0WoaKHT.jpg"
     },
     {
@@ -7328,7 +7328,7 @@
       "id": 255140,
       "title": "Многодетство",
       "first_air_date": "2024",
-      "vote_average": 8.088,
+      "vote_average": 8.087,
       "poster_path": "/rC2SUNIRLxVPbm4iaE8SfXTkUP0.jpg"
     },
     {
@@ -7416,7 +7416,7 @@
       "id": 201330,
       "title": "Запрет на браки в Чосоне",
       "first_air_date": "2022",
-      "vote_average": 8.071,
+      "vote_average": 8.072,
       "poster_path": "/kJDfukNqEID4MqZL4lIr0bzQI0t.jpg"
     },
     {
@@ -7461,14 +7461,6 @@
     },
     {
       "rank": 449,
-      "id": 61529,
-      "title": "Хладнокровный Ходзуки",
-      "first_air_date": "2014",
-      "vote_average": 8.069,
-      "poster_path": "/b5ZuXOp7GIRmZ5oS1sLk53AnshF.jpg"
-    },
-    {
-      "rank": 450,
       "id": 27167,
       "title": "Трогательный комплекс",
       "first_air_date": "2007",
@@ -7476,12 +7468,20 @@
       "poster_path": "/dhadiTPPbM1m6eyBKwMr10CYLut.jpg"
     },
     {
-      "rank": 451,
+      "rank": 450,
       "id": 120089,
       "title": "Семья шпиона",
       "first_air_date": "2022",
       "vote_average": 8.067,
       "poster_path": "/xMqGSPjjnc4awD4R8JrRTW0IGOt.jpg"
+    },
+    {
+      "rank": 451,
+      "id": 61529,
+      "title": "Хладнокровный Ходзуки",
+      "first_air_date": "2014",
+      "vote_average": 8.067,
+      "poster_path": "/b5ZuXOp7GIRmZ5oS1sLk53AnshF.jpg"
     },
     {
       "rank": 452,
@@ -7509,19 +7509,19 @@
     },
     {
       "rank": 455,
+      "id": 70472,
+      "title": "Мираж",
+      "first_air_date": "1983",
+      "vote_average": 8.066,
+      "poster_path": "/vYXylElqUiv3dbgMwSksKDfWIK8.jpg"
+    },
+    {
+      "rank": 456,
       "id": 78154,
       "title": "Моя гениальная подруга",
       "first_air_date": "2018",
       "vote_average": 8.065,
       "poster_path": "/A47zCMUMmj357NbXR0baCFZ06cR.jpg"
-    },
-    {
-      "rank": 456,
-      "id": 70472,
-      "title": "Мираж",
-      "first_air_date": "1983",
-      "vote_average": 8.065,
-      "poster_path": "/vYXylElqUiv3dbgMwSksKDfWIK8.jpg"
     },
     {
       "rank": 457,
@@ -7624,7 +7624,7 @@
       "id": 68947,
       "title": "Шеф Ким",
       "first_air_date": "2017",
-      "vote_average": 8.052,
+      "vote_average": 8.053,
       "poster_path": "/99SYIrNWGUmCOc1kMUwZl1zK8eA.jpg"
     },
     {
@@ -7741,6 +7741,14 @@
     },
     {
       "rank": 484,
+      "id": 43152,
+      "title": "Принц с чердака",
+      "first_air_date": "2012",
+      "vote_average": 8.043,
+      "poster_path": "/kwu198TyTW8XoYLpLp8ieLyxD6E.jpg"
+    },
+    {
+      "rank": 485,
       "id": 83121,
       "title": "Госпожа Кагуя: В любви как на войне",
       "first_air_date": "2019",
@@ -7748,20 +7756,12 @@
       "poster_path": "/A7kGItnduqtGDOjKpz928I2dKQB.jpg"
     },
     {
-      "rank": 485,
+      "rank": 486,
       "id": 82856,
       "title": "Мандалорец",
       "first_air_date": "2019",
       "vote_average": 8.042,
       "poster_path": "/3JcJfU9wm6sA2R6LQtnsBJsHMmY.jpg"
-    },
-    {
-      "rank": 486,
-      "id": 43152,
-      "title": "Принц с чердака",
-      "first_air_date": "2012",
-      "vote_average": 8.042,
-      "poster_path": "/kwu198TyTW8XoYLpLp8ieLyxD6E.jpg"
     },
     {
       "rank": 487,
@@ -7816,7 +7816,7 @@
       "id": 88543,
       "title": "Вольф Мессинг: Видевший сквозь время",
       "first_air_date": "2009",
-      "vote_average": 8.034,
+      "vote_average": 8.035,
       "poster_path": "/fEee3v4jv0LySMRbnhUj2jBuysV.jpg"
     },
     {
@@ -7845,14 +7845,6 @@
     },
     {
       "rank": 497,
-      "id": 207468,
-      "title": "Кайдзю № 8",
-      "first_air_date": "2024",
-      "vote_average": 8.03,
-      "poster_path": "/ivuYeqpOwjqFwihYKPISaz4vZ5L.jpg"
-    },
-    {
-      "rank": 498,
       "id": 131026,
       "title": "Даль-ли и камджатхан",
       "first_air_date": "2021",
@@ -7860,7 +7852,7 @@
       "poster_path": "/tc3gDUW0WU6V8J92R1kQHCtO7ah.jpg"
     },
     {
-      "rank": 499,
+      "rank": 498,
       "id": 238711,
       "title": "Спрячь меня",
       "first_air_date": "2023",
@@ -7868,12 +7860,20 @@
       "poster_path": "/pEAJzdBhrjZ3Q9Ix6LBIYGH6Sqm.jpg"
     },
     {
-      "rank": 500,
+      "rank": 499,
       "id": 234391,
       "title": "Арт и Факт",
       "first_air_date": "2023",
       "vote_average": 8.029,
       "poster_path": "/ojCTQGTD0wUQyfj2IRW3BDFZo1n.jpg"
+    },
+    {
+      "rank": 500,
+      "id": 207468,
+      "title": "Кайдзю № 8",
+      "first_air_date": "2024",
+      "vote_average": 8.029,
+      "poster_path": "/ivuYeqpOwjqFwihYKPISaz4vZ5L.jpg"
     }
   ],
   "movies_cover": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/3d089ef6-4a24-4c6a-aff7-db153e4dbb7f/orig",
