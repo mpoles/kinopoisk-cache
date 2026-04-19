@@ -1,5 +1,5 @@
 {
-  "date": "2026-04-18",
+  "date": "2026-04-19",
   "movies": [
     {
       "rank": 1,
@@ -623,7 +623,7 @@
       "title": "Гарри Поттер и философский камень",
       "release_date": "2001",
       "vote_average": 8.299,
-      "poster_path": "/Z2CbhtMtbVaBEvhqBKMNB0p0ko.jpg"
+      "poster_path": "/q3LZNzwW7ZWu4kSFIPGcB5CYFE4.jpg"
     },
     {
       "rank": 81,
@@ -1687,7 +1687,7 @@
       "title": "Вечное сияние чистого разума",
       "release_date": "2004",
       "vote_average": 8.048,
-      "poster_path": "/sigtn1tCMBOcHUB4kAMapb5tO4U.jpg"
+      "poster_path": "/aGH2YhGAcA5VAlz4LsmKDAkjAfz.jpg"
     },
     {
       "rank": 214,
@@ -3186,14 +3186,6 @@
       "poster_path": "/x496Ip0weJYfsEX23eNyzG4MjXV.jpg"
     },
     {
-      "rank": 404,
-      "id": 11093,
-      "title": "Дом из песка и тумана",
-      "release_date": "2003",
-      "vote_average": 7.738,
-      "poster_path": "/hLxSOukLfC4j5pNbdE7lqaw8KgL.jpg"
-    },
-    {
       "rank": 405,
       "id": 77016,
       "title": "Патруль",
@@ -3322,14 +3314,6 @@
       "poster_path": "/niNo4qTtIule2vvMFW05amvMtOB.jpg"
     },
     {
-      "rank": 421,
-      "id": 861,
-      "title": "Вспомнить всё",
-      "release_date": "1990",
-      "vote_average": 7.71,
-      "poster_path": "/wVbeL6fkbTKSmNfalj4VoAUUqJv.jpg"
-    },
-    {
       "rank": 422,
       "id": 45094,
       "title": "Приговор",
@@ -3360,14 +3344,6 @@
       "release_date": "1998",
       "vote_average": 7.701,
       "poster_path": "/yeWdfO5FlowwqUEdXqF04i8s5Ib.jpg"
-    },
-    {
-      "rank": 426,
-      "id": 395834,
-      "title": "Ветреная река",
-      "release_date": "2017",
-      "vote_average": 7.697,
-      "poster_path": "/pySivdR845Hom4u4T2WNkJxe6Ad.jpg"
     },
     {
       "rank": 427,
@@ -3536,6 +3512,14 @@
       "release_date": "2013",
       "vote_average": 7.662,
       "poster_path": "/3Pnkt6NcB7Xc6cDftTBAF6gIzC6.jpg"
+    },
+    {
+      "rank": 449,
+      "id": 6145,
+      "title": "Перелом",
+      "release_date": "2007",
+      "vote_average": 7.661,
+      "poster_path": "/qNen8x5gaikjIg9CFihgxYcJwQe.jpg"
     },
     {
       "rank": 450,
@@ -3722,28 +3706,12 @@
       "poster_path": "/aboB73RjkfM3oqxTad0lF9JRLGw.jpg"
     },
     {
-      "rank": 473,
-      "id": 141,
-      "title": "Донни Дарко",
-      "release_date": "2001",
-      "vote_average": 7.602,
-      "poster_path": "/sv7D4vlfIH25lNjQYoXzoOFCYaz.jpg"
-    },
-    {
       "rank": 474,
       "id": 10045,
       "title": "13-й район",
       "release_date": "2004",
       "vote_average": 7.599,
       "poster_path": "/uYIDJ15RLBsFFBSAkqjIirZCgVi.jpg"
-    },
-    {
-      "rank": 475,
-      "id": 77528,
-      "title": "Охотники за головами",
-      "release_date": "2011",
-      "vote_average": 7.588,
-      "poster_path": "/1RP8Dqivk3HMdAY8E3tiZjQwAwY.jpg"
     },
     {
       "rank": 476,
@@ -3762,12 +3730,20 @@
       "poster_path": "/r5PYZGOiIQuGpaZas9TTplNZ5Ox.jpg"
     },
     {
-      "rank": 478,
-      "id": 1417,
-      "title": "Лабиринт Фавна",
+      "rank": 479,
+      "id": 2501,
+      "title": "Идентификация",
+      "release_date": "2003",
+      "vote_average": 7.576,
+      "poster_path": "/aP8swke3gmowbkfZ6lmNidu0y9p.jpg"
+    },
+    {
+      "rank": 480,
+      "id": 73334,
+      "title": "Королева",
       "release_date": "2006",
-      "vote_average": 7.578,
-      "poster_path": "/z7xXihu5wHuSMWymq5VAulPVuvg.jpg"
+      "vote_average": 7.574,
+      "poster_path": null
     },
     {
       "rank": 481,
@@ -3810,12 +3786,44 @@
       "poster_path": "/5gEtXQXsv7DjtJSWwgLHQatzRZc.jpg"
     },
     {
+      "rank": 486,
+      "id": 345,
+      "title": "С широко закрытыми глазами",
+      "release_date": "1999",
+      "vote_average": 7.555,
+      "poster_path": "/knEIz1eNGl5MQDbrEAVWA7iRqF9.jpg"
+    },
+    {
+      "rank": 487,
+      "id": 12163,
+      "title": "Рестлер",
+      "release_date": "2008",
+      "vote_average": 7.554,
+      "poster_path": "/6OTR8dSoNGjWohJNo3UhIGd3Tj.jpg"
+    },
+    {
       "rank": 488,
       "id": 787,
       "title": "Мистер и миссис Смит",
       "release_date": "2005",
       "vote_average": 7.552,
       "poster_path": "/i3hxOQV0F334Vb4HMFxhI1J0iyZ.jpg"
+    },
+    {
+      "rank": 489,
+      "id": 33273,
+      "title": "Камера 211",
+      "release_date": "2009",
+      "vote_average": 7.549,
+      "poster_path": "/koap5B3bQHQi3yaZ39vpWR66TGP.jpg"
+    },
+    {
+      "rank": 492,
+      "id": 16617,
+      "title": "Охотники за разумом",
+      "release_date": "2004",
+      "vote_average": 7.543,
+      "poster_path": "/uTTGRvnqCI9ZC7WkyP9u7XRiOaA.jpg"
     },
     {
       "rank": 493,
@@ -3826,20 +3834,20 @@
       "poster_path": "/1jU80STrosbPsiNe3oPpwyS5cXg.jpg"
     },
     {
-      "rank": 494,
-      "id": 213487,
-      "title": "Слова",
-      "release_date": "2012",
-      "vote_average": 7.523,
-      "poster_path": "/hrOOE2Sk18YdKCnfVTK8gimzF8w.jpg"
-    },
-    {
       "rank": 495,
       "id": 842924,
       "title": "Жизнь Чака",
       "release_date": "2024",
       "vote_average": 7.514,
       "poster_path": "/lFYKrab8PqePYQ3L5UM0qwINoLP.jpg"
+    },
+    {
+      "rank": 496,
+      "id": 307081,
+      "title": "Левша",
+      "release_date": "2015",
+      "vote_average": 7.491,
+      "poster_path": "/kSQ49Fi3NVTqGGXILmxV2T2pdkG.jpg"
     },
     {
       "rank": 497,
@@ -4097,7 +4105,7 @@
       "title": "Амфибия",
       "first_air_date": "2019",
       "vote_average": 8.752,
-      "poster_path": "/qD9yjHsPWoYA1VOIEjGhrWKvsKE.jpg"
+      "poster_path": "/pew3ou8t2yr72uKYO6GcbIcp0kK.jpg"
     },
     {
       "rank": 29,
@@ -4200,7 +4208,7 @@
       "id": 223911,
       "title": "Противостояние святого",
       "first_air_date": "2023",
-      "vote_average": 8.676,
+      "vote_average": 8.678,
       "poster_path": "/6AVM12M6UunFmX0bSmP2o4N5Bnt.jpg"
     },
     {
@@ -5489,7 +5497,7 @@
       "title": "Пацаны",
       "first_air_date": "2019",
       "vote_average": 8.279,
-      "poster_path": "/3NqlBDpWI83TgQ9nmeFwTVxEmtZ.jpg"
+      "poster_path": "/z7pZuGOqJKpLpb7WkD63MjFWgwL.jpg"
     },
     {
       "rank": 203,
