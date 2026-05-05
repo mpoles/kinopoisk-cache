@@ -1,5 +1,5 @@
 {
-  "date": "2026-05-04",
+  "date": "2026-05-05",
   "movies": [
     {
       "rank": 1,
@@ -39,7 +39,7 @@
       "title": "Список Шиндлера",
       "release_date": "1993",
       "vote_average": 8.851,
-      "poster_path": "/4K8fGGcJP2EoGDucILnaJcOJhZl.jpg"
+      "poster_path": "/dB7edCQIuExWErWXFVqR7ORnZRS.jpg"
     },
     {
       "rank": 6,
@@ -343,7 +343,7 @@
       "title": "Отступники",
       "release_date": "2006",
       "vote_average": 8.458,
-      "poster_path": "/91iulTTBGivvyxUYeIU0Kbv9Amo.jpg"
+      "poster_path": "/jT6JJV6t902SN9dJlSRdiPi6hSv.jpg"
     },
     {
       "rank": 45,
@@ -504,14 +504,6 @@
       "release_date": "2023",
       "vote_average": 8.341,
       "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg"
-    },
-    {
-      "rank": 65,
-      "id": 5528,
-      "title": "Хористы",
-      "release_date": "2004",
-      "vote_average": 8.34,
-      "poster_path": "/hUl7gSvkGygyk9wt3zy5NqpC5bb.jpg"
     },
     {
       "rank": 67,
@@ -1434,14 +1426,6 @@
       "poster_path": "/6EXQpftMDnbEFu75fmRGGF6CuOT.jpg"
     },
     {
-      "rank": 182,
-      "id": 167,
-      "title": "Планета Ка-Пэкс",
-      "release_date": "2001",
-      "vote_average": 8.078,
-      "poster_path": "/tafXZX0I6rso7EyoEzfygfTqxq6.jpg"
-    },
-    {
       "rank": 183,
       "id": 4922,
       "title": "Загадочная история Бенджамина Баттона",
@@ -1560,14 +1544,6 @@
       "release_date": "2023",
       "vote_average": 8.058,
       "poster_path": "/mz7lPfNOLOWDKoz625tFgNcSPVi.jpg"
-    },
-    {
-      "rank": 198,
-      "id": 87018,
-      "title": "Воин",
-      "release_date": "2011",
-      "vote_average": 8.058,
-      "poster_path": "/uHg3zAz1esSGagojsvdeuQA07Sb.jpg"
     },
     {
       "rank": 199,
@@ -1786,14 +1762,6 @@
       "poster_path": "/1O9jUvqkHaGBMVRyOJz1AlkmALW.jpg"
     },
     {
-      "rank": 226,
-      "id": 10315,
-      "title": "Бесподобный мистер Фокс",
-      "release_date": "2009",
-      "vote_average": 8.021,
-      "poster_path": "/euZyZb6iGreujYKrGyZHRddhUYh.jpg"
-    },
-    {
       "rank": 227,
       "id": 10400,
       "title": "Ураган",
@@ -1816,6 +1784,14 @@
       "release_date": "2000",
       "vote_average": 8.012,
       "poster_path": "/ncMZhkjktqLLlN7j0o3PZ3dF4XP.jpg"
+    },
+    {
+      "rank": 230,
+      "id": 598,
+      "title": "Город бога",
+      "release_date": "2002",
+      "vote_average": 8.009,
+      "poster_path": "/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg"
     },
     {
       "rank": 231,
@@ -1864,14 +1840,6 @@
       "release_date": "1999",
       "vote_average": 7.996,
       "poster_path": "/lusI8lV9eThjA7otUGo3bRmFWk9.jpg"
-    },
-    {
-      "rank": 237,
-      "id": 579974,
-      "title": "RRR: Рядом ревёт революция",
-      "release_date": "2022",
-      "vote_average": 7.99,
-      "poster_path": "/u0XUBNQWlOvrh0Gd97ARGpIkL0.jpg"
     },
     {
       "rank": 238,
@@ -2138,28 +2106,12 @@
       "poster_path": "/wiCotiyukYXWwlL1ZcjyxxhTthi.jpg"
     },
     {
-      "rank": 271,
-      "id": 2118,
-      "title": "Секреты Лос-Анджелеса",
-      "release_date": "1997",
-      "vote_average": 7.933,
-      "poster_path": "/lWCgf5sD5FpMljjpkRhcC8pXcch.jpg"
-    },
-    {
       "rank": 272,
       "id": 299534,
       "title": "Мстители: Финал",
       "release_date": "2019",
       "vote_average": 7.932,
       "poster_path": "/dynnf8NGGfHTNMz8Vd3CzFtYjec.jpg"
-    },
-    {
-      "rank": 273,
-      "id": 14202,
-      "title": "Разрисованная вуаль",
-      "release_date": "2006",
-      "vote_average": 7.931,
-      "poster_path": "/k41IvHDLgZO2ae7RuU77wQjScIj.jpg"
     },
     {
       "rank": 274,
@@ -2458,14 +2410,6 @@
       "poster_path": "/oTmSnrE9MuQMhZkosZRE5bYvstK.jpg"
     },
     {
-      "rank": 313,
-      "id": 11544,
-      "title": "Лило и Стич",
-      "release_date": "2002",
-      "vote_average": 7.863,
-      "poster_path": "/cFuLvQJPoZpuruAtN3rVnMmLIH8.jpg"
-    },
-    {
       "rank": 314,
       "id": 1064486,
       "title": "Мемуары Улитки",
@@ -2607,7 +2551,7 @@
       "title": "Парк Юрского периода",
       "release_date": "1993",
       "vote_average": 7.834,
-      "poster_path": "/xcqO13dmGi32LVUUuN75vmHRhya.jpg"
+      "poster_path": "/qoDjoRP7vYmPZ1lZIMTGzoHG1iR.jpg"
     },
     {
       "rank": 332,
@@ -2826,6 +2770,14 @@
       "poster_path": "/4UUePUiLaoaOc1ND62gh7hakeUo.jpg"
     },
     {
+      "rank": 359,
+      "id": 339380,
+      "title": "По половому признаку",
+      "release_date": "2018",
+      "vote_average": 7.794,
+      "poster_path": "/izY9Le3QWtu7xkHq7bjJnuE5yGI.jpg"
+    },
+    {
       "rank": 360,
       "id": 75656,
       "title": "Иллюзия обмана",
@@ -2840,6 +2792,14 @@
       "release_date": "2008",
       "vote_average": 7.79,
       "poster_path": "/iLDMVtj7G0Gu0U2cgUFo1AiWuGe.jpg"
+    },
+    {
+      "rank": 362,
+      "id": 339692,
+      "title": "Выстрел в пустоту",
+      "release_date": "2017",
+      "vote_average": 7.789,
+      "poster_path": "/qLmLz2wtyYvmW8Ult3l2ngOnW8v.jpg"
     },
     {
       "rank": 363,
@@ -2914,6 +2874,14 @@
       "poster_path": "/dE4IM48fgZBzr96y7gjwpbab4hJ.jpg"
     },
     {
+      "rank": 373,
+      "id": 1142871,
+      "title": "Кентавр",
+      "release_date": "2023",
+      "vote_average": 7.778,
+      "poster_path": "/lTGkMXbay5kdAQ7wgZX2E5EFJcl.jpg"
+    },
+    {
       "rank": 375,
       "id": 1000866,
       "title": "Братья по нотам",
@@ -2968,14 +2936,6 @@
       "release_date": "2006",
       "vote_average": 7.772,
       "poster_path": "/kGLOLum7xU95spakBEfxCjEfNn0.jpg"
-    },
-    {
-      "rank": 382,
-      "id": 9667,
-      "title": "Пиджак",
-      "release_date": "2005",
-      "vote_average": 7.763,
-      "poster_path": "/bt89UfRhjAvJDAO9CWJnRFXAN3p.jpg"
     },
     {
       "rank": 383,
@@ -3471,7 +3431,7 @@
       "title": "Фарго",
       "release_date": "1996",
       "vote_average": 7.636,
-      "poster_path": "/tPIhag6JXcQlM2FMGc0cui1uxmY.jpg"
+      "poster_path": "/laRRj8z0g8HksXfZnLK6bzhV6ee.jpg"
     },
     {
       "rank": 446,
@@ -3520,14 +3480,6 @@
       "release_date": "2002",
       "vote_average": 7.619,
       "poster_path": "/wmOGTzc4tRYS5E7Q3QJXT7YkhIR.jpg"
-    },
-    {
-      "rank": 452,
-      "id": 116,
-      "title": "Матч поинт",
-      "release_date": "2005",
-      "vote_average": 7.617,
-      "poster_path": "/vHjEVTD8ucuwKSFOZJeyAnTZYli.jpg"
     },
     {
       "rank": 453,
@@ -3583,7 +3535,7 @@
       "title": "Мгла",
       "release_date": "2007",
       "vote_average": 7.603,
-      "poster_path": "/qowx0xUFxy3u5zx2AHF59Cm9gGc.jpg"
+      "poster_path": "/pCoraG5JrOtHujzbTy78zcCJKsJ.jpg"
     },
     {
       "rank": 460,
@@ -3730,6 +3682,22 @@
       "poster_path": "/i3hxOQV0F334Vb4HMFxhI1J0iyZ.jpg"
     },
     {
+      "rank": 478,
+      "id": 33273,
+      "title": "Камера 211",
+      "release_date": "2009",
+      "vote_average": 7.549,
+      "poster_path": "/koap5B3bQHQi3yaZ39vpWR66TGP.jpg"
+    },
+    {
+      "rank": 479,
+      "id": 7457,
+      "title": "Альфа Дог",
+      "release_date": "2006",
+      "vote_average": 7.549,
+      "poster_path": "/t9pirEsDxe102mSQGoDZWBbdcCD.jpg"
+    },
+    {
       "rank": 480,
       "id": 26388,
       "title": "Погребенный заживо",
@@ -3738,12 +3706,28 @@
       "poster_path": "/lQP2sZngXzjh3NDIWzo9OVK5YVh.jpg"
     },
     {
+      "rank": 481,
+      "id": 16617,
+      "title": "Охотники за разумом",
+      "release_date": "2004",
+      "vote_average": 7.543,
+      "poster_path": "/uTTGRvnqCI9ZC7WkyP9u7XRiOaA.jpg"
+    },
+    {
       "rank": 482,
       "id": 577922,
       "title": "Довод",
       "release_date": "2020",
       "vote_average": 7.525,
       "poster_path": "/1jU80STrosbPsiNe3oPpwyS5cXg.jpg"
+    },
+    {
+      "rank": 483,
+      "id": 213487,
+      "title": "Слова",
+      "release_date": "2012",
+      "vote_average": 7.524,
+      "poster_path": "/hrOOE2Sk18YdKCnfVTK8gimzF8w.jpg"
     },
     {
       "rank": 484,
@@ -3786,20 +3770,12 @@
       "poster_path": "/xsuqYQBt3CGYMhOxtJkkRuNY60B.jpg"
     },
     {
-      "rank": 490,
-      "id": 377883,
-      "title": "Золото",
-      "release_date": "2016",
-      "vote_average": 7.423,
-      "poster_path": "/AwCzt2CX3OmWfwvWQImHJMSF5fQ.jpg"
-    },
-    {
-      "rank": 492,
-      "id": 615453,
-      "title": "Нэчжа",
-      "release_date": "2019",
-      "vote_average": 7.393,
-      "poster_path": "/phM9bb6s9c60LA8qwsdk7U1N2cS.jpg"
+      "rank": 491,
+      "id": 94329,
+      "title": "Рейд",
+      "release_date": "2011",
+      "vote_average": 7.396,
+      "poster_path": "/Abnm1Ws3JH0ReCfEhLMPwPcMcGO.jpg"
     },
     {
       "rank": 493,
@@ -3824,14 +3800,6 @@
       "release_date": "2021",
       "vote_average": 7.379,
       "poster_path": "/izl5fI8GnvT9NGCacv3VjxlvViJ.jpg"
-    },
-    {
-      "rank": 496,
-      "id": 10795,
-      "title": "Не говори никому",
-      "release_date": "2006",
-      "vote_average": 7.372,
-      "poster_path": "/fr2wEeO1H8dzx6EDfzYTRBIvZaE.jpg"
     },
     {
       "rank": 497,
